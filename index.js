@@ -18,7 +18,7 @@ for(const file of commandFiles){
 bot.on("ready", () => {
   console.log(`${bot.user.tag} is now online!`);
 
-  bot.user.setActivity(`:help`, { type: 3, browser: "DISCORD IOS"  });
+  bot.user.setActivity(`${bot.guilds.cache.size} servers || :help`, { type: 3, browser: "DISCORD IOS"  });
 });
 
 bot.on("message", async message => {
@@ -44,7 +44,8 @@ bot.on("message", async message => {
         {name: bot.commands.get("kick").name, value: `${bot.commands.get("kick").description}\n **Arguments:**\n ${bot.commands.get("kick").arguments}`, inline: true},
         {name: bot.commands.get("createrole").name, value: `${bot.commands.get("createrole").description}\n **Arguments:**\n ${bot.commands.get("createrole").arguments}`, inline: true},
         {name: bot.commands.get("viewmember").name, value: `${bot.commands.get("viewmember").description}\n **Arguments:**\n ${bot.commands.get("viewmember").arguments}`, inline: true},
-        {name: bot.commands.get("botinfo").name, value: `${bot.commands.get("botinfo").description}\n **Arguments:**\n ${bot.commands.get("botinfo").arguments}`, inline: true}
+        {name: bot.commands.get("botinfo").name, value: `${bot.commands.get("botinfo").description}\n **Arguments:**\n ${bot.commands.get("botinfo").arguments}`, inline: true},
+        {name: bot.commands.get("purge").name, value: `${bot.commands.get("purge").description}\n **Arguments:**\n ${bot.commands.get("purge").arguments}`, inline: true}
       );
 
       message.author.send(helpEmbed);
@@ -166,6 +167,13 @@ bot.on("message", async message => {
     case "botinfo": // botinfo command
 
       bot.commands.get("botinfo").execute(message)
+
+    break;
+
+    case "purge": // purge command
+
+      let number = message.content.split(" ").slice(1);
+      bot.commands.get("purge").execute(message, number)
 
     break;
   }

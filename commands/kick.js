@@ -21,5 +21,5 @@ module.exports = {
         message.channel.send(":slight_smile: " + member.displayName + " has been kicked!");
       });
     });
-  };
+  }
 };

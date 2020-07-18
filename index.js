@@ -4,8 +4,8 @@ const prefix = config.prefix;
 const bot = new Discord.Client();
 const fs = require("fs");
 bot.commands = new Discord.Collection();
-const Constants = require("discord.js/src/util/Constants.js");
-Constants.DefaultOptions.ws.properties.$browser = "Discord IOS"
+const Constants = require('discord.js/src/util/Constants.js')
+Constants.DefaultOptions.ws.properties.$browser = `Discord iOS`
 
 const commandFiles = fs.readdirSync("./commands/").filter((file => file.endsWith(".js")));
 for(const file of commandFiles){

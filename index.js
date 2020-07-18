@@ -6,6 +6,22 @@ const fs = require("fs");
 bot.commands = new Discord.Collection();
 const Constants = require('discord.js/src/util/Constants.js')
 Constants.DefaultOptions.ws.properties.$browser = `Discord iOS`
+const AntiSpam = require('discord-anti-spam');
+const antiSpam({
+  warnThreshold: 3,
+  banThreshold: 7,
+  maxInterval: 2000,
+  warnMessage: '{@user}, Please stop spamming!',
+  banMessage: '**{user_tag}** has been banned for spamming.',
+  maxDuplicatesWarning: 7,
+  maxDuplicatesBan: 15,
+  deleteMessagesAfterBanForPastDays: 1,
+  exemptPermissions: ['ADMINISTRATOR', "MANAGE_MESSAGES", "MANAGE_GUILD", "BAN_MEMBERS", "KICK_MEMBERS"],
+  ignoreBots: true,
+  verbose: false,
+  ignoredUsers:[],
+  ignoredChannels: ["spam", "memes", "nsfw", "shitpost"]
+});
 
 const commandFiles = fs.readdirSync("./commands/").filter((file => file.endsWith(".js")));
 for(const file of commandFiles){

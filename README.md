@@ -9,6 +9,7 @@
 ![License](https://img.shields.io/github/license/sp00p/Kukita)
 ![Releases](https://img.shields.io/github/v/release/sp00p/Kukita)
 ![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fseancornell.io%2Fkukitadocs)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/aae94ce9278d48f29dd573b5250e5250)](https://app.codacy.com/gh/bionicpath/Kukita?utm_source=github.com&utm_medium=referral&utm_content=bionicpath/Kukita&utm_campaign=Badge_Grade_Dashboard)
 
 Kukita is a bot developed by Sean#0004 to handle moderation of servers as well as provide users with fun minigames and commands. You can invite the bot to your server using this [link](https://discord.com/api/oauth2/authorize?client_id=714758633702948905&permissions=8&scope=bot).
 
@@ -16,12 +17,12 @@ Kukita is a bot developed by Sean#0004 to handle moderation of servers as well a
 
 ## Release History
 
-* 0.0.1
-* Work in progress
+*   0.0.1
+*   Work in progress
 
 ## Meta
 
-Sean Cornell – [@JewishEngineer](<https://twitter.com/JewishEngineer>) – seancornell11@gmail.com
+Sean Cornell – [![@JewishEngineer][https://twitter.com/JewishEngineer]] – seancornell11@gmail.com
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 

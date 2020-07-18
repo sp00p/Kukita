@@ -4,7 +4,6 @@
 
 > A multifunctional discord bot for all your server-related needs!
 
-
 ![Issues](https://img.shields.io/github/issues/sp00p/Kukita)
 ![CodePercent](https://img.shields.io/github/languages/top/sp00p/Kukita)
 ![License](https://img.shields.io/github/license/sp00p/Kukita)
@@ -18,12 +17,12 @@ Kukita is a bot developed by Sean#0004 to handle moderation of servers as well a
 
 ## Release History
 
-* 0.0.1
-    * Work in progress
+  * 0.0.1
+  * Work in progress
 
 ## Meta
 
-Sean Cornell – [@JewishEngineer](https://twitter.com/JewishEngineer) – seancornell11@gmail.com
+Sean Cornell – [@JewishEngineer](<https://twitter.com/JewishEngineer>) – seancornell11@gmail.com
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
@@ -31,9 +30,9 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 
 ## Contributing
 
-1. Fork it(<https://github.com/sp00p/Kukita/fork>)
-2. Create your feature branch (`git checkout -b feature/Kukita`)
-3. Commit your changes (`git commit -am 'Commit Message'`)
-4. Push to the branch (`git push origin feature/Kukita`)
-5. Create a new Pull Request
+1.  Fork it (<https://github.com/sp00p/Kukita/fork>)
+2.  Create your feature branch  (`git checkout -b feature/Kukita`)
+3.  Commit your changes (`git commit -am 'Commit Message'`)
+4.  Push to the branch (`git push origin feature/Kukita`)
+5.  Create a new Pull Request
 

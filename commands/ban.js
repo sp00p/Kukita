@@ -12,7 +12,7 @@ module.exports = {
       .addFields(
         {name: "**Moderator**", value: moderator},
         {name: "**Action**", value: "Ban"},
-        {name: "**Reason**", value: reason},
+        {name: "**Reason**", value: `You have been banned from ${guildname} for ${reason}`},
       )
       .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png");
 

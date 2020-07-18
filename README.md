@@ -9,7 +9,6 @@
 ![License](https://img.shields.io/github/license/sp00p/Kukita)
 ![Releases](https://img.shields.io/github/v/release/sp00p/Kukita)
 ![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fseancornell.io%2Fkukitadocs)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/aae94ce9278d48f29dd573b5250e5250)](https://app.codacy.com/gh/bionicpath/Kukita?utm_source=github.com&utm_medium=referral&utm_content=bionicpath/Kukita&utm_campaign=Badge_Grade_Dashboard)
 ![Maintained](https://img.shields.io/maintenance/yes/2020)
 ![Discord](https://img.shields.io/discord/714763331948380272)
 ![Contributors](https://img.shields.io/github/contributors/bionicpath/Kukita)

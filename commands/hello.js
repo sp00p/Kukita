@@ -3,7 +3,7 @@ module.exports = {
   description: 'a test command',
   execute() {
 
-    message.channel.send('Hello!😊');
+    message.channel.send("Hello!😊");
 
   }
 }

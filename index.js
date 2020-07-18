@@ -7,7 +7,7 @@ bot.commands = new Discord.Collection();
 const Constants = require('discord.js/src/util/Constants.js')
 Constants.DefaultOptions.ws.properties.$browser = `Discord iOS`
 const AntiSpam = require('discord-anti-spam');
-const antiSpam({
+const antiSpam = new AntiSpam ({
   warnThreshold: 3,
   banThreshold: 7,
   maxInterval: 2000,

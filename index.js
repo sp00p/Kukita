@@ -31,17 +31,20 @@ bot.on("message", async message => {
     const helpEmbed = new Discord.MessageEmbed()
       .setColor("#0099ff")
       .setTitle("Command List")
-      .setAuthor("Kukita#6512")
+      .setAuthor("Kukita#6512", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
       .setDescription("A list of available commands")
       .addFields(
-        {name: bot.commands.get("ban").name, value: bot.commands.get("ban").description, inline: true },
-        {name: bot.commands.get("ping").name, value: bot.commands.get("ping").description, inline: true},
-        {name: bot.commands.get("uptime").name, value: bot.commands.get("uptime").description, inline: true},
-        {name: bot.commands.get("hello").name, value: bot.commands.get("hello").description, inline:true},
-        {name: bot.commands.get("roleban").name, value: bot.commands.get("roleban").description, inline: true},
-        {name: bot.commands.get("rolekick").name, value: bot.commands.get("rolekick").description, inline: true},
-        {name: bot.commands.get("serverinfo").name, value: bot.commands.get("serverinfo").description, inline: true},
-        {name: bot.commands.get("kick").name, value: bot.commands.get("kick").description, inline: true},
+        {name: bot.commands.get("ban").name, value: `${bot.commands.get("ban").description}\n **Arguments:**\n ${bot.commands.get("ban").arguments}`, inline: true },
+        {name: bot.commands.get("ping").name, value: `${bot.commands.get("ping").description}\n **Arguments:**\n ${bot.commands.get("ping").arguments}`, inline: true},
+        {name: bot.commands.get("uptime").name, value: `${bot.commands.get("uptime").description}\n **Arguments:**\n ${bot.commands.get("uptime").arguments}`, inline: true},
+        {name: bot.commands.get("hello").name, value: `${bot.commands.get("hello").description}\n **Arguments:**\n ${bot.commands.get("hello").arguments}`, inline:true},
+        {name: bot.commands.get("roleban").name, value: `${bot.commands.get("roleban").description}\n **Arguments:**\n ${bot.commands.get("roleban").arguments}`, inline: true},
+        {name: bot.commands.get("rolekick").name, value: `${bot.commands.get("rolekick").description}\n **Arguments:**\n ${bot.commands.get("rolekick").arguments}`, inline: true},
+        {name: bot.commands.get("serverinfo").name, value: `${bot.commands.get("serverinfo").description}\n **Arguments:**\n ${bot.commands.get("serverinfo").arguments}`, inline: true},
+        {name: bot.commands.get("kick").name, value: `${bot.commands.get("kick").description}\n **Arguments:**\n ${bot.commands.get("kick").arguments}`, inline: true},
+        {name: bot.commands.get("createrole").name, value: `${bot.commands.get("createrole").description}\n **Arguments:**\n ${bot.commands.get("createrole").arguments}`, inline: true},
+        {name: bot.commands.get("viewmember").name, value: `${bot.commands.get("viewmember").description}\n **Arguments:**\n ${bot.commands.get("viewmember").arguments}`, inline: true},
+        {name: bot.commands.get("botinfo").name, value: `${bot.commands.get("botinfo").description}\n **Arguments:**\n ${bot.commands.get("botinfo").arguments}`, inline: true}
       );
 
       message.author.send(helpEmbed);
@@ -110,6 +113,7 @@ bot.on("message", async message => {
     break;
 
     case "roleban": // roleban command
+
       if (message.members.hasPermission("ADMINISTRATOR")) {
         let guild = message.guild;
         let role = message.content.split(" ").slice(2);
@@ -128,6 +132,40 @@ bot.on("message", async message => {
     case "uptime": // uptime command
 
       bot.commands.get("uptime").execute(message, bot);
+
+    break;
+
+    case "createrole": // createrole command
+
+      if (message.member.hasPermission("MANAGE_ROLES", "ADMINISTRATOR")) {
+
+          bot.commands.get("createrole").execute(message, args);
+
+      } else {
+        message.channel.send("You have to have the MANAGE_ROLES or ADMINISTRATOR permission to use this command!😞");
+      }
+
+    break;
+
+    case "editrole": // editrole command
+
+      if (message.member.hasPermission("MANAGE_ROLES", "ADMINISTRATOR")) {
+
+        let role = message.content.split(" ").slice(1);
+        bot.commands.get("editrole").execute(message, role);
+
+      }
+    break;
+
+    case "viewmember": // viewmember command
+
+      bot.commands.get("viewmember").execute(message)
+
+    break;
+
+    case "botinfo": // botinfo command
+
+      bot.commands.get("botinfo").execute(message)
 
     break;
   }

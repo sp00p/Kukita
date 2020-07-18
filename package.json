@@ -1,0 +1,27 @@
+{
+  "name": "kukita",
+  "version": "0.0.1",
+  "description": "a multifunctional discord bot for all your server-related needs!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sp00p/Kukita.git"
+  },
+  "keywords": [
+    "bot",
+    "anime",
+    "discord"
+  ],
+  "author": "https://github.com/sp00p",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sp00p/Kukita/issues"
+  },
+  "homepage": "https://github.com/sp00p/Kukita#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  }
+}

@@ -29,7 +29,7 @@ Sean Cornell – [@JewishEngineer](https://twitter.com/JewishEngineer) – seanc
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
-[https://github.com/sp00p/Kukita](https://github.com/sp00p/)
+[https://github.com/sp00p](https://github.com/sp00p)
 
 ## Contributing
 

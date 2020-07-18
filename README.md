@@ -12,11 +12,6 @@ Kukita is a bot developed by Sean#0004 to handle moderation of servers as well a
 
 [Documentation](https://seancornell.io/kukitadocs)
 
-## Usage example
-
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
-
-_For more examples and usage, please refer to the [Wiki][wiki]._
 
 ## Release History
 
@@ -34,9 +29,9 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 ## Contributing
 
 1. Fork it (<https://github.com/sp00p/Kukita/fork>)
-2. Create your feature branch (`git checkout -b feature/fooBar`)
-3. Commit your changes (`git commit -am 'Add some fooBar'`)
-4. Push to the branch (`git push origin feature/fooBar`)
+2. Create your feature branch (`git checkout -b feature/Kukita`)
+3. Commit your changes (`git commit -am 'Commit Message'`)
+4. Push to the branch (`git push origin feature/Kukita`)
 5. Create a new Pull Request
 
 <!-- Markdown link & img dfn's -->

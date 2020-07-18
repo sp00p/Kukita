@@ -5,8 +5,12 @@
 > A multifunctional discord bot for all your server-related needs!
 
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
+![Issues](https://img.shields.io/github/issues/sp00p/Kukita)
+![CodePercent](https://img.shields.io/github/languages/top/sp00p/Kukita)
+![License](https://img.shields.io/github/license/sp00p/Kukita)
+![Releases](https://img.shields.io/github/v/release/sp00p/Kukita)
+![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fseancornell.io%2Fkukitadocs)
+
 
 Kukita is a bot developed by Sean#0004 to handle moderation of servers as well as provide users with fun minigames and commands. You can invite the bot to your server using this [link](https://discord.com/api/oauth2/authorize?client_id=714758633702948905&permissions=8&scope=bot).
 

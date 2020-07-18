@@ -1,4 +1,3 @@
-require("dotenv").config();
 const Discord = require("discord.js");
 const config = require("./botconfig.json");
 const prefix = config.prefix;
@@ -8,7 +7,7 @@ bot.commands = new Discord.Collection();
 const Constants = require("discord.js/src/util/Constants.js")
 Constants.DefaultOptions.ws.properties.$browser = "Discord IOS"
 
-const commandFiles = fs.readdirSync("./commands/").filter((file => file.endsWith(".js"));
+const commandFiles = fs.readdirSync("./commands/").filter((file => file.endsWith(".js")));
 for(const file of commandFiles){
   const command = require(`./commands/${file}`);
   console.log(`${command.name} command loaded!`);
@@ -46,7 +45,7 @@ bot.on("message", async message => {
       )
 
       message.author.send(helpEmbed);
-      message.reply("I have send you a DM!");
+      message.reply("I have sent you a DM!");
 
   }
   switch (args[0]) {
@@ -150,4 +149,4 @@ bot.on("message", async message => {
   }
 })
 
-bot.login();
+bot.login(config.token);

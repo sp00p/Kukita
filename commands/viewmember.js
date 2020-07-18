@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 
 module.exports = {
-  name: "viewmember",
+  name: "info",
   description: "allows you to view a specific member's permissions",
   arguments: "<user>",
   execute(message) {

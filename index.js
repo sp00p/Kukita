@@ -43,7 +43,7 @@ bot.on("message", async message => {
         {name: bot.commands.get("serverinfo").name, value: `${bot.commands.get("serverinfo").description}\n **Arguments:**\n ${bot.commands.get("serverinfo").arguments}`, inline: true},
         {name: bot.commands.get("kick").name, value: `${bot.commands.get("kick").description}\n **Arguments:**\n ${bot.commands.get("kick").arguments}`, inline: true},
         {name: bot.commands.get("createrole").name, value: `${bot.commands.get("createrole").description}\n **Arguments:**\n ${bot.commands.get("createrole").arguments}`, inline: true},
-        {name: bot.commands.get("viewmember").name, value: `${bot.commands.get("viewmember").description}\n **Arguments:**\n ${bot.commands.get("viewmember").arguments}`, inline: true},
+        {name: bot.commands.get("info").name, value: `${bot.commands.get("info").description}\n **Arguments:**\n ${bot.commands.get("info").arguments}`, inline: true},
         {name: bot.commands.get("botinfo").name, value: `${bot.commands.get("botinfo").description}\n **Arguments:**\n ${bot.commands.get("botinfo").arguments}`, inline: true},
         {name: bot.commands.get("purge").name, value: `${bot.commands.get("purge").description}\n **Arguments:**\n ${bot.commands.get("purge").arguments}`, inline: true}
       );
@@ -74,7 +74,7 @@ bot.on("message", async message => {
           bot.commands.get("kick").execute(message, member, guildname, moderator, reason);
         }
       } else {
-        message.channel.send("You don't have permission to use this command!😞");
+        message.reply("You don't have permission to use this command!😞");
       }
     break;
 
@@ -92,7 +92,7 @@ bot.on("message", async message => {
         bot.commands.get("ban").execute(message, member, guildname, moderator, reason);
       }
     } else {
-      message.channel.send("You have to have the BAN_MEMBERS or ADMINISTRATOR permission to use this command!😞");
+      message.reply("You have to have the BAN_MEMBERS or ADMINISTRATOR permission to use this command!😞");
     }
     break;
 
@@ -109,7 +109,7 @@ bot.on("message", async message => {
         let role = message.content.split(" ").slice(2);
         bot.commands.get("rolekick").execute(guild, role);
       } else {
-        message.channel.send("You have to have the ADMINISTRATOR permission to use this command!😞");
+        message.reply("You have to have the ADMINISTRATOR permission to use this command!😞");
       }
     break;
 
@@ -120,7 +120,7 @@ bot.on("message", async message => {
         let role = message.content.split(" ").slice(2);
         bot.commands.get("roleban").execute(guild, role);
       } else {
-        message.channel.send("You have to have the ADMINISTRATOR permission to use this command!😞");
+        message.reply("You have to have the ADMINISTRATOR permission to use this command!😞");
       }
     break;
 
@@ -143,7 +143,7 @@ bot.on("message", async message => {
           bot.commands.get("createrole").execute(message, args);
 
       } else {
-        message.channel.send("You have to have the MANAGE_ROLES or ADMINISTRATOR permission to use this command!😞");
+        message.reply("You have to have the MANAGE_ROLES or ADMINISTRATOR permission to use this command!😞");
       }
 
     break;
@@ -158,9 +158,9 @@ bot.on("message", async message => {
       }
     break;
 
-    case "viewmember": // viewmember command
+    case "info": // viewmember command
 
-      bot.commands.get("viewmember").execute(message)
+      bot.commands.get("info").execute(message)
 
     break;
 
@@ -172,8 +172,13 @@ bot.on("message", async message => {
 
     case "purge": // purge command
 
-      let number = message.content.split(" ").slice(1);
-      bot.commands.get("purge").execute(message, number)
+      if (message.member.hasPermission("MANAGE_MESSAGES")) {
+        let number = message.content.split(" ").slice(1);
+        bot.commands.get("purge").execute(message, number)
+      } else {
+        message.reply("You have to have the MANAGE_MESSAGES permission to use this command!😞")
+      }
+
 
     break;
   }

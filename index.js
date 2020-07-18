@@ -37,6 +37,8 @@ bot.on("ready", () => {
   bot.user.setActivity(`${bot.guilds.cache.size} servers || :help`, { type: 3, browser: "DISCORD IOS"  });
 });
 
+bot.on("message", (message) => antiSpam.message(message));
+
 bot.on("message", async message => {
 
   if(message.channel.type === "dm" && message.content[0] === ':') { message.author.send("My commands don\'t work in DM\'s!😞"); return;}

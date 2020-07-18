@@ -1,5 +1,7 @@
 # Kukita
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/aae94ce9278d48f29dd573b5250e5250)](https://app.codacy.com/gh/bionicpath/Kukita?utm_source=github.com&utm_medium=referral&utm_content=bionicpath/Kukita&utm_campaign=Badge_Grade_Dashboard)
+
 ![Kukita](https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png)
 
 > A multifunctional discord bot for all your server-related needs!

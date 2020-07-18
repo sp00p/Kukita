@@ -1,3 +1,4 @@
+require("dotenv").config();
 const Discord = require("discord.js");
 const config = require("./botconfig.json");
 const prefix = config.prefix;
@@ -149,4 +150,4 @@ bot.on("message", async message => {
   }
 })
 
-bot.login(config.token);
+bot.login();

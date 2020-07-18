@@ -5,8 +5,12 @@
 > A multifunctional discord bot for all your server-related needs!
 
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
+![Issues](https://img.shields.io/github/issues/sp00p/Kukita)
+![CodePercent](https://img.shields.io/github/languages/top/sp00p/Kukita)
+![License](https://img.shields.io/github/license/sp00p/Kukita)
+![Releases](https://img.shields.io/github/v/release/sp00p/Kukita)
+![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fseancornell.io%2Fkukitadocs)
+
 
 Kukita is a bot developed by Sean#0004 to handle moderation of servers as well as provide users with fun minigames and commands. You can invite the bot to your server using this [link](https://discord.com/api/oauth2/authorize?client_id=714758633702948905&permissions=8&scope=bot).
 
@@ -27,16 +31,9 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 
 ## Contributing
 
-1. Fork it (<https://github.com/sp00p/Kukita/fork>)
+1. Fork it(<https://github.com/sp00p/Kukita/fork>)
 2. Create your feature branch (`git checkout -b feature/Kukita`)
 3. Commit your changes (`git commit -am 'Commit Message'`)
 4. Push to the branch (`git push origin feature/Kukita`)
 5. Create a new Pull Request
 
-<!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/yourname/yourproject/wiki

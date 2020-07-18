@@ -45,7 +45,8 @@ bot.on("message", async message => {
         {name: bot.commands.get("createrole").name, value: `${bot.commands.get("createrole").description}\n **Arguments:**\n ${bot.commands.get("createrole").arguments}`, inline: true},
         {name: bot.commands.get("info").name, value: `${bot.commands.get("info").description}\n **Arguments:**\n ${bot.commands.get("info").arguments}`, inline: true},
         {name: bot.commands.get("botinfo").name, value: `${bot.commands.get("botinfo").description}\n **Arguments:**\n ${bot.commands.get("botinfo").arguments}`, inline: true},
-        {name: bot.commands.get("purge").name, value: `${bot.commands.get("purge").description}\n **Arguments:**\n ${bot.commands.get("purge").arguments}`, inline: true}
+        {name: bot.commands.get("purge").name, value: `${bot.commands.get("purge").description}\n **Arguments:**\n ${bot.commands.get("purge").arguments}`, inline: true},
+        {name: bot.commands.get("inviteme").name, value: `${bot.commands.get("inviteme").description}\n **Arguments:**\n ${bot.commands.get("inviteme").arguments}`, inline: true}
       );
 
       message.author.send(helpEmbed);
@@ -178,7 +179,11 @@ bot.on("message", async message => {
       } else {
         message.reply("You have to have the MANAGE_MESSAGES permission to use this command!😞")
       }
+    break;
 
+    case "inviteme": // inviteme command
+
+      bot.commands.get("inviteme").execute(message);
 
     break;
   }

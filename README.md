@@ -22,7 +22,7 @@ Kukita is a bot developed by Sean#0004 to handle moderation of servers as well a
 
 ## Meta
 
-Sean Cornell – https://twitter.com/JewishEngineer – seancornell11@gmail.com
+Sean Cornell – <https://twitter.com/JewishEngineer> – seancornell11@gmail.com
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 

@@ -12,6 +12,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/aae94ce9278d48f29dd573b5250e5250)](https://app.codacy.com/gh/bionicpath/Kukita?utm_source=github.com&utm_medium=referral&utm_content=bionicpath/Kukita&utm_campaign=Badge_Grade_Dashboard)
 ![Maintained](https://img.shields.io/maintenance/yes/2020)
 ![Discord](https://img.shields.io/discord/714763331948380272)
+![Contributors](https://img.shields.io/github/contributors/bionicpath/Kukita)
 
 Kukita is a bot developed by Sean#0004 to handle moderation of servers as well as provide users with fun minigames and commands. You can invite the bot to your server using this [link](https://discord.com/api/oauth2/authorize?client_id=714758633702948905&permissions=8&scope=bot).
 

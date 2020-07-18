@@ -4,7 +4,7 @@ const prefix = config.prefix;
 const bot = new Discord.Client();
 const fs = require("fs");
 bot.commands = new Discord.Collection();
-const Constants = require("discord.js/src/util/Constants.js")
+const Constants = require("discord.js/src/util/Constants.js");
 Constants.DefaultOptions.ws.properties.$browser = "Discord IOS"
 
 const commandFiles = fs.readdirSync("./commands/").filter((file => file.endsWith(".js")));
@@ -19,11 +19,11 @@ bot.on("ready", () => {
   console.log(`${bot.user.tag} is now online!`);
 
   bot.user.setActivity(`:help`, { type: 3, browser: "DISCORD IOS"  });
-})
+});
 
 bot.on("message", async message => {
 
-  if(message.channel.type == "dm" && message.content[0] == ':') { message.author.send('My commands don\'t work in DM\'s!😞'); return};
+  if(message.channel.type === "dm" && message.content[0] === ':') { message.author.send("My commands don\'t work in DM\'s!😞"); return;}
 
   let args = message.content.substring(prefix.length).split(" ");
 
@@ -42,7 +42,7 @@ bot.on("message", async message => {
         {name: bot.commands.get("rolekick").name, value: bot.commands.get("rolekick").description, inline: true},
         {name: bot.commands.get("serverinfo").name, value: bot.commands.get("serverinfo").description, inline: true},
         {name: bot.commands.get("kick").name, value: bot.commands.get("kick").description, inline: true},
-      )
+      );
 
       message.author.send(helpEmbed);
       message.reply("I have sent you a DM!");
@@ -63,14 +63,14 @@ bot.on("message", async message => {
         let moderator = message.member;
         let guildname = message.guild;
         let reason = message.content.split(" ").slice(2);
-        if (reason == '') {
+        if (reason === "") {
           let noReason = "Not Specified";
           bot.commands.get("kick").execute(message, member, guildname, moderator, noReason);
         } else {
           bot.commands.get("kick").execute(message, member, guildname, moderator, reason);
         }
       } else {
-        message.channel.send("You don't have permission to use this command!😞")
+        message.channel.send("You don't have permission to use this command!😞");
       }
     break;
 
@@ -81,7 +81,7 @@ bot.on("message", async message => {
       let moderator = message.member;
       let guildname = message.guild;
       let reason = message.content.split(" ").slice(2);
-      if (reason === ' ') {
+      if (reason === "") {
         let reason = "Not specified";
         bot.commands.get("ban").execute(message, member, guildname, moderator);
       } else {
@@ -100,7 +100,7 @@ bot.on("message", async message => {
       let idle = 0;
       let dnd = 0;
       let offline = 0; // online, idle, dnd, offline
-      list.members.cache.forEach(member => {
+      list.members.cache.forEach((member => {
         if (member.status === "online") {
           online = online + 1;
         } else if(member.status === "idle") {
@@ -110,7 +110,7 @@ bot.on("message", async message => {
         } else if(member.status === "offline") {
           offline = offline + 1;
         }
-      })
+      }))
       bot.commands.get("serverinfo").execute(message, guild, serverIcon, online, idle, dnd, offline);
     break;
 

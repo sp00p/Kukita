@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 module.exports = {
   name: "ban",
   description: "bans a specified user",
-  arguments: '<user> [reason]',
+  arguments: "<user> [reason]",
   execute(message, member, guildname, moderator, reason) {
 
     const banEmbed = new Discord.MessageEmbed()

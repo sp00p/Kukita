@@ -95,23 +95,7 @@ bot.on("message", async message => {
     case "serverinfo": // serverinfo command
       let guild = message.guild;
       var serverIcon = message.guild.iconURL({format: "png"});
-      const list = guild.id.fetchMembers();
-      let online = 0;
-      let idle = 0;
-      let dnd = 0;
-      let offline = 0; // online, idle, dnd, offline
-      list.members.cache.forEach((member => {
-        if (member.status === "online") {
-          online = online + 1;
-        } else if(member.status === "idle") {
-          idle = idle + 1;
-        } else if(member.status === "dnd") {
-          dnd = dnd + 1;
-        } else if(member.status === "offline") {
-          offline = offline + 1;
-        }
-      }))
-      bot.commands.get("serverinfo").execute(message, guild, serverIcon, online, idle, dnd, offline);
+      bot.commands.get("serverinfo").execute(message, guild, serverIcon);
     break;
 
     case "rolekick": // rolekick command

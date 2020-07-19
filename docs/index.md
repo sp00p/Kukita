@@ -7,6 +7,11 @@ If you happen to find a bug or an issue with this documentation, feel free to re
 As of right now the bot is quite lacking when it comes to features, but I have additional plans for modules that should be coming in the near future. 
 ## Moderation 
 KukitaBot can handle any of your moderation needs in your server. Whether it be muting a member, kicking a member from a VC, or kicking/banning a troublemaker
-KukitaBot has you covered. This is currently the main module of KukitaBot. 
+KukitaBot has you covered.
 
 [Here's a list of commands](moderation.md)
+
+## Utility
+Kukita Bot also has some information commands to provide you with some more information about your server and its members. 
+
+[Here's a list of commands](utility.md)

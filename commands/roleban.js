@@ -3,7 +3,7 @@ module.exports = {
   description: "bans users that have the specified role",
   arguments: "<rolename>",
   execute(message, args) {
-    if (message.member.hasPermission("BAN_MEMBERS", "ADMINISTRATOR")) {
+    if (message.member.hasPermission("ADMINISTRATOR")) {
       let guild = message.guild;
       let role = args[1];
       guild.members.forEach((member => {
@@ -12,7 +12,7 @@ module.exports = {
         }
       }));
     } else {
-      message.reply("You have to have the BAN_MEMBERS or ADMINISTRATOR permission to use this command!😞");
+      message.reply("You have to have the ADMINISTRATOR permission to use this command!😞");
     }
   }
 };

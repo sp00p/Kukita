@@ -4,22 +4,36 @@ module.exports = {
   name: "kick",
   description: "kicks a specified user",
   arguments: "<user> [reason]",
-  execute(message, member, guildname, moderator, reason) {
+  execute(message, args) {
+    if (message.author.hasPermission("KICK_MEMBERS", "MANAGE_GUILD", "ADMINISTRATOR")) {
+      let member = message.guild.member(message.mentions.users.first());
+      let moderator = message.author;
+      let guildname = message.guild;
 
-    const kickEmbed = new Discord.MessageEmbed()
-      .setColor("0x0099ff")
-      .setAuthor("Kukita#6512", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
-      .addFields(
-        {name: "**Moderator**", value: moderator},
-        {name: "**Action**", value: 'Kick'},
-        {name: "**Reason**", value: `You have been kicked from ${guildname} for ${reason}`},
-      )
-      .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png");
+      if (args[2] === "") {
+        let reason = "Not Specified"
+      } else {
+        let reason = args[2];
+      }
 
-    member.send(kickEmbed).then(() => {
-      member.kick().then((member) => {
-        message.channel.send(":slight_smile: " + member.displayName + " has been kicked!");
+      const kickEmbed = new Discord.MessageEmbed()
+        .setColor("0x0099ff")
+        .setAuthor("Kukita#6512", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
+        .addFields(
+          {name: "**Moderator**", value: moderator},
+          {name: "**Action**", value: 'Kick'},
+          {name: "**Guild**", value: guildname},
+          {name: "**Reason**", value: reason}
+        )
+        .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png");
+
+      member.send(kickEmbed).then(() => {
+        member.kick().then((member) => {
+          message.channel.send(":slight_smile: " + member.displayName + " has been kicked!");
+        });
       });
-    });
+    } else {
+      message.reply("You have to have the KICK_MEMBERS, MANAGE_GUILD, or ADMINISTRATOR permission to use this command!😞");
+    }
   }
 };

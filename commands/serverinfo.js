@@ -4,9 +4,11 @@ module.exports = {
   name: "serverinfo",
   description: "sends infomation about the guild you\'re in",
   arguments: "none",
-  execute(message, guild, serverIcon) {
+  execute(message, args) {
 
     message.guild.members.fetch().then(fetchedMembers => {
+      let guild = message.guild;
+      let serverIcon = message.guild.iconURL({format: "png"});
       const onlineMembers = fetchedMembers.filter(member => member.presence.status === "online");
       const idleMembers = fetchedMembers.filter(member => member.presence.status === "idle");
       const dndMembers = fetchedMembers.filter(member => member.presence.status === "dnd");

@@ -1,15 +1,25 @@
+const Discord = require("discord.js");
+
 module.exports = {
   name: "uptime",
   description: "sends the bots current uptime",
   arguments: "none",
-  execute(message, bot) {
+  execute(message, args) {
+    let bot = message.client;
     function duration(ms) {
       const sec = Math.floor((ms / 1000) % 60).toString();
       const min = Math.floor((ms / (1000 * 60)) % 60).toString();
       const hrs = Math.floor((ms / (1000 * 60 * 60)) % 60).toString();
       const days = Math.floor((ms / (1000 * 60 * 60 * 24)) % 60).toString();
-      return `${days.padStart(1, "0")} days, ${hrs.padStart(2, "0")} hours, ${min.padStart(2, "0")} minutes, ${sec.padStart(2, "0")} seconds`;
+      const uptimeEmbed = new Discord.MessageEmbed()
+        .setColor("#0x0099ff")
+        .setAuthor("Kukita#6512", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
+        .addFields(
+          {name: "__**Current Uptime**__", value: `\n${days.padStart(1, "0")} days ${hrs.padStart(2, "0")} hours, ${min.padStart(2, "0")} minutes, ${sec.padStart(2, "0")} seconds`}
+        )
+        message.channel.send(uptimeEmbed);
+      return;
     }
-    message.channel.send(`I have been online for ${duration(bot.uptime)}`);
+    duration(bot.uptime);
   }
 };

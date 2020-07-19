@@ -23,7 +23,6 @@ const antiSpam = new AntiSpam ({
   ignoreBots: true,
   verbose: false,
   ignoredUsers:[],
-  ignoredChannels: ["spam", "memes", "nsfw", "shitpost"]
 });
 
 const commandFiles = fs.readdirSync("./commands/").filter((file => file.endsWith(".js")));
@@ -37,7 +36,7 @@ for(const file of commandFiles){
 bot.on("ready", () => {
   console.log(`${bot.user.tag} is now online!`);
 
-  bot.user.setActivity(`${bot.guilds.cache.size} servers || :help`, { type: 3, browser: "DISCORD IOS"  });
+  bot.user.setActivity(`${bot.guilds.cache.size} servers || .help`, { type: 3, browser: "DISCORD IOS"  });
 });
 
 bot.on("message", (message) => antiSpam.message(message));

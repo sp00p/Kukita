@@ -6,7 +6,7 @@ module.exports = {
   arguments: "none",
   execute(message, args) {
     // add confirmation
-    if (message.author.hasPermission("ADMINISTRATOR")) {
+    if (message.member.hasPermission("ADMINISTRATOR")) {
       let bot = message.client;
       let originalChannel = message.channel;
       message.channel.send("Are you sure that you want to do this? It will delete all messages and message history relating to this channel. This is NOT reversible!(Y/N)")

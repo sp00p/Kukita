@@ -5,11 +5,11 @@ module.exports = {
   description: "bans a specified user",
   arguments: "<user> [reason]",
   execute(message, args) {
-    if(message.author.hasPermission("BAN_MEMBERS", "MANAGE_GUILD", "ADMINISTRATOR")) {
+    if(message.member.hasPermission("BAN_MEMBERS", "MANAGE_GUILD", "ADMINISTRATOR")) {
       if (args[2] === "") {
-        let reason = "Not Specified"
+        var reason = "Not Specified"
       } else {
-        let reason = args[2];
+        var reason = args[2];
       }
       let member = message.guild.member(message.mentions.users.first());
       let moderator = message.author;

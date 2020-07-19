@@ -3,7 +3,7 @@ module.exports = {
   description: "bans users that have the specified role",
   arguments: "<rolename>",
   execute(message, args) {
-    if (message.author.hasPermission("BAN_MEMBERS", "ADMINISTRATOR")) {
+    if (message.member.hasPermission("BAN_MEMBERS", "ADMINISTRATOR")) {
       let guild = message.guild;
       let role = args[1];
       guild.members.forEach((member => {

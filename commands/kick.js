@@ -5,15 +5,15 @@ module.exports = {
   description: "kicks a specified user",
   arguments: "<user> [reason]",
   execute(message, args) {
-    if (message.author.hasPermission("KICK_MEMBERS", "MANAGE_GUILD", "ADMINISTRATOR")) {
+    if (message.member.hasPermission("KICK_MEMBERS", "MANAGE_GUILD", "ADMINISTRATOR")) {
       let member = message.guild.member(message.mentions.users.first());
       let moderator = message.author;
       let guildname = message.guild;
 
       if (args[2] === "") {
-        let reason = "Not Specified"
+        var reason = "Not Specified"
       } else {
-        let reason = args[2];
+        var reason = args[2];
       }
 
       const kickEmbed = new Discord.MessageEmbed()

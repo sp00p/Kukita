@@ -3,7 +3,7 @@ module.exports = {
   description: "kicks users that have the specified role",
   arguments: "<rolename>",
   execute(message, args) {
-    if (message.author.hasPermission("KICK_MEMBERS", "ADMINISTRATOR")) {
+    if (message.member.hasPermission("KICK_MEMBERS", "ADMINISTRATOR")) {
       guild.members.forEach((member => {
         if (member.roles.has(role)) {
           member.kick();

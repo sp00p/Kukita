@@ -3,7 +3,7 @@ module.exports = {
   description: "deletes a set amount of messages",
   arguments: "<number of messages>",
   execute(message, number) {
-      if (message.author.hasPermission("MANAGE_MESSAGES", "ADMINISTRATOR")) {
+      if (message.member.hasPermission("MANAGE_MESSAGES", "ADMINISTRATOR")) {
 
       let num = parseInt(number);
 

@@ -5,7 +5,12 @@ module.exports = {
   description: "sends infomation about the guild you\'re in",
   arguments: "none",
   execute(message, args) {
-
+    //=============================================//
+    //
+    //     Created by https://github.com/sp00p
+    //          (please leave this here)
+    //
+    //=============================================//
     message.guild.members.fetch().then(fetchedMembers => {
       let guild = message.guild;
       let serverIcon = message.guild.iconURL({format: "png"});

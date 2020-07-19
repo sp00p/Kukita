@@ -5,7 +5,7 @@ module.exports = {
   description: "bans a specified user",
   arguments: "<user> [reason]",
   execute(message, args) {
-    if(message.member.hasPermission("BAN_MEMBERS", "MANAGE_GUILD", "ADMINISTRATOR")) {
+    if(message.member.hasPermission("BAN_MEMBERS", "ADMINISTRATOR")) {
       if (args[2] === "") {
         var reason = "Not Specified"
       } else {

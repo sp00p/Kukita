@@ -5,6 +5,12 @@ module.exports = {
   description: "allows you to view a specific member's permissions",
   arguments: "<user>",
   execute(message) {
+    //=============================================//
+    //
+    //     Created by https://github.com/sp00p
+    //          (please leave this here)
+    //
+    //=============================================//
 
     let user = message.guild.member(message.mentions.users.first())
     let usricon = user.user.displayAvatarURL

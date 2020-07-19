@@ -5,7 +5,12 @@ module.exports = {
   description: "deletes the channel and starts it from scratch",
   arguments: "none",
   execute(message, args) {
-    // add confirmation
+    //=============================================//
+    //
+    //     Created by https://github.com/sp00p
+    //          (please leave this here)
+    //
+    //=============================================//
     if (message.member.hasPermission("ADMINISTRATOR")) {
       let bot = message.client;
       let originalChannel = message.channel;

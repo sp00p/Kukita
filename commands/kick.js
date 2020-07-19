@@ -5,7 +5,7 @@ module.exports = {
   description: "kicks a specified user",
   arguments: "<user> [reason]",
   execute(message, args) {
-    if (message.member.hasPermission("KICK_MEMBERS", "MANAGE_GUILD", "ADMINISTRATOR")) {
+    if (message.member.hasPermission("KICK_MEMBERS", "ADMINISTRATOR")) {
       let member = message.guild.member(message.mentions.users.first());
       let moderator = message.author;
       let guildname = message.guild;

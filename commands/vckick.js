@@ -5,7 +5,7 @@ module.exports = {
   description: "kicks the specified user from the vc",
   arguments: "<user> [reason]",
   execute(message, args) {
-    if (message.member.hasPermission("KICK_MEMBERS", "MANAGE_GUILD", "ADMINISTRATOR")) {
+    if (message.member.hasPermission("KICK_MEMBERS", "ADMINISTRATOR")) {
       if (!message.mentions.users.first()) {
         message.channel.send("Please provide a user!")
       }

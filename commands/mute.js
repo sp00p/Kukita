@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
   name: "mute",
   description: "mutes specific user",
-  arguments: "<user> <reason>",
+  arguments: "<user> [reason]",
   execute(message, args) {
     if (message.member.hasPermission("MUTE_MEMBERS", "ADMINISTRATOR")) {
 

@@ -23,6 +23,7 @@
   "homepage": "https://github.com/sp00p/Kukita#readme",
   "dependencies": {
     "discord-anti-spam": "^2.4.1",
-    "discord.js": "^12.2.0"
+    "discord.js": "^12.2.0",
+    "ms": "^2.1.2"
   }
 }

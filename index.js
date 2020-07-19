@@ -3,9 +3,12 @@ const config = require("./botconfig.json");
 const prefix = config.prefix;
 const bot = new Discord.Client();
 const fs = require("fs");
+const ms = require('ms');
 bot.commands = new Discord.Collection();
 const Constants = require('discord.js/src/util/Constants.js')
 Constants.DefaultOptions.ws.properties.$browser = `Discord iOS`
+
+// - Anti Spam - //
 const AntiSpam = require('discord-anti-spam');
 const antiSpam = new AntiSpam ({
   warnThreshold: 3,
@@ -64,7 +67,8 @@ bot.on("message", async message => {
         {name: bot.commands.get("info").name, value: `${bot.commands.get("info").description}\n **Arguments:**\n ${bot.commands.get("info").arguments}`, inline: true},
         {name: bot.commands.get("botinfo").name, value: `${bot.commands.get("botinfo").description}\n **Arguments:**\n ${bot.commands.get("botinfo").arguments}`, inline: true},
         {name: bot.commands.get("purge").name, value: `${bot.commands.get("purge").description}\n **Arguments:**\n ${bot.commands.get("purge").arguments}`, inline: true},
-        {name: bot.commands.get("inviteme").name, value: `${bot.commands.get("inviteme").description}\n **Arguments:**\n ${bot.commands.get("inviteme").arguments}`, inline: true}
+        {name: bot.commands.get("inviteme").name, value: `${bot.commands.get("inviteme").description}\n **Arguments:**\n ${bot.commands.get("inviteme").arguments}`, inline: true},
+        {name: bot.commands.get("resetchannel").name, value: `${bot.commands.get("resetchannel").description}\n **Arguments:**\n ${bot.commands.get("resetchannel").arguments}`, inline: true}
       );
 
       message.author.send(helpEmbed);
@@ -202,6 +206,46 @@ bot.on("message", async message => {
     case "inviteme": // inviteme command
 
       bot.commands.get("inviteme").execute(message);
+
+    break;
+
+    case "tempmute": // tempmute command
+
+      let person = message.mentions.members.first();
+      let muterole = message.guild.roles.cache.find(role => role.name === "Muted");
+
+      if(!muterole) return message.reply("Are you sure that you've set up a Muted role?");
+
+      let time = args[2];
+
+      if(!time) {
+        return message.reply("Please specify how long you'd like to mute this user!");
+      }
+
+      person.roles.add(muterole.id);
+
+      message.channel.send(`${person.user.username} has been successfully muted for ${ms(ms(time))}`);
+
+      setTimeout(function(){
+        person.roles.remove(muterole.id);
+        message.channel.send(`${person.user.username} has been unmuted!`)
+      }, ms(time));
+
+    break;
+
+    case "resetchannel": // resetchannel command
+
+      if(message.member.hasPermission("ADMINISTRATOR", "MANAGE_CHANNELS", "MANAGE_GUILD")) {
+
+        var originalChannel = message.channel;
+
+        bot.commands.get("resetchannel").execute(message, bot, originalChannel);
+
+      } else {
+        message.reply("You have to have the MANAGE_CHANNELS, ADMINISTRATOR, or MANAGE_GUILD permission to use this command!😞");
+      }
+
+
 
     break;
   }

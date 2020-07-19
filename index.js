@@ -3,7 +3,6 @@ const config = require("./botconfig.json");
 const prefix = config.prefix;
 const bot = new Discord.Client();
 const fs = require("fs");
-const ms = require('ms');
 bot.commands = new Discord.Collection();
 const Constants = require('discord.js/src/util/Constants.js')
 Constants.DefaultOptions.ws.properties.$browser = `Discord iOS`

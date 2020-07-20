@@ -18,7 +18,7 @@ module.exports.run = (bot, message,args) => {
     }
     if(!cmd) return message.channel.send(helpEmbed.setTitle("Invalid Command").setDescription(`Do \`${bot.config.prefix}help <category> for the list of commands`))
     command = cmd.help;
-    helpEmbed.setTitle(`${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)} command help`);
+    helpEmbed.setTitle(`**Command Information**`);
     helpEmbed.setDescription([
       `**Command:** ${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)}`,
       `**Description:** ${command.description || "No Description provided."}`,
@@ -32,9 +32,9 @@ module.exports.run = (bot, message,args) => {
   }
   const categories = readdirSync("./commands/");
   helpEmbed.setDescription([
-    "Available commands for Kukita Bot.",
-    "The bot prefix is .",
-    "<> means that the argument is required and [] is optional"
+    "Available commands for Kukita Bot.\n",
+    "The bot prefix is .\n",
+    "**<>** means that the argument is required and **[]** is optional\n"
   ].join("\n"));
   categories.forEach(category => {
     const dir = bot.commands.filter(c => c.help.category.toLowerCase() === category.toLowerCase());

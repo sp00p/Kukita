@@ -33,11 +33,8 @@ const antiSpam = new AntiSpam ({
   ignoredUsers:[],
 });
 
-const commandFiles = fs.readdirSync("./commands/").filter((file => file.endsWith(".js")));
-for(const file of commandFiles){
 const load = (dir = "./commands/") => {
 
-}
   readdirSync(dir).forEach(dirs => {
 
     const commands = readdirSync(`${dir}${sep}${dirs}${sep}`).filter(files => files.endsWith(".js"));
@@ -77,22 +74,20 @@ bot.on("message", (message) => antiSpam.message(message));
 
 bot.on("message", async message => {
 
-  if(message.channel.type === "dm" && message.content[0] === '.') {
-    return message.author.send("My commands don\'t work in DM\'s!😞")
   const prefix = config.prefix;
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const cmd = args.shift().toLowerCase();
 
-    const command = args[0]
   let command;
 
-      bot.commands.get(command).execute(message, args);
   if (message.author.bot || !message.guild) return;
 
   if (!message.member) message.member = await message.guild.fetchMember(message.author);
 
+  if (!message.content.startsWith(prefix)) return;
 
   if(cmd.length === 0) return;
+  if (bot.commands.has(cmd)) command = bot.commands.get(cmd);
   else if (bot.aliases.has(cmd)) command = bot.commands.get(bot.aliases.get(cmd));
 
   if (command) command.run(bot, message, args);
@@ -101,5 +96,5 @@ bot.on("message", async message => {
 
 (async () => {
   await db;
-  return bot.login(config.token)
+  return bot.login(bot.config.token).catch(console.error());
 })()

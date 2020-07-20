@@ -17,18 +17,16 @@ module.exports.run =  async (bot, message, args) => {
       .setTimestamp()
       .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
       .setTitle("Eval")
-      .addFields(
-        {name: "To evaluate:", `\`\`\`js\n${beautify(args.join(" "), { format: "js"})}\n\`\`\``},
-        {name: "Evaluated: ", evaluated},
-        {name: "Type of: " typeof(evaluated)};
-      )
+      .addField("To evaluate:", `\`\`\`js\n${beautify(args.join(" "), { format: "js"})}\n\`\`\``)
+      .addField("Evaluated: ", evaluated)
+      .addField("Type of: ", typeof(evaluated))
 
       message.channel.send(evalEmbed);
     } catch (err) {
       let errorEmbed = new MessageEmbed()
         .setColor("#FF0000")
         .setTitle("\❌ Error!")
-        .setDescription(e)
+        .setDescription(err)
         .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
 
         message.channel.send(errorEmbed)

@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/sp00p/Kukita#readme",
   "dependencies": {
+    "beautify": "0.0.8",
     "discord-anti-spam": "^2.4.1",
     "discord.js": "^12.2.0",
     "log-symbols": "^4.0.0",

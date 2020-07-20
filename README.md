@@ -15,7 +15,7 @@
 
 Kukita is a bot developed by Sean#0004 to handle moderation of servers as well as provide users with fun minigames and commands. You can invite the bot to your server using this [link](https://discord.com/api/oauth2/authorize?client_id=714758633702948905&permissions=8&scope=bot).
 
-[Documentation](https://seancornell.io/kukitadocs)
+[Documentation](https://docs.seancornell.io/)
 
 ## Release History
 

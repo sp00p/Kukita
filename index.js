@@ -3,7 +3,14 @@ const config = require("./botconfig.json");
 const prefix = config.prefix;
 const bot = new Discord.Client();
 const fs = require("fs");
+const GuildModel = require('./models/warn.js')
+const { connect } = require('mongoose');
 bot.commands = new Discord.Collection();
+const db = connect('', {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
+});
 const Constants = require('discord.js/src/util/Constants.js')
 Constants.DefaultOptions.ws.properties.$browser = `Discord iOS`
 
@@ -42,19 +49,28 @@ bot.on("message", (message) => antiSpam.message(message));
 
 bot.on("message", async message => {
 
-  if(message.channel.type === "dm" && message.content[0] === ':') { message.author.send("My commands don\'t work in DM\'s!😞"); return;}
+  if(message.channel.type === "dm" && message.content[0] === '.') {
+    return message.author.send("My commands don\'t work in DM\'s!😞")
+  } else {
 
-  const args = message.content.substring(prefix.length).split(" ");
-  const command = args[0]
-  if(!message.content.startsWith(prefix) || message.author.bot) return;
+    const args = message.content.substring(prefix.length).split(" ");
+    const command = args[0]
+    if(!message.content.startsWith(prefix) || message.author.bot) return;
 
-  try {
-    bot.commands.get(command).execute(message, args);
-  } catch (error) {
-    console.error(error);
-    message.reply('There was an error executing that command. A log has been sent to the developer.')
+    try{
+      bot.commands.get(command).execute(message, args);
+    } catch(err) {
+      console.log(err)
+      message.channel.send("There was an error executing that command, the developer has been notified.")
+    }
+
   }
 
-})
 
-bot.login(config.token);
+
+});
+
+(async () => {
+  await db;
+  return bot.login(config.token)
+})()

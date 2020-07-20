@@ -37,4 +37,4 @@ module.exports = {
       message.reply("I have sent you a DM!");
 
   }
-}mongodb+srv://root:OJ8Iyz6nzgmBjW51@cluster0.921xq.mongodb.net/Data
+}

@@ -42,6 +42,7 @@ module.exports = {
             ]
           })
           newWarns.save()
+          message.channel.send("Member successfully warned!")
           member.send(warnEmbed)
         }else{
           data.Warns.unshift({
@@ -49,6 +50,7 @@ module.exports = {
             Reason: reason,
           })
           data.save()
+          message.channel.send("Member successfully warned!")
           member.send(warnEmbed)
         }
       })

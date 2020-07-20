@@ -26,11 +26,15 @@ module.exports = {
         {name: bot.commands.get("purge").name, value: `${bot.commands.get("purge").description}\n **Arguments:**\n ${bot.commands.get("purge").arguments}`, inline: true},
         {name: bot.commands.get("inviteme").name, value: `${bot.commands.get("inviteme").description}\n **Arguments:**\n ${bot.commands.get("inviteme").arguments}`, inline: true},
         {name: bot.commands.get("resetchannel").name, value: `${bot.commands.get("resetchannel").description}\n **Arguments:**\n ${bot.commands.get("resetchannel").arguments}`, inline: true},
-        {name: bot.commands.get("vckick").name, value: `${bot.commands.get("vckick").description}\n **Arguments:**\n ${bot.commands.get("vckick").arguments}`, inline: true}
+        {name: bot.commands.get("vckick").name, value: `${bot.commands.get("vckick").description}\n **Arguments:**\n ${bot.commands.get("vckick").arguments}`, inline: true},
+        {name: bot.commands.get("warn").name, value: `${bot.commands.get("warn").description}\n **Arguments:**\n ${bot.commands.get("warn").arguments}`, inline: true},
+        {name: bot.commands.get("warns").name, value: `${bot.commands.get("warns").description}\n **Arguments:**\n ${bot.commands.get("warns").arguments}`, inline: true},
+        {name: bot.commands.get("slowmode").name, value: `${bot.commands.get("slowmode").description}\n **Arguments:**\n ${bot.commands.get("slowmode").arguments}`, inline: true},
+        {name: bot.commands.get("clearwarns").name, value: `${bot.commands.get("clearwarns").description}\n **Arguments:**\n ${bot.commands.get("clearwarns").arguments}`, inline: true}
       );
 
       message.author.send(helpEmbed);
       message.reply("I have sent you a DM!");
 
   }
-}
+}mongodb+srv://root:OJ8Iyz6nzgmBjW51@cluster0.921xq.mongodb.net/Data

@@ -1,11 +1,13 @@
-const Discord = require("discord.js");
-const config = require("./botconfig.json");
-const prefix = config.prefix;
-const bot = new Discord.Client();
-const fs = require("fs");
+const { Client, Collection} = require("discord.js");
+const config = require("./config");
+const bot = new Client();
+const { readdirSync } = require("fs");
+const { sep } = require("path");
+const {success, error, warning} = require("log-symbols");
 const GuildModel = require('./models/warn.js')
 const { connect } = require('mongoose');
-bot.commands = new Discord.Collection();
+bot.config = config;
+["commands", "aliases"].forEach(x => bot[x] = new Collection())
 const db = connect('', {
   useNewUrlParser: true,
   useFindAndModify: false,
@@ -33,11 +35,37 @@ const antiSpam = new AntiSpam ({
 
 const commandFiles = fs.readdirSync("./commands/").filter((file => file.endsWith(".js")));
 for(const file of commandFiles){
-  const command = require(`./commands/${file}`);
-  console.log(`${command.name} command loaded!`);
+const load = (dir = "./commands/") => {
 
-  bot.commands.set(command.name, command);
 }
+  readdirSync(dir).forEach(dirs => {
+
+    const commands = readdirSync(`${dir}${sep}${dirs}${sep}`).filter(files => files.endsWith(".js"));
+
+    for (const file of commands) {
+
+      const pull = require(`${dir}/${dirs}/${file}`);
+
+      if (pull.help && typeof (pull.help.name) === "string" && typeof (pull.help.category === "string")) {
+        if (bot.commands.get(pull.help.name)) return console.warn(`${warning} Two or more commands have the same name ${pull.help.name}`)
+        bot.commands.set(pull.help.name, pull);
+        console.log(`${success} Loaded command ${pull.help.name}.`);
+      } else {
+        console.log(`${error} Error loading command in ${dir}${dirs}. missing help.name or help.name is not a string. or you have a missing help.category or help.category is not a string`);
+        continue;
+      }
+    if (pull.help.aliases && typeof (pull.help.aliases) === "object") {
+      pull.help.aliases.forEach(alias => {
+        if (bot.aliases.get(alias)) return console.warn(`${warning} Two or more commands with the same alias ${alias}`)
+        bot.aliases.set(alias, pull.help.name);
+        });
+      }
+    }
+  });
+
+};
+
+load();
 
 bot.on("ready", () => {
   console.log(`${bot.user.tag} is now online!`);
@@ -51,22 +79,23 @@ bot.on("message", async message => {
 
   if(message.channel.type === "dm" && message.content[0] === '.') {
     return message.author.send("My commands don\'t work in DM\'s!😞")
-  } else {
+  const prefix = config.prefix;
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const cmd = args.shift().toLowerCase();
 
-    const args = message.content.substring(prefix.length).split(" ");
     const command = args[0]
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
+  let command;
 
-    try{
       bot.commands.get(command).execute(message, args);
-    } catch(err) {
-      console.log(err)
-      message.channel.send("There was an error executing that command, the developer has been notified.")
-    }
+  if (message.author.bot || !message.guild) return;
 
-  }
+  if (!message.member) message.member = await message.guild.fetchMember(message.author);
 
 
+  if(cmd.length === 0) return;
+  else if (bot.aliases.has(cmd)) command = bot.commands.get(bot.aliases.get(cmd));
+
+  if (command) command.run(bot, message, args);
 
 });
 

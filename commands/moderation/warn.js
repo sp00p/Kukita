@@ -60,5 +60,5 @@ module.exports.help = {
   description: "warns specified user",
   arguments: "<user> [reason]",
   category: "Moderation",
-  aliases: [""]
+  aliases: ["warn"]
 };

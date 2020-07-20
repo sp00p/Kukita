@@ -17,5 +17,5 @@ module.exports.help = {
   description: "bans users that have the specified role",
   arguments: "<rolename>",
   category: "Moderation",
-  aliases: ["rb"]
+  aliases: ["roleban", "rb"]
 };

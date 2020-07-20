@@ -18,5 +18,5 @@ module.exports.help = {
   description: "sets slowmode for the current channel",
   arguments: "<time>",
   category: "Moderation",
-  aliases: ["sm"]
+  aliases: ["slomode", "sm"]
 };

@@ -24,5 +24,5 @@ module.exports.help = {
   description: "displays the specified users warns",
   arguments: "<user>",
   category: "Moderation",
-  aliases: [""]
+  aliases: ["warns"]
 };

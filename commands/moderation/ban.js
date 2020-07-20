@@ -36,5 +36,5 @@ module.exports.help = {
   description: "bans a specified user",
   arguments: "<user> [reason]",
   category: "Moderation",
-  aliases: [""]
+  aliases: ["ban"]
 };

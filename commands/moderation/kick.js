@@ -38,5 +38,5 @@ module.exports.help = {
   description: "kicks a specified user",
   arguments: "<user> [reason]",
   category: "Moderation",
-  aliases: [""]
+  aliases: ["kick"]
 };

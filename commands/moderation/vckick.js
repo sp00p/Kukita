@@ -40,5 +40,5 @@ module.exports.help = {
   description: "kicks the specified user from the vc",
   arguments: "<user> [reason]",
   category: "Moderation",
-  aliases: [""]
+  aliases: ["vckick"]
 };

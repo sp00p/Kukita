@@ -15,5 +15,5 @@ module.exports.help = {
   description: "kicks users that have the specified role",
   arguments: "<rolename>",
   category: "Moderation",
-  aliases: ["rk"]
+  aliases: ["rolekick", "rk"]
 };

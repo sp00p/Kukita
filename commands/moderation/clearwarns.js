@@ -26,5 +26,5 @@ module.exports.help = {
   description: "clears all warns for user",
   arguments: "<user>",
   category: "Moderation",
-  aliases: ["cw"]
+  aliases: ["clearwarns", "cw"]
 };

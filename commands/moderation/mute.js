@@ -34,5 +34,5 @@ module.exports.help = {
   description: "mutes specific user",
   arguments: "<user> [reason]",
   category: "Moderation",
-  aliases: [""]
+  aliases: ["mute"]
 };

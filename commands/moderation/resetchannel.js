@@ -32,5 +32,5 @@ module.exports.help = {
   description: "deletes the channel and creates a new one with the same roles/permissions in the same category",
   arguments: "",
   category: "Moderation",
-  aliases: ["rc"]
+  aliases: ["resetchannel", "rc"]
 };

@@ -20,5 +20,5 @@ module.exports.help = {
   description: "deletes a set amount of messages",
   arguments: "<number between 1 and 99>",
   category: "Moderation",
-  aliases: [""]
+  aliases: ["purge"]
 };

@@ -1,10 +1,7 @@
 const { MessageEmbed } = require("discord.js");
-const mongoose = require("mongoose");
 const Money = require("../../models/money.js");
 
 module.exports.run = async (bot, message, args) => {
-
-  await message.delete()
 
   let moneyEmbed = new MessageEmbed()
     .setTitle("Money")
@@ -31,5 +28,5 @@ module.exports.help = {
   description: "sends how much money you have in your guild",
   arguments: "",
   category: "Economy",
-  aliases: ["money", "minfo"]
+  aliases: ["money", "cash"]
 };

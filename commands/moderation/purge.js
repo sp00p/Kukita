@@ -1,5 +1,5 @@
 module.exports.run = (bot, message,args) => {
-    if (message.member.hasPermission("MANAGE_MESSAGES", "ADMINISTRATOR")) {
+    if (!message.member.hasPermission("MANAGE_MESSAGES", "ADMINISTRATOR")) return message.channel.send("You have to have the KICK_MEMBERS, MANAGE_GUILD, or ADMINISTRATOR permission to use this command!😞");
 
     let num = parseInt(args[1]);
 
@@ -10,9 +10,6 @@ module.exports.run = (bot, message,args) => {
         message.reply(`${deleted.size} messages have been successfully deleted!`).then(message => message.delete());
       })
     })
-  } else {
-    message.reply("You have to have the MANAGE_MESSAGES or ADMINISTRATOR permission to use this command!😞");
-  }
 }
 
 module.exports.help = {

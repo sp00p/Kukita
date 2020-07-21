@@ -6,9 +6,13 @@ const { sep } = require("path");
 const {success, error, warning} = require("log-symbols");
 const GuildModel = require('./models/warn.js')
 const { connect } = require('mongoose');
+const Money = require("./models/money.js")
+const blacklist = require("./models/blacklist.js")
+const Prefix = require("./models/prefix.js")
+let prefix;
 bot.config = config;
 ["commands", "aliases"].forEach(x => bot[x] = new Collection())
-const db = connect('', {
+const db = connect('mongodb+srv://root:OJ8Iyz6nzgmBjW51@cluster0.921xq.mongodb.net/Data', {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
@@ -53,7 +57,6 @@ const load = (dir = "./commands/") => {
       }
     if (pull.help.aliases && typeof (pull.help.aliases) === "object") {
       pull.help.aliases.forEach(alias => {
-        if (bot.aliases.get(alias)) return console.warn(`${warning} Two or more commands with the same alias ${alias}`)
         bot.aliases.set(alias, pull.help.name);
         });
       }
@@ -65,33 +68,76 @@ const load = (dir = "./commands/") => {
 load();
 
 bot.on("ready", () => {
+
   console.log(`${bot.user.tag} is now online!`);
 
   bot.user.setActivity(`${bot.guilds.cache.size} servers || .help`, { type: 3, browser: "DISCORD IOS"  });
+
 });
 
 bot.on("message", (message) => antiSpam.message(message));
 
 bot.on("message", async message => {
 
-  const prefix = config.prefix;
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const cmd = args.shift().toLowerCase();
+  Prefix.findOne({ serverID: message.guild.id }, (err, data) => {
+    if (err) console.log(err);
 
-  let command;
+    if(data) {
+      prefix = data.prefix
+    } else if (!data) {
+      prefix = config.prefix
+    }
 
-  if (message.author.bot || !message.guild) return;
+    let command;
 
-  if (!message.member) message.member = await message.guild.fetchMember(message.author);
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const cmd = args.shift().toLowerCase();
 
-  if (!message.content.startsWith(prefix)) return;
+    if (message.author.bot || !message.guild) return;
 
-  if(cmd.length === 0) return;
-  if (bot.commands.has(cmd)) command = bot.commands.get(cmd);
-  else if (bot.aliases.has(cmd)) command = bot.commands.get(bot.aliases.get(cmd));
+    if (message.channel.type === 'dm') return;
 
-  if (command) command.run(bot, message, args);
+    if (!message.content.startsWith(prefix)) return;
 
+    if (bot.commands.has(cmd)) command = bot.commands.get(cmd);
+    else if (bot.aliases.has(cmd)) command = bot.commands.get(bot.aliases.get(cmd));
+
+    // Money System
+    let chance = Math.floor(Math.random() * 100) + 1;
+    if (chance > 50) {
+
+      let moneyToAdd = Math.ceil(Math.random() * 10) + 5;
+
+      Money.findOne({ userID: message.author.id, serverID: message.guild.id},(err, res) => {
+        if (err) console.log(err);
+
+        if(!res) {
+          const newDoc = new Money ({
+            userID: message.author.id,
+            username: message.author.username,
+            serverID: message.guild.id,
+            money: moneyToAdd
+          })
+          newDoc.save().catch(err => console.log(err));
+        } else {
+          res.coins = res.coins + moneyToAdd;
+          res.save().catch(err => console.log(err));
+        }
+      })
+    }
+
+    if(command) {
+      blacklist.findOne({ Guild: message.guild.id }, (err, res) => {
+        if(res) {
+          message.channel.send("You guild has been banned from using commands with this bot! If you think this is a mistake, please join the support server: https://discord.gg/UD23c9B");
+        } else if (!res) {
+
+
+          if (command) command.run(bot, message, args);
+        }
+      })
+    }
+  });
 });
 
 (async () => {

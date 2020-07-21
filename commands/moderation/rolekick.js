@@ -1,13 +1,10 @@
 module.exports.run = (bot, message,args) => {
-  if (message.member.hasPermission("ADMINISTRATOR")) {
+  if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("You have to have the ADMINISTRATOR permission to use this command!😞");
     guild.members.forEach((member => {
       if (member.roles.has(role)) {
         member.kick();
       }
     }));
-  } else {
-    message.reply("You have to have the ADMINISTRATOR permission to use this command!😞");
-  }
 };
 
 module.exports.help = {

@@ -2,7 +2,7 @@ const warns = require('../../models/warn.js')
 const { MessageEmbed } = require("discord.js");
 
 module.exports.run = (bot, message,args) => {
-  if (message.member.hasPermission("KICK_MEMBERS", "ADMINISTRATOR")) {
+  if (!message.member.hasPermission("KICK_MEMBERS", "ADMINISTRATOR")) return message.channel.send("You have to have the KICK_MEMBERS or ADMINISTRATOR permission to use this command!😞");
     if(args[2] === "") {
       var reason = "Not Specified"
     } else {
@@ -50,9 +50,6 @@ module.exports.run = (bot, message,args) => {
         member.send(warnEmbed)
       }
     })
-  } else {
-    message.reply("You have to have the KICK_MEMBERS or ADMINISTRATOR permission to use this command!😞");
-  }
 }
 
 module.exports.help = {

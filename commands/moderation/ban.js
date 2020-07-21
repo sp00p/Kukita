@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = (bot, message,args) => {
-  if(message.member.hasPermission("BAN_MEMBERS", "ADMINISTRATOR")) {
+  if(!message.member.hasPermission("BAN_MEMBERS", "ADMINISTRATOR")) return message.channel.send("You have to have the KICK_MEMBERS, MANAGE_GUILD, or ADMINISTRATOR permission to use this command!😞");
     if (args[2] === "") {
       var reason = "Not Specified"
     } else {
@@ -26,9 +26,6 @@ module.exports.run = (bot, message,args) => {
         message.channel.send(":slight_smile: " + member.displayName + " has been banned!");
       });
     });
-  } else {
-    message.reply("You have to have the KICK_MEMBERS, MANAGE_GUILD, or ADMINISTRATOR permission to use this command!😞");
-  }
 };
 
 module.exports.help = {

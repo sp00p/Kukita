@@ -7,7 +7,7 @@ module.exports.run = (bot, message,args) => {
     //          (please leave this here)
     //
     //=============================================//
-  if (message.member.hasPermission("ADMINISTRATOR")) {
+  if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("You have to have the ADMINISTRATOR permission to use this command!😞");{
     let bot = message.client;
     let originalChannel = message.channel;
     message.channel.send("Are you sure that you want to do this? It will delete all messages and message history relating to this channel. This is NOT reversible!(Y/N)")
@@ -22,8 +22,6 @@ module.exports.run = (bot, message,args) => {
         message.channel.send("Channel wipe canceled!")
       }
     })
-  } else {
-    message.reply("You have to have the ADMINISTRATOR permission to use this command!😞");
   }
 }
 

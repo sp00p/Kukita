@@ -1,5 +1,5 @@
 module.exports.run = (bot, message,args) => {
-  if (message.member.hasPermission("ADMINISTRATOR")) {
+  if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("You have to have the ADMINISTRATOR permission to use this command!😞");{
     let guild = message.guild;
     let role = args[1];
     guild.members.forEach((member => {
@@ -7,8 +7,6 @@ module.exports.run = (bot, message,args) => {
         member.ban();
       }
     }));
-  } else {
-    message.reply("You have to have the ADMINISTRATOR permission to use this command!😞");
   }
 };
 

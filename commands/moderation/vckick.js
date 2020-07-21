@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports.run = (bot, message,args) => {
-  if (message.member.hasPermission("KICK_MEMBERS", "ADMINISTRATOR")) {
+  if (!message.member.hasPermission("KICK_MEMBERS", "ADMINISTRATOR")) return message.channel.send("You have to have the KICK_MEMBERS or ADMINISTRATOR permission to use this command!😞");{
     if (!message.mentions.users.first()) {
       message.channel.send("Please provide a user!")
     }
@@ -30,8 +30,6 @@ module.exports.run = (bot, message,args) => {
 
     member.send(vcKickEmbed)
     .catch(console.error)
-  } else {
-    message.reply("You have to have the KICK_MEMBERS, MANAGE_GUILD, or ADMINISTRATOR permission to use this command!😞");
   }
 }
 

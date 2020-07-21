@@ -30,7 +30,7 @@ module.exports.run =  async (bot, message, args) => {
 module.exports.help = {
   name: "serveremojis",
   description: "displays all emojis available in the guild",
-  arguments: "none",
+  arguments: "",
   category: "Utility",
   aliases: ["serveremojis", "emojis"]
 }

@@ -15,7 +15,7 @@ module.exports.run = (bot, message,args) => {
       {
         color: '#0x0099ff',
         name: "**Information**",
-        value: "\n**Bot Creator** - <@257663701505671169>\n\n **Current Version** - 0.0.1\n\n [Github Repository](https://github.com/sp00p/Kukita)\n\n [Documentation](https://docs.seancornell.io/)\n\n [Bot Server Invite](https://discord.gg/UD23c9B)\n\n[Found a bug?](https://github.com/sp00p/Kukita/issues)",
+        value: "\n**Bot Creator** - <@257663701505671169>\n\n **Current Version** - 0.0.1\n\n [Documentation](https://docs.seancornell.io/)\n\n [Bot Server Invite](https://discord.gg/UD23c9B)",
       },
     ],
 

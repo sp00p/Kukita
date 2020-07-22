@@ -2,7 +2,7 @@ const { Client, Collection} = require("discord.js");
 const config = require("./config");
 const bot = new Client();
 const { readdirSync } = require("fs");
-const { sep } = require("path");
+const { sep, resolve, join } = require("path");
 const {success, error, warning} = require("log-symbols");
 const GuildModel = require('./models/warn.js')
 const { connect } = require('mongoose');
@@ -79,6 +79,8 @@ bot.on("message", (message) => antiSpam.message(message));
 
 bot.on("message", async message => {
 
+  if (message.author.bot || !message.guild) return;
+
   Prefix.findOne({ serverID: message.guild.id }, (err, data) => {
     if (err) console.log(err);
 
@@ -92,8 +94,6 @@ bot.on("message", async message => {
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
-
-    if (message.author.bot || !message.guild) return;
 
     if (message.channel.type === 'dm') return;
 

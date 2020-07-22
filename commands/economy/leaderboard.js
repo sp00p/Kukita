@@ -6,9 +6,9 @@ module.exports.run = async (bot, message, args) => {
 
   Money.find({
     serverID: message.guild.id
-  }).sort([
-      ['coins', 'descending']
-  ]).exec((err, res) => {
+  }).sort({
+      money: -1
+  }).exec((err, res) => {
     if(err) console.log(err);
 
     let lbEmbed = new MessageEmbed()

@@ -24,7 +24,8 @@ Constants.DefaultOptions.ws.properties.$browser = `Discord iOS`
 const AntiSpam = require('discord-anti-spam');
 const antiSpam = new AntiSpam ({
   warnThreshold: 3,
-  banThreshold: 7,
+  kickThreshold: 10,
+  banThreshold: 15,
   maxInterval: 2000,
   warnMessage: '{@user}, Please stop spamming!',
   banMessage: '**{user_tag}** has been banned for spamming.',

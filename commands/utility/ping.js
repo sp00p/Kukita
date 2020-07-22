@@ -1,7 +1,21 @@
+const { MessageEmbed } = require("discord.js")
+
 module.exports.run = (bot, message,args) => {
-  message.channel.send("Pinging...").then((m => {
+
+  const firstEmbed = new MessageEmbed()
+    .setTitle("Pinging...")
+
+  message.channel.send(firstEmbed).then((m => {
     let ping = m.createdTimestamp - message.createdTimestamp;
-    m.edit(`Bot latency: ${ping}, API Latency: ${Math.round(bot.ws.ping)}`);
+
+    let pingEmbed = new MessageEmbed()
+    .setTitle("Pong!🏓")
+    .setThumbnail("https://cdn.discordapp.com/emojis/723073203307806761.gif?v=1")
+    .addField("__**Bot Latency**__", `${ping}ms`)
+    .addField("__**API Latency**__", `${Math.round(bot.ws.ping)}ms`)
+    .setTimestamp()
+    .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
+    m.edit(pingEmbed);
   }))
 };
 

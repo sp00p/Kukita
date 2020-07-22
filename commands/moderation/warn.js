@@ -2,24 +2,28 @@ const warns = require('../../models/warn.js')
 const { MessageEmbed } = require("discord.js");
 
 module.exports.run = (bot, message,args) => {
-  if (!message.member.hasPermission("KICK_MEMBERS", "ADMINISTRATOR")) return message.channel.send("You have to have the KICK_MEMBERS or ADMINISTRATOR permission to use this command!😞");
-    if(args[2] === "") {
-      var reason = "Not Specified"
-    } else {
-      var reason = args[2]
-    }
+  if (!message.member.hasPermission("KICK_MEMBERS", "ADMINISTRATOR")) return
 
     let member = message.mentions.users.first()
+
+    if(!args[1]) {
+      var reason = "Not Specified"
+    } else {
+      var reason = args.slice(1).join(" ")
+    }
+
+    var date = new Date()
 
     const warnEmbed = new MessageEmbed()
       .setColor("0x0099ff")
       .setAuthor("Kukita#6512", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
       .addFields(
-        {name: "**Moderator**", value: message.author},
-        {name: "**Action**", value: 'Warn'},
-        {name: "**Guild**", value: message.guild},
-        {name: "**Channel**", value: message.channel},
-        {name: "**Reason**", value: reason}
+        {name: "**Moderator**", value: message.author, inline: true},
+        {name: "**Action**", value: 'Warn', inline: true},
+        {name: "**Guild**", value: message.guild, inline: true},
+        {name: "**Channel**", value: message.channel, inline: true},
+        {name: "**Reason**", value: reason, inline: true},
+        {name: "**Date**", value: `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`, inline: true}
       )
       .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
 
@@ -33,7 +37,8 @@ module.exports.run = (bot, message,args) => {
           Warns:[
             {
               Moderator: message.author.id,
-              Reason: reason
+              Reason: reason,
+              Date: `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`
             }
           ]
         })

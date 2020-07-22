@@ -9,6 +9,7 @@ module.exports.run = (bot, message,args) => {
     //=============================================//
 
   let user = message.guild.member(message.mentions.users.first())
+  if (!user) return message.reply("Please specify a user!")
   let usricon = user.user.displayAvatarURL
 
   if (!user.hasPermission("ADMINISTRATOR")) {

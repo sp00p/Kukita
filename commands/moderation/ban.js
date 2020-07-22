@@ -1,23 +1,30 @@
 const Discord = require("discord.js");
 
 module.exports.run = (bot, message,args) => {
-  if(!message.member.hasPermission("BAN_MEMBERS", "ADMINISTRATOR")) return message.channel.send("You have to have the KICK_MEMBERS, MANAGE_GUILD, or ADMINISTRATOR permission to use this command!😞");
-    if (args[2] === "") {
+  if(!message.member.hasPermission("BAN_MEMBERS", "ADMINISTRATOR")) return
+
+    if (args[1] === "") {
       var reason = "Not Specified"
     } else {
-      var reason = args[2];
+      var reason = args.slice(1).join(" ")
     }
+    
     let member = message.guild.member(message.mentions.users.first());
     let moderator = message.author;
     let guildname = message.guild;
+
+    var date = new Date()
+
     const banEmbed = new Discord.MessageEmbed()
       .setColor("0x0099ff")
       .setAuthor("Kukita#6512", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
       .addFields(
-        {name: "**Moderator**", value: moderator},
-        {name: "**Action**", value: 'Ban'},
-        {name: "**Guild**", value: guildname},
-        {name: "**Reason**", value: reason}
+        {name: "**Moderator**", value: message.author, inline: true},
+        {name: "**Action**", value: 'Ban', inline: true},
+        {name: "**Guild**", value: message.guild, inline: true},
+        {name: "**Channel**", value: message.channel, inline: true},
+        {name: "**Reason**", value: reason, inline: true},
+        {name: "**Date**", value: `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`, inline: true}
       )
       .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png");
 

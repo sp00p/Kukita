@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports.run = (bot, message,args) => {
-  if (!message.member.hasPermission("MUTE_MEMBERS", "ADMINISTRATOR")) return message.channel.send("You have to have the MUTE_MEMBERS or ADMINISTRATOR permission to use this command!😞");
+  if (!message.member.hasPermission("MUTE_MEMBERS", "ADMINISTRATOR")) return
 
     let member = message.guild.member(message.mentions.users.first());
     let moderator = message.author;
@@ -23,6 +23,11 @@ module.exports.run = (bot, message,args) => {
       {name: "**Reason**", value: reason}
     )
     .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png");
+
+    var mutedRole = message.guild.roles.cache.find(role => role.name === "Muted")
+    member.roles.add(mutedRole);
+
+    member.send(mutedEmbed)
 
 }
 

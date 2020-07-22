@@ -3,6 +3,10 @@ const Prefix = require("../../models/prefix.js");
 
 module.exports.run = async (bot, message, args) => {
 
+  if (!message.author === message.guild.owner) return;
+
+  if(!args[0]) return message.channel.send("Please specify a prefix!")
+
   let prefixChangeEmbed = new MessageEmbed()
     .setTitle("✅ Success")
     .setThumbnail(message.author.displayAvatarURL)

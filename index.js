@@ -9,6 +9,7 @@ const { connect } = require('mongoose');
 const Money = require("./models/money.js")
 const blacklist = require("./models/blacklist.js")
 const Prefix = require("./models/prefix.js")
+bot.snipes = new Collection();
 let prefix;
 bot.config = config;
 ["commands", "aliases"].forEach(x => bot[x] = new Collection())
@@ -23,11 +24,11 @@ Constants.DefaultOptions.ws.properties.$browser = `Discord iOS`
 // - Anti Spam - //
 const AntiSpam = require('discord-anti-spam');
 const antiSpam = new AntiSpam ({
-  warnThreshold: 3,
-  kickThreshold: 10,
-  banThreshold: 15,
+  warnThreshold: 8,
+  kickThreshold: 15,
+  banThreshold: 30,
   maxInterval: 2000,
-  warnMessage: '{@user}, Please stop spamming!',
+  warnMessage: '{@user}, Please stop spamming! You will be kicked if you send 7 more of the same message!',
   banMessage: '**{user_tag}** has been banned for spamming.',
   maxDuplicatesWarning: 7,
   maxDuplicatesBan: 15,
@@ -77,6 +78,21 @@ bot.on("ready", () => {
 });
 
 bot.on("message", (message) => antiSpam.message(message));
+
+bot.on("messageDelete", async (message) => {
+
+  if (message.author.bot) return;
+
+  const snipes = bot.snipes.get(message.channel.id) || [];
+  snipes.unshift({
+    content: message.content,
+    author: message.author,
+    image: message.attachments.first() ? message.attachments.first().proxyURL : null,
+    date: new Date().toLocaleString("en-GB", { dataStyle: "full", timeStyle: "short"})
+  })
+  snipes.splice(10);
+  bot.snipes.set(message.channel.id, snipes)
+})
 
 bot.on("message", async message => {
 

@@ -10,7 +10,6 @@ module.exports.run = (bot, message,args) => {
 
     let pingEmbed = new MessageEmbed()
     .setTitle("Pong!🏓")
-    .setThumbnail("https://cdn.discordapp.com/emojis/723073203307806761.gif?v=1")
     .addField("__**Bot Latency**__", `${ping}ms`)
     .addField("__**API Latency**__", `${Math.round(bot.ws.ping)}ms`)
     .setTimestamp()

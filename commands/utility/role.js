@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports.run = async (bot, message,args) => {
-  if(!message.member.hasPermission("MANAGE_ROLES", "ADMINISTRATOR")) return message.channel.send("You have to have the MANAGE_ROLES or ADMINISTRATOR permission to use this command!😞");
+  if(!message.member.hasPermission("MANAGE_ROLES", "ADMINISTRATOR")) return;
 
   if(args[0].toLowerCase() == 'create') {
     let rName = args[1]

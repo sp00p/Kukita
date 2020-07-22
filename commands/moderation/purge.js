@@ -1,5 +1,5 @@
 module.exports.run = (bot, message,args) => {
-    if (!message.member.hasPermission("MANAGE_MESSAGES", "ADMINISTRATOR")) return message.channel.send("You have to have the KICK_MEMBERS, MANAGE_GUILD, or ADMINISTRATOR permission to use this command!😞");
+    if (!message.member.hasPermission("MANAGE_MESSAGES", "ADMINISTRATOR")) return
 
     let num = parseInt(args[1]);
 

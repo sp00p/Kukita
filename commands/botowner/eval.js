@@ -1,11 +1,12 @@
 const { MessageEmbed } = require('discord.js');
 const beautify = require("beautify");
+const { inspect } = require("util");
 
 module.exports.run =  async (bot, message, args) => {
   if (!bot.config.owners.includes(message.author.id)) return;
 
-  const toEval = args.join(" ");
-  const evaluated = eval(toEval);
+  const toEval = `(async () => {${args.join(" ")}})()`
+  const evaluated = await eval(toEval)
 
   try{
     if (args.join(" ").toLowerCase().includes("token")) {
@@ -18,8 +19,8 @@ module.exports.run =  async (bot, message, args) => {
       .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
       .setTitle("Eval")
       .addField("To evaluate:", `\`\`\`js\n${beautify(args.join(" "), { format: "js"})}\n\`\`\``)
-      .addField("Evaluated: ", evaluated)
-      .addField("Type of: ", typeof(evaluated))
+      .addField("Evaluated: ", `\`\`\`js\n${beautify(inspect(evaluated,{depth: 0}), { format: "js"})}\n\`\`\``)
+      .addField("Type of: ", `\`\`\`js\n${beautify(typeof evaluated, { format: "js"})}\n\`\`\``)
 
       message.channel.send(evalEmbed);
     } catch (err) {
@@ -29,7 +30,7 @@ module.exports.run =  async (bot, message, args) => {
         .setDescription(err)
         .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
 
-        message.channel.send(errorEmbed)
+        if (err) return message.channel.send(errorEmbed)
     }
 }
 

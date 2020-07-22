@@ -2,7 +2,7 @@ const warns = require("../../models/warn.js");
 const Discord = require("discord.js");
 
 module.exports.run = (bot, message,args) => {
-  if(!message.member.hasPermission("KICK_MEMBERS", "ADMINISTRATOR")) return message.channel.send("You have to have the KICK_MEMBERS or ADMINISTRATOR permission to use this command!😞");
+  if(!message.member.hasPermission("KICK_MEMBERS", "ADMINISTRATOR")) return
     let member = message.mentions.users.first()
     if(!member) return message.channel.send("I couldn't find that user!")
     warns.find({ Guild: message.guild.id, User: member.id }, (err, data) => {

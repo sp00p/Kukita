@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const ms = require("ms");
 
 module.exports.run = async (bot, message, args) => {
-  if(!message.member.hasPermission("MANAGE_GUILD", "ADMINISTRATOR")) return message.channel.send("You have to have the MANAGE_GUILD or ADMINISTRATOR permission to use this command!😞")
+  if(!message.member.hasPermission("MANAGE_GUILD", "ADMINISTRATOR")) return;
 
   if (!args[0]) return message.channel.send(`Please specify the duration of your giveaway!`)
   if (!args[0].endsWith("d")&&!args[0].endsWith("h")&&!args[0].endsWith("m")&&!args[0].endsWith("s")) return message.channel.send("You didn't use the correct formatting for the duration of your giveaway!")

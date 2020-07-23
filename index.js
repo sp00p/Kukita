@@ -4,10 +4,11 @@ const bot = new Client();
 const { readdirSync } = require("fs");
 const { sep, resolve, join } = require("path");
 const {success, error, warning} = require("log-symbols");
-const GuildModel = require('./models/warn.js')
+const GuildModel = require('./models/warn.js');
 const { connect } = require('mongoose');
-const Money = require("./models/money.js")
-const blacklist = require("./models/blacklist.js")
+const Money = require("./models/money.js");
+const blacklist = require("./models/blacklist.js");
+const blacklistuser = require("./models/blacklistuser.js");
 const Prefix = require("./models/prefix.js")
 bot.snipes = new Collection();
 let prefix;
@@ -151,15 +152,13 @@ bot.on("message", async message => {
           message.channel.send("Your guild has been banned from using commands with this bot! If you think this is a mistake, please join the support server: https://discord.gg/UD23c9B");
         } else if (!res) {
 
-          if (blockedUsers.includes(message.author.id) return message.channel.send("You are blacklisted from using commands!");
-
-          if (command == 'blacklistuser') {
-            let user = message.mentions.users.first();
-            message.channel.send("user can't use commands anymore lol")
-            if (user && !blockedUsers.includes(user.id)) blockedUsers.push(user.id);
-          } else if ((command) command.run(bot, message, args);
-)
-
+          blacklistuser.findOne({userID: message.author.id}, (err, res) => {
+            if (res) {
+              return
+            } else if (!res) {
+              if (command) command.run(bot, message, args);
+            }
+          })
         }
       })
     }

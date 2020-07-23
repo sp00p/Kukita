@@ -1,26 +1,26 @@
 const { MessageEmbed } = require("discord.js");
-const blacklist = require('../../models/blacklist.js')
+const blacklistuser = require('../../models/blacklistuser.js')
 
 module.exports.run = (bot, message, args) => {
   if (!bot.config.owners.includes(message.author.id)) return;
 
-  var guild = args[0];
+  var user = args[0];
 
   let blacklistEmbed = new MessageEmbed()
     .setTitle("**Blacklist**")
     .setDescription("✅ Success")
     .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
 
-  blacklist.findOne({ Guild: guild}, (err, res) => {
+  blacklistuser.findOne({ userID: user}, (err, res) => {
     if(err) console.log(err);
 
     if(!res) {
-      let newBlacklist = new blacklist({
-        Guild: guild,
+      let newBlacklistUser = new blacklistuser({
+        userID: user,
       })
 
-      newBlacklist.save().catch(err => console.log(err));
-      blacklistEmbed.addField("banned", guild);
+      newBlacklistUser.save().catch(err => console.log(err));
+      blacklistEmbed.addField("banned", user);
       message.channel.send(blacklistEmbed);
     } else {
       message.reply("use unblacklist lol");
@@ -29,9 +29,9 @@ module.exports.run = (bot, message, args) => {
 }
 
 module.exports.help = {
-  name: "blacklist",
-  description: "blacklists specific guild from bot",
-  arguments: "<guild id>",
+  name: "blacklistuser",
+  description: "blacklists specific user from bot",
+  arguments: "<user id>",
   category: "Owner",
-  aliases: ["bl", "blacklist"]
+  aliases: ["bu", "blacklistuser"]
 };

@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
   if (cooldown) {
     const remanining = humanizeDuration(cooldown - Date.now());
 
-    return message.channel.send(`You can only use that command every 4 hours! You have ${remaning} to wait before you can work again!`)
+    return message.channel.send(`You can only use that command every 4 hours! You have ${remaining} to wait before you can work again!`)
     .catch(console.error);
   }
 

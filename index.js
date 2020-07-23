@@ -18,7 +18,7 @@ const db = connect('mongodb+srv://root:OJ8Iyz6nzgmBjW51@cluster0.921xq.mongodb.n
   useFindAndModify: false,
   useUnifiedTopology: true
 });
-const Constants = require('discord.js/src/util/Constants.js')
+const Constants = require('./node_modules/discord.js/src/util/Constants.js')
 Constants.DefaultOptions.ws.properties.$browser = `Discord iOS`
 
 // - Anti Spam - //

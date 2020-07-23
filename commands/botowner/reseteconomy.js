@@ -32,6 +32,6 @@ module.exports.help = {
   name: "reseteconomy",
   description: "resets the specified guild's economy",
   arguments: "",
-  category: "Economy",
+  category: "Owner",
   aliases: ["reseteconomy"]
 };

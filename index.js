@@ -110,6 +110,8 @@ bot.on("message", async message => {
       prefix = config.prefix
     }
 
+    bot.prefix = prefix;
+
     let command;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);

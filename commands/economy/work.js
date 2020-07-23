@@ -31,9 +31,9 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-  name: "balance",
-  description: "sends how much money you have in your guild",
+  name: "work",
+  description: "allows you to work for money",
   arguments: "",
   category: "Economy",
-  aliases: ["balance", "bal"]
+  aliases: ["work"]
 };

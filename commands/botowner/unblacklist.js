@@ -19,7 +19,7 @@ module.exports.run = (bot, message, args) => {
     } else {
       res.save().catch(err => console.log(err));
       blacklistEmbed.addField("unbanned", guild);
-      message.channel.send(blacklistEmbed);
+      return message.channel.send(blacklistEmbed);
     }
   })
 }

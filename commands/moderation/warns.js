@@ -1,7 +1,7 @@
 const warns = require("../../models/warn.js");
 const { MessageEmbed } = require("discord.js");
 
-module.exports.run = (bot, message, args) => {
+module.exports.run = async (bot, message, args) => {
   let member = await message.mentions.users.first()
 
   if(!member) return message.channel.send("I couldn't find that user!")

@@ -1,13 +1,13 @@
 const { MessageEmbed } = require("discord.js");
 const Money = require("../../models/money.js");
-const humanizeDuration = require("humanize-duration", { delimiter: " and ", units: ["h", "m", "s"], round: true});
+const humanizeDuration = require("humanize-duration");
 const cooldowns = new Map();
 
 module.exports.run = async (bot, message, args) => {
 
   const cooldown = cooldowns.get(message.author.id);
   if (cooldown) {
-    const remaining = humanizeDuration(cooldown - Date.now());
+    const remaining = humanizeDuration(cooldown - Date.now(), { conjunction: " and ", units: ["h", "m", "s"], round: true});
 
     return message.channel.send(`You can only use that command every 4 hours! You have ${remaining} to wait before you can work again!`)
     .catch(console.error);

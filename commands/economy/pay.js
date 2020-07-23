@@ -2,9 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const Money = require("../../models/money.js");
 
 module.exports.run = async (bot, message, args) => {
-
-    if (!bot.config.owners.includes(message.author.id)) return;
-
+  
     if(message.mentions.first().id === bot.id) return
 
     Money.findOne({ userID: message.mentions.users.first().id, serverID: message.guild.id}, (err, data) => {

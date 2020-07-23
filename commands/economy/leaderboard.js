@@ -4,8 +4,6 @@ const Money = require('../../models/money.js')
 
 module.exports.run = async (bot, message, args) => {
 
-  if (!bot.config.owners.includes(message.author.id)) return;
-
   Money.find({
     serverID: message.guild.id
   }).sort({

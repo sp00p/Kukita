@@ -4,8 +4,7 @@ const dailyCooldowns = new Map();
 const humanizeDuration = require("humanize-duration");
 
 module.exports.run = async (bot, message, args) => {
-
-  if (!bot.config.owners.includes(message.author.id)) return;
+  
   const dailyCooldown = dailyCooldowns.get(message.author.id);
   if (dailyCooldown) {
     const remaining = humanizeDuration(dailyCooldown - Date.now(), { conjunction: " and ", units: ["h", "m", "s"], round: true});

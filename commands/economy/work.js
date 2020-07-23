@@ -5,8 +5,6 @@ const cooldowns = new Map();
 
 module.exports.run = async (bot, message, args) => {
 
-  if (!bot.config.owners.includes(message.author.id)) return;
-
   const cooldown = cooldowns.get(message.author.id);
   if (cooldown) {
     const remaining = humanizeDuration(cooldown - Date.now());

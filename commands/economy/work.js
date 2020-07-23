@@ -32,8 +32,8 @@ module.exports.run = async (bot, message, args) => {
           data.save()
           message.channel.send(workEmbed)
 
-          // cooldowns.set(message.author.id, Date.now() + 1.44e+7);
-          // setTimeout(() => cooldowns.delete(message.author.id), 1.44e+7);
+          cooldowns.set(message.author.id, Date.now() + 1.44e+7);
+          setTimeout(() => cooldowns.delete(message.author.id), 1.44e+7);
 
         }
       })

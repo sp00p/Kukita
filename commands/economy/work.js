@@ -1,12 +1,23 @@
 const { MessageEmbed } = require("discord.js");
 const Money = require("../../models/money.js");
+const humanizeDuration = require("humanize-duration", { units: ['m'], round: true });
+const cooldowns = new Map();
 
 module.exports.run = async (bot, message, args) => {
+
+  const cooldown = cooldowns.get(message.author.id);
+  if (cooldown) {
+    const remanining = humanizeDuration(cooldown - Date.now());
+
+    return message.channel.send(`You can only use that command every 4 hours! You have ${remaning} to wait before you can work again!`)
+    .catch(console.error);
+  }
 
   let moneyMade = Math.floor(Math.random() * 50) + 1
 
   let workEmbed = new MessageEmbed()
-    .setTitle(`You worked for ${Math.floor(Math.random() * 6) + 1  } and made $${moneyMade}`)
+    .setTitle("Shift over!")
+    .setDescription(`You worked for ${Math.floor(Math.random() * 6) + 1} hours and made $${moneyMade}`)
     .setColor("RANDOM")
 
     Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, data) => {
@@ -20,6 +31,9 @@ module.exports.run = async (bot, message, args) => {
         data.money = data.money + moneyMade;
         data.save()
         message.channel.send(workEmbed)
+
+        cooldowns.set(message.author.id, Date.now() + 1.44e+7);
+        setTimeout(() => cooldowns.delete(message.author.id), 1.44e+7);
 
       }
     })

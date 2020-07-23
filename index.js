@@ -146,7 +146,7 @@ bot.on("message", async message => {
     if(command) {
       blacklist.findOne({ Guild: message.guild.id }, (err, res) => {
         if(res) {
-          message.channel.send("You guild has been banned from using commands with this bot! If you think this is a mistake, please join the support server: https://discord.gg/UD23c9B");
+          message.channel.send("Your guild has been banned from using commands with this bot! If you think this is a mistake, please join the support server: https://discord.gg/UD23c9B");
         } else if (!res) {
 
 

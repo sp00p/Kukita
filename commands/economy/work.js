@@ -9,9 +9,6 @@ module.exports.run = async (bot, message, args) => {
     .setTitle(`You worked for ${Math.floor(Math.random() * 6) + 1  } and made $${moneyMade}`)
     .setColor("RANDOM")
 
-    const { MessageEmbed } = require("discord.js");
-    const Money = require("../../models/money.js");
-
     Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, res) => {
       if (err) console.log(err);
 

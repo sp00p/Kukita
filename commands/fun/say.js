@@ -1,7 +1,6 @@
 module.exports.run = async (bot, message, args) => {
 
-  const usermsg = message.content
-  const botmsg = usermsg.replace(".say ", "")
+  const usermsg = message.content.split(bot.prefix.length+7)
   message.channel.send(botmsg)
 
 }

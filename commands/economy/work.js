@@ -11,32 +11,33 @@ module.exports.run = async (bot, message, args) => {
 
     return message.channel.send(`You can only use that command every 4 hours! You have ${remaining} to wait before you can work again!`)
     .catch(console.error);
-  }
+  } else {
 
-  let moneyMade = Math.floor(Math.random() * 50) + 1
+    let moneyMade = Math.floor(Math.random() * 50) + 1
 
-  let workEmbed = new MessageEmbed()
-    .setTitle("Shift over!")
-    .setDescription(`You worked for ${Math.floor(Math.random() * 6) + 1} hours and made $${moneyMade}`)
-    .setColor("RANDOM")
+    let workEmbed = new MessageEmbed()
+      .setTitle("Shift over!")
+      .setDescription(`You worked for ${Math.floor(Math.random() * 6) + 1} hours and made $${moneyMade}`)
+      .setColor("RANDOM")
 
-    Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, data) => {
-      if (err) console.log(err);
+      Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, data) => {
+        if (err) console.log(err);
 
-      if(!data) {
-        moneyEmbed.setColor("#fc0404");
-        moneyEmbed.addField("❌ Error", "You don't have an account on this server!");
-      } else {
+        if(!data) {
+          moneyEmbed.setColor("#fc0404");
+          moneyEmbed.addField("❌ Error", "You don't have an account on this server!");
+        } else {
 
-        data.money = data.money + moneyMade;
-        data.save()
-        message.channel.send(workEmbed)
+          data.money = data.money + moneyMade;
+          data.save()
+          message.channel.send(workEmbed)
 
-        cooldowns.set(message.author.id, Date.now() + 1.44e+7);
-        setTimeout(() => cooldowns.delete(message.author.id), 1.44e+7);
+          cooldowns.set(message.author.id, Date.now() + 1.44e+7);
+          setTimeout(() => cooldowns.delete(message.author.id), 1.44e+7);
 
-      }
-    })
+        }
+      })
+    }
 }
 
 module.exports.help = {

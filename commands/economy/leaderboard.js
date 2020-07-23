@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
     let lbEmbed = new MessageEmbed()
       .setTitle("Server Money Leaderboard")
       .setAuthor(message.guild, message.guild.iconURL({format: "png"}))
-      .setFooter("You can earn money by chatting!", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
+      .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
 
       if (res.length === 0) {
         lbEmbed.setColor("#fc0404");

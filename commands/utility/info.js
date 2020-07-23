@@ -267,5 +267,5 @@ module.exports.help = {
   description: "allows you to view a specific member's permissions",
   arguments: "<user>",
   category: "Utility",
-  aliases: [""]
+  aliases: ["info"]
 };

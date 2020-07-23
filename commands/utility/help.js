@@ -58,5 +58,5 @@ module.exports.help = {
   description: "sends a list of commands that the bot understands",
   arguments: "",
   category: "Utility",
-  aliases: [""]
+  aliases: ["help", "h"]
 };

@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const Money = require("../../models/money.js");
-const humanizeDuration = require("humanize-duration", { units: ['m'], round: true });
+const humanizeDuration = require("humanize-duration", { delimiter: " and ", units: ["h", "m", "s"], round: true});
 const cooldowns = new Map();
 
 module.exports.run = async (bot, message, args) => {

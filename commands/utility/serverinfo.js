@@ -40,5 +40,5 @@ module.exports.help = {
   description: "sends infomation about the guild you\'re in",
   arguments: "",
   category: "Utility",
-  aliases: ["sinfo"]
+  aliases: ["serverinfo", "sinfo"]
 };

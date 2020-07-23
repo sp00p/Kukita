@@ -23,5 +23,5 @@ module.exports.help = {
   description: "sends the bots current uptime",
   arguments: "",
   category: "Utility",
-  aliases: [""]
+  aliases: ["uptime"]
 };

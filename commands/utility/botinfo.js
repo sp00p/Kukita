@@ -29,5 +29,5 @@ module.exports.help = {
   description: "sends info about the bot",
   arguments: "",
   category: "Utility",
-  aliases: ["binfo"]
+  aliases: ["botinfo", "binfo"]
 };

@@ -23,5 +23,5 @@ module.exports.help = {
   description: "gets your latency",
   arguments: "",
   category: "Utility",
-  aliases: [""]
+  aliases: ["ping"]
 };

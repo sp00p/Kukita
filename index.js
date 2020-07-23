@@ -39,6 +39,8 @@ const antiSpam = new AntiSpam ({
   ignoredUsers:[],
 });
 
+var blockedUsers = [];
+
 const load = (dir = "./commands/") => {
 
   readdirSync(dir).forEach(dirs => {
@@ -149,8 +151,15 @@ bot.on("message", async message => {
           message.channel.send("Your guild has been banned from using commands with this bot! If you think this is a mistake, please join the support server: https://discord.gg/UD23c9B");
         } else if (!res) {
 
+          if (blockedUsers.includes(message.author.id) return message.channel.send("You are blacklisted from using commands!");
 
-          if (command) command.run(bot, message, args);
+          if (command == 'blacklistuser') {
+            let user = message.mentions.users.first();
+            message.channel.send("user can't use commands anymore lol")
+            if (user && !blockedUsers.includes(user.id)) blockedUsers.push(user.id);
+          } else if ((command) command.run(bot, message, args);
+)
+
         }
       })
     }

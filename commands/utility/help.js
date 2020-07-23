@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const { readdirSync } = require("fs")
 
-module.exports.run = (bot, message,args) => {
+module.exports.run = (bot, message, args) => {
 
   const helpEmbed = new MessageEmbed()
     .setColor("0x0099ff")
@@ -43,7 +43,6 @@ module.exports.run = (bot, message,args) => {
     try {
       if (dir.size === 0) return;
       if (bot.config.owners.includes(message.author.id)) helpEmbed.addField(`${capitalise}`, dir.map(c => `\`${c.help.name}\``).join(", "));
-      else if (category !== "Developers") helpEmbed.addField(`${capitalise}`, dir.map(c => `\`${c.help.name}\``).join(", "));
     }
     catch (e) {
       console.log(e);

@@ -5,6 +5,8 @@ const cooldowns = new Map();
 
 module.exports.run = async (bot, message, args) => {
 
+  if (!bot.config.owners.includes(message.author.id)) return;
+
   const cooldown = cooldowns.get(message.author.id);
   if (cooldown) {
     const remaining = humanizeDuration(cooldown - Date.now());
@@ -32,8 +34,8 @@ module.exports.run = async (bot, message, args) => {
           data.save()
           message.channel.send(workEmbed)
 
-          cooldowns.set(message.author.id, Date.now() + 1.44e+7);
-          setTimeout(() => cooldowns.delete(message.author.id), 1.44e+7);
+          // cooldowns.set(message.author.id, Date.now() + 1.44e+7);
+          // setTimeout(() => cooldowns.delete(message.author.id), 1.44e+7);
 
         }
       })

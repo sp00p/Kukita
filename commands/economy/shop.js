@@ -3,6 +3,8 @@ const shops = require("../../models/shop.js")
 
 module.exports.run = async (bot, message, args) => {
 
+  if (!bot.config.owners.includes(message.author.id)) return;
+
   if (!message.author === message.guild.owner) return;
 
   let shopEmbed = new MessageEmbed()

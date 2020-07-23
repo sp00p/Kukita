@@ -29,6 +29,6 @@ module.exports.help = {
   name: "addmoney",
   description: "adds money to specified user",
   arguments: "<userID> <username> <serverID> <money>",
-  category: "Economy",
+  category: "Owner",
   aliases: ["addmoney", "addcash"]
 };

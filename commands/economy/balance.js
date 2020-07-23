@@ -3,6 +3,8 @@ const Money = require("../../models/money.js");
 
 module.exports.run = async (bot, message, args) => {
 
+  if (!bot.config.owners.includes(message.author.id)) return;
+
   let moneyEmbed = new MessageEmbed()
     .setTitle("Money")
     .setThumbnail(message.author.displayAvatarURL)

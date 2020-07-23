@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
 
   const cooldown = cooldowns.get(message.author.id);
   if (cooldown) {
-    const remanining = humanizeDuration(cooldown - Date.now());
+    const remaining = humanizeDuration(cooldown - Date.now());
 
     return message.channel.send(`You can only use that command every 4 hours! You have ${remaining} to wait before you can work again!`)
     .catch(console.error);

@@ -12,14 +12,14 @@ module.exports.run = async (bot, message, args) => {
 
   var guild = args[0]
 
-  Money.deleteMany({ serverID: guild}, (err, res) => {
+  Money.deleteMany({ serverID: guild}, (err, data) => {
     if (err) console.log(err);
 
-    if(!res) {
+    if(!data) {
       moneyDeleteEmbed.setColor("#fc0404");
       moneyDeleteEmbed.addField("❌ Error", "Data could not be deleted!", "lol they dont have money xdddd");
       message.channel.send(moneyDeleteEmbed);
-    } else if(res){
+    } else if(data){
       moneyDeleteEmbed.setColor("#00FF00");
       moneyDeleteEmbed.addField(`${guild}'s data expuged!`, "lol they money gone" )
       message.channel.send(moneyDeleteEmbed);

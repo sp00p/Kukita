@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
       moneyDeleteEmbed.setColor("#fc0404");
       moneyDeleteEmbed.addField("❌ Error", "Data could not be deleted!", "lol they dont have money xdddd");
       message.channel.send(moneyDeleteEmbed);
-    } else {
+    } else if(res){
       moneyDeleteEmbed.setColor("#00FF00");
       moneyDeleteEmbed.addField(`${guild}'s data expuged!`, "lol they money gone" )
       message.channel.send(moneyDeleteEmbed);

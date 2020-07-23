@@ -24,8 +24,19 @@ module.exports.run = async (bot, message, args) => {
         if (err) console.log(err);
 
         if(!data) {
-          moneyEmbed.setColor("#fc0404");
-          moneyEmbed.addField("❌ Error", "You don't have an account on this server!");
+          let newMoneyAcc = new Money({
+            userID: message.author.id,
+            username: message.author.username,
+            serverID: message.guild.id,
+            money: moneyMade
+          })
+
+          newMoneyAcc.save()
+
+          cooldowns.set(message.author.id, Date.now() + 1.44e+7);
+          setTimeout(() => cooldowns.delete(message.author.id), 1.44e+7);
+          
+          message.channel.send(workEmbed)
         } else {
 
           data.money = data.money + moneyMade;

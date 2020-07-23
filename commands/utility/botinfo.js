@@ -15,7 +15,7 @@ module.exports.run = (bot, message,args) => {
       {
         color: '#0x0099ff',
         name: "**Information**",
-        value: "\n**Bot Creator** - <@257663701505671169>\n\n **Current Version** - 0.0.1\n\n [Documentation](https://docs.seancornell.io/)\n\n [Bot Server Invite](https://discord.gg/UD23c9B)",
+        value: "\n**Bot Creator** - <@257663701505671169>\n\n **Current Version** - 1.0.0\n\n [Documentation](https://docs.seancornell.io/)\n\n [Bot Server Invite](https://discord.gg/UD23c9B)",
       },
     ],
 

@@ -9,10 +9,10 @@ module.exports.run = async (bot, message, args) => {
     .setTitle(`You worked for ${Math.floor(Math.random() * 6) + 1  } and made $${moneyMade}`)
     .setColor("RANDOM")
 
-    Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, res) => {
+    Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, data) => {
       if (err) console.log(err);
 
-      if(!res) {
+      if(!data) {
         moneyEmbed.setColor("#fc0404");
         moneyEmbed.addField("❌ Error", "You don't have an account on this server!");
       } else {
@@ -22,8 +22,6 @@ module.exports.run = async (bot, message, args) => {
         message.channel.send(workEmbed)
 
       }
-
-      message.channel.send(moneyEmbed);
     })
 }
 

@@ -50,7 +50,7 @@ module.exports.run = async (bot, message,args) => {
 module.exports.help = {
   name: "role",
   description: "creates/deletes a roles for you. use _'s as spaces for both creating and deleting roles.",
-  arguments: "<rolename> <hex color>",
+  arguments: "create <rolename> <hex color> || delete <rolename>",
   category: "Utility",
   aliases: ["role"]
 };

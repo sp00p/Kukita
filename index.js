@@ -99,7 +99,7 @@ bot.on("messageDelete", async (message) => {
 
 bot.on("message", async message => {
 
-  if (message.author.bot || !message.guild) return;
+  if (message.author.id === bot.user.id || !message.guild) return;
 
   Prefix.findOne({ serverID: message.guild.id }, (err, data) => {
     if (err) console.log(err);
@@ -134,6 +134,7 @@ bot.on("message", async message => {
         if (err) console.log(err);
 
         if(!res) {
+          if(message.author.id === bot.user.id) return;
           const newDoc = new Money ({
             userID: message.author.id,
             username: message.author.username,
@@ -142,6 +143,7 @@ bot.on("message", async message => {
           })
           newDoc.save().catch(err => console.log(err));
         } else {
+          if(message.author.id === bot.user.id) return;
           res.coins = res.coins + moneyToAdd;
           res.save().catch(err => console.log(err));
         }

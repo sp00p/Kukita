@@ -3,7 +3,7 @@ const Money = require("../../models/money.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  if (!bot.config.betatesters.includes(message.author.id)) return
+  if (!bot.config.betatesters.includes(message.author.id) && !message.channel.id === "736123900928458754") return
 
   let userBet = args[0]
   let userNumber = Math.floor(Math.random() * 6) + 1

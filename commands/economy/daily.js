@@ -52,12 +52,12 @@ module.exports.run = async (bot, message, args) => {
 
         var remaining = humanizeDuration(data.cooldown - Date.now(), { conjunction: " and ", units: ["h", "m", "s"], round: true});
 
-        let cooldownEmbed = new MessageEmbed()
+        let dailyCooldownEmbed = new MessageEmbed()
           .setTitle("Uh oh!")
           .setColor("#fc0404")
           .setDescription(`You can only use that command once a day!\nYou still have ${remaining} to wait!`)
 
-        message.channel.send(cooldownEmbed)
+        message.channel.send(dailyCooldownEmbed)
     }
   })
 }

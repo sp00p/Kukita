@@ -26,26 +26,49 @@ module.exports.run = async (bot, message, args) => {
             serverID: message.guild.id,
             money: 700
           })
+          let weeklyWorkEmbed = new MessageEmbed()
+            .setTitle("Congratulations!")
+            .setColor("RANDOM")
+            .setDescription("You earned $700, don't spend it all in one place!")
+
+          message.channel.send(weeklyWorkEmbed)
+          if (!data) {
+            let newCooldown = new cooldown({
+              serverID: message.guild.id,
+              userID: message.author.id,
+              command: 'weekly',
+              cooldown: Date.now() + 6.048e+8
+            })
+            newCooldown.save()
+          } else if (data) {
+            data.cooldown = Date.now() + 6.048e+8
+            data.save()
+          }
           message.channel.send("Congratulations, you have earned $700. Don't spend it all in one place!")
-          let newCooldown = new cooldown({
-            serverID: message.guild.id,
-            userID: message.author.id,
-            command: 'weekly',
-            cooldown: Date.now() + 6.048e+8
-          })
-          newCooldown.save()
+
         } else if (res){
 
+          let weeklyWorkEmbed = new MessageEmbed()
+            .setTitle("Congratulations!")
+            .setColor("RANDOM")
+            .setDescription("You earned $700, don't spend it all in one place!")
+
+          message.channel.send(weeklyWorkEmbed)
           res.money = res.money + 700
           res.save()
-          message.channel.send("Congratulations, you have earned $700. Don't spend it all in one place!")
-          let newCooldown = new cooldown({
-            serverID: message.guild.id,
-            userID: message.author.id,
-            command: 'weekly',
-            cooldown: Date.now() + 6.048e+8
-          })
-          newCooldown.save()
+          if (!data) {
+            let newCooldown = new cooldown({
+              serverID: message.guild.id,
+              userID: message.author.id,
+              command: 'weekly',
+              cooldown: Date.now() + 6.048e+8
+            })
+            newCooldown.save()
+          } else if (data) {
+
+            data.cooldown = Date.now() + 6.048e+8
+            data.save()
+          }
         }
       })
     } else if (data) {

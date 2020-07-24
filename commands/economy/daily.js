@@ -26,26 +26,49 @@ module.exports.run = async (bot, message, args) => {
             serverID: message.guild.id,
             money: 100
           })
-          message.channel.send("Congratulations, you have earned $100. Don't spend it all in one place!")
-          let newCooldown = new cooldown({
-            serverID: message.guild.id,
-            userID: message.author.id,
-            command: 'daily',
-            cooldown: Date.now() + 86400000
-          })
-          newCooldown.save()
+          newMoneyAcc.save()
+          let weeklyWorkEmbed = new MessageEmbed()
+            .setTitle("Congratulations!")
+            .setColor("RANDOM")
+            .setDescription("You earned $100, don't spend it all in one place!")
+
+          message.channel.send(weeklyWorkEmbed)
+          if (!data) {
+            let newCooldown = new cooldown({
+              serverID: message.guild.id,
+              userID: message.author.id,
+              command: 'daily',
+              cooldown: Date.now() + 86400000
+            })
+            newCooldown.save()
+          } else if (data) {
+            data.cooldown = Date.now() + 86400000
+            data.save()
+          }
         } else if (res){
 
           res.money = res.money + 100
           res.save()
-          message.channel.send("Congratulations, you have earned $100. Don't spend it all in one place!")
-          let newCooldown = new cooldown({
-            serverID: message.guild.id,
-            userID: message.author.id,
-            command: 'daily',
-            cooldown: Date.now() + 86400000
-          })
-          newCooldown.save()
+
+          let weeklyWorkEmbed = new MessageEmbed()
+            .setTitle("Congratulations!")
+            .setColor("RANDOM")
+            .setDescription("You earned $100, don't spend it all in one place!")
+
+          message.channel.send(weeklyWorkEmbed)
+          if (!data) {
+            let newCooldown = new cooldown({
+              serverID: message.guild.id,
+              userID: message.author.id,
+              command: 'daily',
+              cooldown: Date.now() + 86400000
+            })
+            newCooldown.save()
+          } else if (data) {
+            data.cooldown = Date.now() + 86400000
+            data.save()
+          }
+
         }
       })
     } else if (data) {

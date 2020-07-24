@@ -17,9 +17,9 @@ module.exports.run =  async (bot, message, args) => {
       .setColor("#00FF00")
       .setTimestamp()
       .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
-      .setTitle("Eval")
-      .addField("To evaluate:", `\`\`\`js\n${beautify(args.join(" "), { format: "js"})}\n\`\`\``)
-      .addField("Evaluated: ", `\`\`\`js\n${beautify(inspect(evaluated,{depth: 0}), { format: "js"})}\n\`\`\``)
+      .setTitle("✅ Success")
+      .addField("Input:", `\`\`\`js\n${beautify(args.join(" "), { format: "js"})}\n\`\`\``)
+      .addField("Output: ", `\`\`\`js\n${beautify(inspect(evaluated,{depth: 0}), { format: "js"})}\n\`\`\``)
       .addField("Type of: ", `\`\`\`js\n${beautify(typeof evaluated, { format: "js"})}\n\`\`\``)
 
       message.channel.send(evalEmbed);

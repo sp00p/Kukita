@@ -62,7 +62,7 @@ module.exports.run = async (bot, message, args) => {
       let cooldownEmbed = new MessageEmbed()
         .setTitle("Uh oh!")
         .setColor("#fc0404")
-        .setDescription(`You can only use that command once every 4 hours! Your shift doesn't start for another ${remaining}!`)
+        .setDescription(`You can only use that command once every 4 hours!\nYour shift doesn't start for another ${remaining}!`)
 
       message.channel.send(cooldownEmbed)
 

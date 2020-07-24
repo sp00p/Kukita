@@ -124,32 +124,6 @@ bot.on("message", async message => {
     if (bot.commands.has(cmd)) command = bot.commands.get(cmd);
     else if (bot.aliases.has(cmd)) command = bot.commands.get(bot.aliases.get(cmd));
 
-    // Money System
-    let chance = Math.floor(Math.random() * 100) + 1;
-    if (chance > 50) {
-
-      let moneyToAdd = Math.ceil(Math.random() * 10) + 5;
-
-      Money.findOne({ userID: message.author.id, serverID: message.guild.id},(err, res) => {
-        if (err) console.log(err);
-
-        if(!res) {
-          if(message.author.id === bot.user.id) return;
-          const newDoc = new Money ({
-            userID: message.author.id,
-            username: message.author.username,
-            serverID: message.guild.id,
-            money: moneyToAdd
-          })
-          newDoc.save().catch(err => console.log(err));
-        } else {
-          if(message.author.id === bot.user.id) return;
-          res.coins = res.coins + moneyToAdd;
-          res.save().catch(err => console.log(err));
-        }
-      })
-    }
-
     if(command) {
       blacklist.findOne({ Guild: message.guild.id }, (err, res) => {
         if(res) {

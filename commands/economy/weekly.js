@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
     .setTitle("Money")
     .setThumbnail(message.author.displayAvatarURL)
 
-  cooldown.findOne({serverID: message.guild.id, userID: message.author.id, command: 'daily'}, (err, data) => {
+  cooldown.findOne({serverID: message.guild.id, userID: message.author.id, command: 'weekly'}, (err, data) => {
     if (err) console.log(err)
 
     if (!data) {
@@ -24,44 +24,44 @@ module.exports.run = async (bot, message, args) => {
             userID: message.author.id,
             username: author,
             serverID: message.guild.id,
-            money: 100
+            money: 700
           })
-          message.channel.send("Congratulations, you have earned $100. Don't spend it all in one place!")
+          message.channel.send("Congratulations, you have earned $700. Don't spend it all in one place!")
           let newCooldown = new cooldown({
             serverID: message.guild.id,
             userID: message.author.id,
-            command: 'daily',
-            cooldown: Date.now() + 86400000
+            command: 'weekly',
+            cooldown: Date.now() + 6.048e+8
           })
           newCooldown.save()
         } else if (res){
 
-          res.money = res.money + 100
+          res.money = res.money + 700
           res.save()
-          message.channel.send("Congratulations, you have earned $100. Don't spend it all in one place!")
+          message.channel.send("Congratulations, you have earned $700. Don't spend it all in one place!")
           let newCooldown = new cooldown({
             serverID: message.guild.id,
             userID: message.author.id,
-            command: 'daily',
-            cooldown: Date.now() + 86400000
+            command: 'weekly',
+            cooldown: Date.now() + 6.048e+8
           })
           newCooldown.save()
         }
       })
     } else if (data) {
 
-        var remaining = humanizeDuration(data.cooldown - Date.now(), { conjunction: " and ", units: ["h", "m", "s"], round: true});
+        var remaining = humanizeDuration(data.cooldown - Date.now(), { conjunction: " and ", units: ["d", "h", "m", "s"], round: true});
 
-        message.channel.send(`You can only use that command once a day! You have ${remaining} to wait before you can claim your daily reward!`)
+        message.channel.send(`You can only use that command once a week! You have ${remaining} to wait before you can claim your weekly reward!`)
 
     }
   })
 }
 
 module.exports.help = {
-  name: "daily",
-  description: "gives you a days worth of money",
+  name: "weekly",
+  description: "gives you a weeks worth of money",
   arguments: "",
   category: "Economy",
-  aliases: ["daily"]
+  aliases: ["weekly"]
 };

@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
         .setDescription(`You worked for ${Math.floor(Math.random() * 6) + 1} hours and made $${moneyMade}`)
         .setColor("RANDOM")
 
-        Money.findOne({ userID: message.author.id, serverID: message.guild.id, command: 'work'}, (err, data) => {
+        Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, data) => {
           if (err) console.log(err);
 
           if(!data) {

@@ -51,8 +51,12 @@ module.exports.run = async (bot, message, args) => {
     } else if (data) {
 
         var remaining = humanizeDuration(data.cooldown - Date.now(), { conjunction: " and ", units: ["d", "h", "m", "s"], round: true});
+        let cooldownEmbed = new MessageEmbed()
+          .setTitle("Uh oh!")
+          .setColor("#fc0404")
+          .setDescription(`You can only use that command once a week! You still have ${remaining} to wait!`)
 
-        message.channel.send(`You can only use that command once a week! You have ${remaining} to wait before you can claim your weekly reward!`)
+        message.channel.send(cooldownEmbed)
 
     }
   })

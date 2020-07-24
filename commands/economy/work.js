@@ -59,8 +59,13 @@ module.exports.run = async (bot, message, args) => {
 
       var remaining = humanizeDuration(data.cooldown - Date.now(), { conjunction: " and ", units: ["h", "m", "s"], round: true});
 
-      message.channel.send(`You can only use that command once every 4 hours! Your shift doesn't start for another ${remaining}!`)
-    
+      let cooldownEmbed = new MessageEmbed()
+        .setTitle("Uh oh!")
+        .setColor("#fc0404")
+        .setDescription(`You can only use that command once every 4 hours! Your shift doesn't start for another ${remaining}!`)
+
+      message.channel.send(cooldownEmbed)
+
     }
   })
 }

@@ -15,8 +15,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "snipe",
-  description: "snipes the last deleted message in the channel",
-  arguments: "",
+  description: "snipes the last 10 deleted messages and allows you to view them",
+  arguments: "<number>",
   category: "Fun",
   aliases: ["snipe"],
 }

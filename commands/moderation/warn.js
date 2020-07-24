@@ -6,6 +6,8 @@ module.exports.run = (bot, message,args) => {
 
     let member = message.mentions.users.first()
 
+    if(member === message.author) return message.channel.send("You can't warn yourself!")
+
     if(!args[1]) {
       var reason = "Not Specified"
     } else {

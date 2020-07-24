@@ -3,6 +3,8 @@ const Money = require("../../models/money.js");
 
 module.exports.run = async (bot, message, args) => {
 
+  if (!bot.config.betatesters.includes(message.author.id)) return
+
   let userBet = args[0]
   let userNumber = Math.floor(Math.random() * 6) + 1
   let userNumber2 = Math.floor(Math.random() * 6) + 1
@@ -15,34 +17,53 @@ module.exports.run = async (bot, message, args) => {
   let userAmount = userNumber + userNumber2
   let botAmount = botNumber + botNumber2
 
+  let moneyEmbed = new MessageEmbed()
   let diceEmbed = new MessageEmbed()
-  diceEmbed.setTitle("🎲Dice🎲")
+  let firstEmbed = new MessageEmbed()
+  firstEmbed.setTitle("🎲Rolling Dice...🎲")
+  diceEmbed.setTitle("🎲Result🎲")
   Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, res) => {
     if (err) console.log(err);
 
     if(!res) {
-      diceEmbed.setColor("#fc0404");
+      moneyEmbed.setTitle("Oh no!")
+      moneyEmbed.setColor("#fc0404");
       moneyEmbed.addField("❌ Error", "You don't have any money in this server!");
+      return message.channel.send(moneyEmbed)
     } else if (res){
       if (res.money < userBet) return message.channel.send("You don't have that much money in your account!")
       if(!overUnder) {
 
         if (userAmount > botAmount) {
+
           diceEmbed.setColor("#00FF00")
           diceEmbed.setDescription("**Congratulations, you won!**")
           diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
           diceEmbed.addField("Bot Roll", `${botNumber} and a ${botNumber2} for a total of ${botAmount}`)
           diceEmbed.addField("Result", `You won $${userBet * 2}!`)
-          message.channel.send(diceEmbed)
+
+          message.channel.send(firstEmbed).then((msg) => {
+            setTimeout(function(){
+              msg.edit(diceEmbed);
+            }, 1500);
+          });
+
           res.money = res.money + (userBet * 2)
           res.save()
         } else if (userAmount < botAmount) {
+
           diceEmbed.setColor("#FF0000")
           diceEmbed.setDescription("**Oh no! You lost!**")
           diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
           diceEmbed.addField("Bot Roll", `${botNumber} and a ${botNumber2} for a total of ${botAmount}`)
           diceEmbed.addField("Result", `You lost $${userBet}!`)
-          message.channel.send(diceEmbed)
+
+          message.channel.send(firstEmbed).then((msg) => {
+            setTimeout(function(){
+              msg.edit(diceEmbed);
+            }, 1500);
+          });
+
           res.money = res.money - userBet
           res.save()
         } else if (userAmount === botAmount) {
@@ -52,7 +73,12 @@ module.exports.run = async (bot, message, args) => {
           diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
           diceEmbed.addField("Bot Roll", `${botNumber} and a ${botNumber2} for a total of ${botAmount}`)
           diceEmbed.addField("Result", `You get your $${userBet} back!`)
-          message.channel.send(diceEmbed)
+
+          message.channel.send(firstEmbed).then((msg) => {
+            setTimeout(function(){
+              msg.edit(diceEmbed);
+            }, 1500);
+          });
         }
 
       } else if (overUnder){
@@ -64,16 +90,29 @@ module.exports.run = async (bot, message, args) => {
             diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
             diceEmbed.addField("Limit", randomNumber)
             diceEmbed.addField("Result", `You won $${userBet * 2}`)
-            message.channel.send(diceEmbed)
+
+            message.channel.send(firstEmbed).then((msg) => {
+              setTimeout(function(){
+                msg.edit(diceEmbed);
+              }, 1500);
+            });
+
             res.money = res.money + (userBet * 2)
             res.save()
-          } else if (userAmount < randomNumber)
+
+          } else if (userAmount < randomNumber) {
             diceEmbed.setColor("#FF0000")
             diceEmbed.setDescription("**Oh no! You lost!**")
             diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
             diceEmbed.addField("Limit", randomNumber)
             diceEmbed.addField("Result", `You lost $${userBet}!`)
-            message.channel.send(diceEmbed)
+
+            message.channel.send(firstEmbed).then((msg) => {
+              setTimeout(function(){
+                msg.edit(diceEmbed);
+              }, 1500);
+            });
+
             res.money = res.money - userBet
             res.save()
           } else if (userAmount === randomNumber) {
@@ -82,7 +121,12 @@ module.exports.run = async (bot, message, args) => {
             diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
             diceEmbed.addField("Limit", randomNumber)
             diceEmbed.addField("Result", `You get your $${userBet} back!`)
-            message.channel.send(diceEmbed)
+
+            message.channel.send(firstEmbed).then((msg) => {
+              setTimeout(function(){
+                msg.edit(diceEmbed);
+              }, 1500);
+            });
           }
         } else if (overUnder === "under") {
 
@@ -92,7 +136,13 @@ module.exports.run = async (bot, message, args) => {
             diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
             diceEmbed.addField("Limit", randomNumber)
             diceEmbed.addField("Result", `You won $${userBet * 2}!`)
-            message.channel.send(diceEmbed)
+
+            message.channel.send(firstEmbed).then((msg) => {
+              setTimeout(function(){
+                msg.edit(diceEmbed);
+              }, 1500);
+            });
+
             res.money = res.money + (userBet * 2)
             res.save()
           } else if (userAmount > randomNumber) {
@@ -101,7 +151,13 @@ module.exports.run = async (bot, message, args) => {
             diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
             diceEmbed.addField("Limit", randomNumber)
             diceEmbed.addField("Result", `You lost $${userBet}!`)
-            message.channel.send(diceEmbed)
+
+            message.channel.send(firstEmbed).then((msg) => {
+              setTimeout(function(){
+                msg.edit(diceEmbed);
+              }, 1500);
+            });
+
             res.money = res.money - userBet
             res.save()
           } else if (userAmount === randomNumber) {
@@ -110,11 +166,17 @@ module.exports.run = async (bot, message, args) => {
             diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of **$${userAmount}**`)
             diceEmbed.addField("Limit", randomNumber)
             diceEmbed.addField("Result", `You get your $${userBet} back!`)
-            message.channel.send(diceEmbed)
+
+            message.channel.send(firstEmbed).then((msg) => {
+              setTimeout(function(){
+                msg.edit(diceEmbed);
+              }, 1500);
+            });
           }
         }
       }
-    })
+    }
+  })
 }
 
 module.exports.help = {

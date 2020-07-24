@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
   let randomNumber = Math.floor(Math.random() * 100) + 1
   let randomEvenOdd = Math.floor(Math.random() * 36) + 1
 
-  let colors = ["🔴", "⚫"]
+  let colors = ["🔴", "⚫", "🔴", "⚫"]
 
   if(!userBet) return message.channel.send("Please specify an amount you'd like to bet!")
 
@@ -147,7 +147,7 @@ module.exports.run = async (bot, message, args) => {
           if (randomEvenOdd % 2 === 0 && evenOdd === "even") {
 
               finalEmbed.setColor("#00FF00")
-              finalEmbed.addField("Spin Result", `${colors[(Math.random() <= 0.5) ? 1 : 2]}`+randomEvenOdd)
+              finalEmbed.addField("Spin Result", `${colors[Math.floor(Math.random() * 4) - 1]}`+randomEvenOdd)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Even/Odd", evenOdd)
               finalEmbed.addField("Final Result", `You won $${userBet * 1.5}`)
@@ -162,7 +162,7 @@ module.exports.run = async (bot, message, args) => {
             } else if (randomEvenOdd % 2 !== 0 && evenOdd === "even"){
 
               finalEmbed.setColor("#FF0000")
-              finalEmbed.addField("Spin Result", `${colors[(Math.random() <= 0.5) ? 1 : 2]}`+randomEvenOdd)
+              finalEmbed.addField("Spin Result", `${colors[Math.floor(Math.random() * 4) - 1]}`+randomEvenOdd)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Even/Odd", evenOdd)
               finalEmbed.addField("Final Result", `You lose $${userBet}`)
@@ -177,7 +177,7 @@ module.exports.run = async (bot, message, args) => {
             } else if (randomEvenOdd % 2 === 1 && evenOdd === "odd") {
 
               finalEmbed.setColor("#00FF00")
-              finalEmbed.addField("Spin Result", `${colors[(Math.random() <= 0.5) ? 1 : 2]}`+randomEvenOdd)
+              finalEmbed.addField("Spin Result", `${colors[Math.floor(Math.random() * 4) - 1]}`+randomEvenOdd)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Even/Odd", evenOdd)
               finalEmbed.addField("Final Result", `You won $${userBet * 1.5}`)
@@ -193,7 +193,7 @@ module.exports.run = async (bot, message, args) => {
             } else if (randomEvenOdd % 2 !== 1) {
 
               finalEmbed.setColor("#FF0000")
-              finalEmbed.addField("Spin Result", `${colors[(Math.random() <= 0.5) ? 1 : 2]}`+randomEvenOdd)
+              finalEmbed.addField("Spin Result", `${colors[Math.floor(Math.random() * 4) - 1]}`+randomEvenOdd)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Even/Odd", evenOdd)
               finalEmbed.addField("Final Result", `You lose $${userBet}`)

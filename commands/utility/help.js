@@ -27,10 +27,6 @@ module.exports.run = (bot, message, args) => {
       `**Category:** ${command.category ? command.category : "Moderation" || "Utility"}`,
     ].join("\n"));
 
-    message.author.send(helpEmbed)
-    return message.channel.send("✅ I've DM'd you my commands!")
-    .catch(() => message.reply("Uh oh, I couldn't DM you! Do you have your DM's enabled?"))
-
   }
   const categories = readdirSync("./commands/");
   helpEmbed.setDescription([
@@ -49,8 +45,11 @@ module.exports.run = (bot, message, args) => {
     catch (e) {
       console.log(e);
     }
+
+    message.author.send(helpEmbed)
+    return message.channel.send("✅ I've DM'd you my commands!")
+    .catch(() => message.reply("Uh oh, I couldn't DM you! Do you have your DM's enabled?"))
   });
-  return message.channel.send(helpEmbed);
 
 }
 

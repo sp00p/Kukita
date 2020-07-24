@@ -47,8 +47,8 @@ module.exports.run = (bot, message, args) => {
     }
 
     message.author.send(helpEmbed)
-    return message.channel.send("✅ I've DM'd you my commands!")
-    .catch(() => message.reply("Uh oh, I couldn't DM you! Do you have your DM's enabled?"))
+    message.channel.send("✅ I've DM'd you my commands!")
+    .catch(() => message.reply("Uh oh, I couldn't DM you! Do you have your DM's enabled?"));
   });
 
 }

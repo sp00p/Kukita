@@ -16,7 +16,7 @@ module.exports.run = (bot, message, args) => {
     } else if (bot.aliases.has(command)) {
       cmd = bot.commands.get(bot.aliases.get(command));
     }
-    if(!cmd) return message.channel.send(helpEmbed.setTitle("Invalid Command").setDescription(`Do ${bot.config.prefix}help <command> for information on a command!`))
+    if(!cmd) return message.channel.send(helpEmbed.setTitle("Invalid Command").setDescription(`Do \`${bot.config.prefix}help <category> for the list of commands`))
     command = cmd.help;
     helpEmbed.setTitle(`**Command Information**`);
     helpEmbed.setDescription([
@@ -26,6 +26,8 @@ module.exports.run = (bot, message, args) => {
       `**Aliases:** ${command.aliases ? command.aliases.join(", ") : "None"}`,
       `**Category:** ${command.category ? command.category : "Moderation" || "Utility"}`,
     ].join("\n"));
+
+    return message.channel.send(helpEmbed);
 
   }
   const categories = readdirSync("./commands/");
@@ -45,12 +47,9 @@ module.exports.run = (bot, message, args) => {
     catch (e) {
       console.log(e);
     }
-
   });
+  return message.channel.send(helpEmbed);
 
-  message.author.send(helpEmbed)
-  return message.channel.send("✅ I've DM'd you my commands!")
-    .catch(() => message.reply("Uh oh, I couldn't DM you! Do you have your DM's enabled?"));
 }
 
 module.exports.help = {

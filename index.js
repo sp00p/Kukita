@@ -76,7 +76,7 @@ bot.on("ready", () => {
 
   console.log(`${bot.user.tag} is now online!`);
 
-  bot.user.setActivity(`${bot.guilds.cache.size} servers || .help`, { type: 3, browser: "DISCORD IOS"  });
+  bot.user.setActivity(`for .help`, { type: 3, browser: "DISCORD IOS"  });
 
 });
 

@@ -7,6 +7,8 @@ module.exports.run = async (bot, message, args) => {
 
   let userBet = args[0]
 
+  if(userBet < 100) return message.channel.send("You have to bet more than $100!")
+
   if(args[1] !== "red" && args[1] !== "black" && args[1] !== "green") {
     var evenOdd = args[1]
     if(evenOdd !== "even" && evenOdd !== "odd") return message.channel.send("Please provide either (even) or (odd)");

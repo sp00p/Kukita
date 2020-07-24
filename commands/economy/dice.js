@@ -14,6 +14,8 @@ module.exports.run = async (bot, message, args) => {
   let botNumber2 = Math.floor(Math.random() * 6) + 1
   let randomNumber = Math.floor(Math.random() * 12) + 1
 
+  if(userBet < 100) return message.channel.send("You have to bet more than $100!")
+
   let userAmount = userNumber + userNumber2
   let botAmount = botNumber + botNumber2
 

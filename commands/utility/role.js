@@ -28,7 +28,7 @@ module.exports.run = async (bot, message,args) => {
     })
     const roleCreateEmbed = new MessageEmbed()
     .setTitle("New Role Created!")
-    .setDescription(`**${message.author.username} has created a role!**\n Name: ${rName}\n ID: ${message.guild.roles.get("id", rName)}\n Color: ${rColor}`)
+    .setDescription(`**${message.author.username} has created a role!**\n Name: ${rName}\n ID: ${message.guild.roles.cache.get(rName).id}\n Color: ${rColor}`)
     .setColor(rColor)
     message.channel.send(roleCreateEmbed)
 

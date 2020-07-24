@@ -1,48 +1,61 @@
 const { MessageEmbed } = require("discord.js");
 const Money = require("../../models/money.js");
-const dailyCooldowns = new Map();
 const humanizeDuration = require("humanize-duration");
+const cooldown = require("../../models/cooldowns.js")
 
 module.exports.run = async (bot, message, args) => {
-  
-  const dailyCooldown = dailyCooldowns.get(message.author.id);
-  if (dailyCooldown) {
-    const remaining = humanizeDuration(dailyCooldown - Date.now(), { conjunction: " and ", units: ["h", "m", "s"], round: true});
 
-    return message.channel.send(`You can only use that command every once a day! You have ${remaining} to wait before you can work again!`)
-    .catch(console.error);
-  } else {
+  const author = await message.author.id
 
-    const author = await message.author.id
+  let moneyEmbed = new MessageEmbed()
+    .setTitle("Money")
+    .setThumbnail(message.author.displayAvatarURL)
 
-    let moneyEmbed = new MessageEmbed()
-      .setTitle("Money")
-      .setThumbnail(message.author.displayAvatarURL)
+  cooldown.findOne({serverID: message.guild.id, userID: message.author.id, command: 'daily'}, (err, data) => {
+    if (err) console.log(err)
 
-    Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, res) => {
-      if (err) console.log(err);
+    if (!data) {
 
-      if(!res) {
-        let newMoneyAcc = new Money({
-          userID: message.author.id,
-          username: author,
-          serverID: message.guild.id,
-          money: 100
-        })
-        message.channel.send("Congratulations, you have earned $100. Don't spend it all in one place!")
-        cooldowns.set(message.author.id, Date.now() + 86400000);
-        setTimeout(() => cooldowns.delete(message.author.id), 86400000);
-      } else if (res){
+      Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, res) => {
+        if (err) console.log(err);
 
-        res.money = res.money + 100
-        res.save()
-        message.channel.send("Congratulations, you have earned $100. Don't spend it all in one place!")
-        dailyCooldowns.set(message.author.id, Date.now() + 86400000);
-        setTimeout(() => dailyCooldowns.delete(message.author.id), 86400000);
-      }
+        if(!res) {
+          let newMoneyAcc = new Money({
+            userID: message.author.id,
+            username: author,
+            serverID: message.guild.id,
+            money: 100
+          })
+          message.channel.send("Congratulations, you have earned $100. Don't spend it all in one place!")
+          let newCooldown = new cooldown({
+            serverID: message.guild.id,
+            userID: message.author.id,
+            command: 'daily',
+            cooldown: Date.now() + 86400000
+          })
+          newCooldown.save()
+        } else if (res){
 
-    })
-  }
+          res.money = res.money + 100
+          res.save()
+          message.channel.send("Congratulations, you have earned $100. Don't spend it all in one place!")
+          let newCooldown = new cooldown({
+            serverID: message.guild.id,
+            userID: message.author.id,
+            command: 'daily',
+            cooldown: Date.now() + 86400000
+          })
+          newCooldown.save()
+        }
+      })
+    } else if (data) {
+
+        var remaining = humanizeDuration(data.cooldown - Date.now(), { conjunction: " and ", units: ["h", "m", "s"], round: true});
+
+        message.channel.send(`You can only use that command once a day! You have ${remaining} to wait before you can claim your daily reward!`)
+
+    }
+  })
 }
 
 module.exports.help = {

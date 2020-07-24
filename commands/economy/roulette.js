@@ -3,7 +3,8 @@ const Money = require("../../models/money.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  if (!bot.config.betatesters.includes(message.author.id) && bot.config.betatestingchannelid.includes(message.channel.id)) return
+  if (!bot.config.betatesters.includes(message.author.id)) return
+  if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
 
   let userBet = args[0]
 

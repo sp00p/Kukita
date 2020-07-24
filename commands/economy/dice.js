@@ -71,7 +71,6 @@ module.exports.run = async (bot, message, args) => {
         } else if (userAmount === botAmount) {
           diceEmbed.setColor("0x0099ff")
           diceEmbed.setDescription("**Well this is awkward.**")
-          diceEmbed.setDescription("**Oh no! You lost!**")
           diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
           diceEmbed.addField("Bot Roll", `${botNumber} and a ${botNumber2} for a total of ${botAmount}`)
           diceEmbed.addField("Result", `You get your $${userBet} back!`)

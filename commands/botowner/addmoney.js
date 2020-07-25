@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
     } else if (res) {
       moneyEmbed.setTitle("✅ Success")
       return message.channel.send(moneyEmbed)
-      res.money = res.money + parsenInt(args[1])
+      res.money = res.money + parseInt(args[1])
       res.save()
     }
   })

@@ -161,12 +161,14 @@ module.exports.run = async (bot, message, args) => {
 
           if (randomEvenOdd % 2 === 0 && evenOdd === "even") {
 
+              let moneyWon = userBet  + (userBet* 1.5)
+
               finalEmbed.setColor("#00FF00")
               finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Even/Odd", evenOdd)
-              finalEmbed.addField("Final Result", `You won $${userBet  + (userBet* 1.5)}`)
-              res.money = res.money + (userBet * 1.5)
+              finalEmbed.addField("Final Result", `You won $${moneyWon}`)
+              res.money = res.money + moneyWon
               res.save()
 
               message.channel.send(firstEmbed).then((msg) => {
@@ -191,12 +193,14 @@ module.exports.run = async (bot, message, args) => {
               });
             } else if (randomEvenOdd % 2 === 1 && evenOdd === "odd") {
 
+              let moneyWon = userBet  + (userBet* 1.5)
+
               finalEmbed.setColor("#00FF00")
               finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Even/Odd", evenOdd)
-              finalEmbed.addField("Final Result", `You won $${userBet  + (userBet* 1.5)}`)
-              res.money = res.money + (userBet * 1.5)
+              finalEmbed.addField("Final Result", `You won $${moneyWon}`)
+              res.money = res.money + moneyWon
               res.save()
 
 

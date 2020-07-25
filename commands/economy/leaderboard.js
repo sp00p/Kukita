@@ -4,7 +4,9 @@ const Money = require('../../models/money.js')
 
 module.exports.run = async (bot, message, args) => {
 
-  if (!bot.config.owners.includes(message.author.id)) return message.channel.send("This command is temporarily disabled for maintenance!")
+  //if (!bot.config.owners.includes(message.author.id)) return message.channel.send("This command is temporarily disabled for maintenance!")
+
+  if (!bot.config.betatesters.includes(message.author.id)) return message.channel.send("This command currently being beta tested!")
 
   Money.find({
   }).sort({

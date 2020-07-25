@@ -1,7 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const Money = require("../../models/money.js");
 const humanizeDuration = require("humanize-duration");
-const cooldown = require("../../models/cooldowns.js")
+const mainSchema = require('../../models/mainschema.js')
 
 module.exports.run = async (bot, message, args) => {
 
@@ -17,66 +16,38 @@ module.exports.run = async (bot, message, args) => {
     .setDescription(`You worked for ${Math.floor(Math.random() * 6) + 1} hours and made $${moneyMade}`)
     .setColor("RANDOM")
 
-    Money.findOne({ userID: message.author.id}, (err, data) => {
-      if (err) console.log(err);
+  let noAccountEmbed = new MessageEmbed()
+    .setTitle("Oh no!")
+    .setColor("#FF0000")
+    .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
 
-      cooldown.findOne({userID: message.author.id, command: 'work'}, (err, res) => {
-        if (err) console.log(err)
+  mainSchema.findOne({ userID: message.author.id}, (err, data) => {
+    if (err) console.log(err);
 
-        if (!res) {
-          //console.log('cooldown does not exist')
+      if (!data) {
+        return message.channel.send(noAccountEmbed)
+      } else if (data) {
 
-          if(!data) {
-            //console.log('user does not have a cooldown and does not have money')
-            let noAccountEmbed = new MessageEmbed()
-            .setTitle("Oh no!")
-            .setColor("#FF0000")
-            .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
-            //console.log('new money account created, user did not have an account ')
+        if (data.workCooldown < Date.now()) {
 
-            return message.channel.send(noAccountEmbed)
+          data.money = data.money + moneyMade
+          data.save()
+          data.workCooldown = Date.now() + 1.44e+7
+          return message.channel.send(workEmbed)
 
-          } else if (data){
-
-            data.money = data.money + moneyMade;
-            data.save()
-            message.channel.send(workEmbed)
-
-            if(!res) {
-              //console.log('cooldown does not exist but user has account')
-              let newCooldown = new cooldown({
-                userID: message.author.id,
-                command: 'work',
-                cooldown: Date.now() + 1.44e+7
-              })
-              newCooldown.save()
-            } else if (res) {
-              //console.log('cooldown exists and user has money, updating cooldown')
-              res.cooldown = Date.now() + 1.44e+7
-            }
-          }
-        } else if (res.cooldown > Date.now()) {
-          //console.log('cooldown more than date')
-
-          var remaining = humanizeDuration(res.cooldown - Date.now(), { conjunction: " and ", units: ["h", "m", "s"], round: true});
+        } else if (data.workCooldown > Date.now()) {
+          var remaining = humanizeDuration(res.workCooldown - Date.now(), { conjunction: " and ", units: ["h", "m", "s"], round: true});
 
           let workCooldownEmbed = new MessageEmbed()
             .setTitle("Uh oh!")
             .setColor("#fc0404")
-            .setDescription(`You can only use that command once every 4 hours!\nYour shift doesn't start for another ${remaining}!`)
-
-          message.channel.send(workCooldownEmbed)
-        } else if (res.cooldown < Date.now()) {
-          //console.log('cooldown less than date')
-          data.money = data.money + moneyMade;
-          data.save()
-          message.channel.send(workEmbed)
-          res.cooldown = Date.now() + 1.44e+7
+            .setDescription(`You can only use that command once every week!\nYou still have to wait ${remaining}!`)
         }
 
+      }
     })
-  })
 }
+
 
 
 module.exports.help = {

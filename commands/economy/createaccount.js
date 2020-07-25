@@ -1,14 +1,16 @@
 const { MessageEmbed } = require("discord.js");
-const Money = require("../../models/money.js");
+const mainSchema = require("../../models/mainschema.js");
 
 module.exports.run = async (bot, message, args) => {
 
   //if (!bot.config.owners.includes(message.author.id)) return message.channel.send("This command is temporarily disabled for maintenance!")
 
-  if (!bot.config.betatesters.includes(message.author.id)) return 
+  if (!bot.config.betatesters.includes(message.author.id)) return
   if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
 
-  Money.findOne({userID: message.author.id}, (err, data) => {
+  mainSchema.findOne({userID: message.author.id}, (err, data) => {
+
+    if(err) console.log(err)
 
     if (data) {
 
@@ -22,12 +24,17 @@ module.exports.run = async (bot, message, args) => {
 
     } else if (!data) {
 
-      let newAccount = new Money({
+      let newAccount = new mainSchema({
         userID: message.author.id,
         username: message.author.username,
-        money: 0
+        dailyCooldown: Date.now(),
+        weeklyCooldown: Date.now(),
+        workCooldown: Date.now(),
+        robCooldown: Date.now(),
+        money: 0,
+        xp: 0,
+        level: 1
       })
-
       newAccount.save()
 
       let createdAccountEmbed = new MessageEmbed()

@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const Money = require("../../models/money.js");
+const mainSchema = require("../../models/mainschema.js")
 
 module.exports.run = async (bot, message, args) => {
 
@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
 
   if (!bot.config.betatesters.includes(message.author.id)) return
   if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
-  
+
   let userBet = args[0]
   let userNumber = Math.floor(Math.random() * 6) + 1
   let userNumber2 = Math.floor(Math.random() * 6) + 1
@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
   let firstEmbed = new MessageEmbed()
   firstEmbed.setTitle("🎲Rolling Dice...🎲")
   diceEmbed.setTitle("🎲Result🎲")
-  Money.findOne({ userID: message.author.id}, (err, res) => {
+  mainSchema.findOne({ userID: message.author.id}, (err, res) => {
     if (err) console.log(err);
 
     if(!res) {

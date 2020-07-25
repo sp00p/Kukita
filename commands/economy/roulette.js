@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const Money = require("../../models/money.js");
+const mainSchema = require('../../models/mainschema.js')
 
 module.exports.run = async (bot, message, args) => {
 
@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
   .setColor("#FF0000")
   .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
 
-  Money.findOne({ userID: message.author.id}, (err, res) => {
+  mainSchema.findOne({ userID: message.author.id}, (err, res) => {
 
     if (err) console.log(err);
 
@@ -159,7 +159,7 @@ module.exports.run = async (bot, message, args) => {
 
           if (randomEvenOdd % 2 === 0 && evenOdd === "even") {
 
-              let moneyWon = parseInt(userBet) + parseInt((userBet* 1.5))
+              let moneyWon = parseInt(userBet*1.5)
 
               console.log(moneyWon)
 
@@ -193,7 +193,7 @@ module.exports.run = async (bot, message, args) => {
               });
             } else if (randomEvenOdd % 2 === 1 && evenOdd === "odd") {
 
-              let moneyWon = parseInt(userBet) + parseInt((userBet* 1.5))
+              let moneyWon = parseInt(userBet * 1.5)
 
               console.log(moneyWon)
 

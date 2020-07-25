@@ -1,16 +1,17 @@
 const { MessageEmbed } = require("discord.js");
-const Money = require("../../models/money.js");
+const mainSchema = require("../../models/mainschema.js")
 
 module.exports.run = async (bot, message, args) => {
 
   //if (!bot.config.owners.includes(message.author.id)) return message.channel.send("This command is temporarily disabled for maintenance!")
 
-  if (!bot.config.betatesters.includes(message.author.id)) return message.channel.send("This command currently being beta tested!")
+  if (!bot.config.betatesters.includes(message.author.id)) return 
+  if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
 
   let moneyEmbed = new MessageEmbed()
     .setAuthor(message.author.username, message.author.displayAvatarURL())
 
-  Money.findOne({ userID: message.author.id }, (err, res) => {
+  mainSchema.findOne({ userID: message.author.id }, (err, res) => {
     if (err) console.log(err);
 
     if(!res) {

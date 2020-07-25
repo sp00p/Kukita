@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const Money = require("../../models/money.js");
+const mainSchema = require('../../models/mainschema.js')
 
 module.exports.run = async (bot, message, args) => {
 
@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
 
   let moneyEmbed = new MessageEmbed()
 
-  Money.findOne({ userID: message.mentions.users.first().id }, (err, res) => {
+  mainSchema.findOne({ userID: message.mentions.users.first().id }, (err, res) => {
     if (err) console.log(err);
 
     if(!res) {

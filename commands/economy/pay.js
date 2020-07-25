@@ -1,11 +1,11 @@
 const { MessageEmbed } = require("discord.js");
-const Money = require("../../models/money.js");
+const mainSchema = require('../../models/mainschema.js')
 
 module.exports.run = async (bot, message, args) => {
 
     //if (!bot.config.owners.includes(message.author.id)) return message.channel.send("This command is temporarily disabled for maintenance!")
 
-    if (!bot.config.betatesters.includes(message.author.id)) return 
+    if (!bot.config.betatesters.includes(message.author.id)) return
     if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
 
     if(message.mentions.users.first().bot) return message.channel.send("Bot's can't recieve money!")
@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
     .setColor("#FF0000")
     .setDescription(`That user doesn't have an account yet! They can use ${bot.prefix}createaccount to create one!`)
 
-    Money.findOne({ userID: message.mentions.users.first().id}, (err, data) => {
+    mainSchema.findOne({ userID: message.mentions.users.first().id}, (err, data) => {
       if (err) console.log(err);
 
       var intRegex = /^\d+$/;
@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
 
     } else if (data){
 
-      Money.findOne({ userID: message.author.id }, (err, authorData) => {
+      mainSchema.findOne({ userID: message.author.id }, (err, authorData) => {
         if (err) console.log(err);
 
         if(!authorData) {

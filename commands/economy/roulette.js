@@ -23,6 +23,10 @@ module.exports.run = async (bot, message, args) => {
     color = "🔴"
   } else if (randomEvenOdd % 3 === 0){
     color = "⚫"
+  } else if (randomEvenOdd === "1") {
+    color = "🟢"
+  } else {
+    color = "⚫"
   }
 
   let moneyEmbed = new MessageEmbed()

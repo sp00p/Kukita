@@ -165,7 +165,7 @@ module.exports.run = async (bot, message, args) => {
               finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Even/Odd", evenOdd)
-              finalEmbed.addField("Final Result", `You won $${userBet * 1.5}`)
+              finalEmbed.addField("Final Result", `You won $${userBet  + (userBet* 1.5)}`)
               res.money = res.money + (userBet * 1.5)
               res.save()
 
@@ -195,7 +195,7 @@ module.exports.run = async (bot, message, args) => {
               finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Even/Odd", evenOdd)
-              finalEmbed.addField("Final Result", `You won $${userBet * 1.5}`)
+              finalEmbed.addField("Final Result", `You won $${userBet  + (userBet* 1.5)}`)
               res.money = res.money + (userBet * 1.5)
               res.save()
 

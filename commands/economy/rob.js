@@ -80,10 +80,6 @@ module.exports.run = async (bot, message, args) => {
               return message.channel.send("You have successfully disabled passive mode!")
             }
           }
-
-
-        }
-
         } else if (data.isPassive === false) {
 
           if (res.robCooldown > Date.now()) {

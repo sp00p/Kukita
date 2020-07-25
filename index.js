@@ -99,7 +99,7 @@ bot.on("messageDelete", async (message) => {
 
 bot.on("message", async message => {
 
-  if (message.author.id === bot.user.id || !message.guild) return;
+  if (message.author.bot || !message.guild) return;
 
   Prefix.findOne({ serverID: message.guild.id }, (err, data) => {
     if (err) console.log(err);

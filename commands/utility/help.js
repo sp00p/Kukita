@@ -42,7 +42,7 @@ module.exports.run = (bot, message, args) => {
 
     try {
       if (dir.size === 0) return;
-      if (bot.config.owners.includes(message.author.id)) helpEmbed.addField(`${capitalise}`, dir.map(c => `\`${c.help.name}\``).join(", "));
+      helpEmbed.addField(`${capitalise}`, dir.map(c => `\`${c.help.name}\``).join(", "));
     }
     catch (e) {
       console.log(e);

@@ -3,7 +3,8 @@ const Money = require("../../models/money.js");
 
 module.exports.run = async (bot, message, args) => {
 
-    if(message.mentions.first().id === bot.id) return
+    if(message.mentions.users.first().id === bot.id) return
+    if(message.mentions.users.first() === message.author) return message.channel.send("You can't pay yourself!")
 
     Money.findOne({ userID: message.mentions.users.first().id, serverID: message.guild.id}, (err, data) => {
       if (err) console.log(err);

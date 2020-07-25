@@ -22,26 +22,6 @@ const db = connect('mongodb+srv://root:OJ8Iyz6nzgmBjW51@cluster0.921xq.mongodb.n
 const Constants = require('./node_modules/discord.js/src/util/Constants.js')
 Constants.DefaultOptions.ws.properties.$browser = `Discord iOS`
 
-// - Anti Spam - //
-const AntiSpam = require('discord-anti-spam');
-const antiSpam = new AntiSpam ({
-  warnThreshold: 8,
-  kickThreshold: 15,
-  banThreshold: 30,
-  maxInterval: 2000,
-  warnMessage: '{@user}, Please stop spamming! You will be kicked if you send 7 more of the same message!',
-  banMessage: '**{user_tag}** has been banned for spamming.',
-  maxDuplicatesWarning: 7,
-  maxDuplicatesBan: 15,
-  deleteMessagesAfterBanForPastDays: 1,
-  exemptPermissions: ['ADMINISTRATOR', "MANAGE_MESSAGES", "MANAGE_GUILD", "BAN_MEMBERS", "KICK_MEMBERS"],
-  ignoreBots: true,
-  verbose: false,
-  ignoredUsers:[],
-});
-
-var blockedUsers = [];
-
 const load = (dir = "./commands/") => {
 
   readdirSync(dir).forEach(dirs => {

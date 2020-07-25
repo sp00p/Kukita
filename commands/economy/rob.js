@@ -16,10 +16,20 @@ module.exports.run = async (bot, message, args) => {
   .setColor("#FF0000")
   .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
 
-  noAccountMentionedUserEmbed = new MessageEmbed()
+  let noAccountMentionedUserEmbed = new MessageEmbed()
   .setTitle("Oh no!")
   .setColor("#FF0000")
   .setDescription(`That user doesn't have an account yet! They can use ${bot.prefix}createaccount to create one!`)
+
+  let passiveModeOnEmbed = new MessageEmbed()
+  .setTitle("Oh no!")
+  .setColor("#FF0000")
+  .setDescription("You are in passive mode! Type .rob passive to change your status!")
+
+  let mentionedPassiveModeOnEmbed = new MessageEmbed()
+  .setTitle("Oh no!")
+  .setColor("#FF0000")
+  .setDescription("That user has passive mode enabled!")
 
   let chance = Math.floor(Math.random() * 100) + 1
 
@@ -27,12 +37,39 @@ module.exports.run = async (bot, message, args) => {
 
     if (!res) {
       return message.channel.send(noAccountEmbed)
+
     } else if (res) {
+
       mainSchema.findOne({userID: message.mentions.users.first().id}, (err, data) => {
 
         if (!data) {
           return message.channel.send(noAccountMentionedUserEmbed)
-        } else if (data) {
+
+        } else if (res.isPassive === true) {
+
+          return message.channel.send(mentionedPassiveModeOnEmbed)
+
+        }else if (data.isPassive === true) {
+
+          return message.channel.send(passiveModeOnEmbed)
+
+        } else if (args[0] === "passive") {
+          if (data.isPassive === false ){
+
+            data.isPassive = true
+            data.save()
+
+            return message.channel.send("You have successfully become passive!")
+
+          } else if (data.isPassive === true) {
+            data.isPassive = false
+            data.save()
+
+            return message.channel.send("You have successfully disabled passive mode!")
+          }
+        }
+
+        } else if (data.isPassive === false) {
 
           if (res.robCooldown > Date.now()) {
 
@@ -83,8 +120,6 @@ module.exports.run = async (bot, message, args) => {
 
               return message.channel.send(failRobEmbed)
             }
-
-
 
           }
 

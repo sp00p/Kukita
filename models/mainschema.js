@@ -9,7 +9,8 @@ let Schema = new mongoose.Schema({
   robCooldown: Number,
   money: Number,
   xp: Number,
-  level: Number
+  level: Number,
+  isPassive: Boolean,
 })
 
 module.exports=mongoose.model("mainprofiles", Schema)

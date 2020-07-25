@@ -33,7 +33,8 @@ module.exports.run = async (bot, message, args) => {
         robCooldown: Date.now(),
         money: 0,
         xp: 0,
-        level: 1
+        level: 1,
+        isPassive: true,
       })
       newAccount.save()
 

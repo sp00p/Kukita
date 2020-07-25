@@ -31,42 +31,57 @@ module.exports.run = async (bot, message, args) => {
   .setColor("#FF0000")
   .setDescription("That user has passive mode enabled!")
 
+  let moneyTooLowEmbed = new MessageEmbed()
+  .setTitle("Oh no!")
+  .setColor("#FF0000")
+  .setDescription("You don't have enough money to disable passive mode! You must have at least $1000!")
+
   let chance = Math.floor(Math.random() * 100) + 1
 
   mainSchema.findOne({userID: message.author.id}, (err, res) => {
 
-    if (!res) {
+    if (!res) { // if mentioned user doesn't have an account
       return message.channel.send(noAccountEmbed)
 
-    } else if (res) {
+    } else if (res) { // is author has an account
 
       mainSchema.findOne({userID: message.mentions.users.first().id}, (err, data) => {
 
-        if (!data) {
+        if (!data) { // if mentioned user doesn't have an account
           return message.channel.send(noAccountMentionedUserEmbed)
 
-        } else if (res.isPassive === true) {
+        } else if (res.isPassive === true) { // if author is passive
 
           return message.channel.send(mentionedPassiveModeOnEmbed)
 
-        }else if (data.isPassive === true) {
+        } else if (data.isPassive === true) { // if mentioned user is passive
 
           return message.channel.send(passiveModeOnEmbed)
 
-        } else if (args[0] === "passive") {
-          if (data.isPassive === false ){
+        } else if (args[0] === "passive") { // if .rob passive
 
-            data.isPassive = true
-            data.save()
+          if (res.money < 1000) { // if author's money is below 1000
 
-            return message.channel.send("You have successfully become passive!")
+            return message.channel.send(moneyTooLowEmbed)
 
-          } else if (data.isPassive === true) {
-            data.isPassive = false
-            data.save()
+          } else if (res.money > 1000) { // if author's money is above 1000
+            if (res.isPassive === false ){ // if author is not passive set passive
 
-            return message.channel.send("You have successfully disabled passive mode!")
+              res.isPassive = true
+              res.save()
+
+              return message.channel.send("You have successfully become passive!")
+
+            } else if (res.isPassive === true) { // if author is passive set not passive
+
+              res.isPassive = false
+              res.save()
+
+              return message.channel.send("You have successfully disabled passive mode!")
+            }
           }
+
+
         }
 
         } else if (data.isPassive === false) {

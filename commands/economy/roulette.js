@@ -161,7 +161,7 @@ module.exports.run = async (bot, message, args) => {
 
           if (randomEvenOdd % 2 === 0 && evenOdd === "even") {
 
-              let moneyWon = parseInt(userBet+(userBet* 1.5))
+              let moneyWon = parseInt(userBet) + parseInt((userBet* 1.5))
 
               console.log(moneyWon)
 
@@ -195,7 +195,7 @@ module.exports.run = async (bot, message, args) => {
               });
             } else if (randomEvenOdd % 2 === 1 && evenOdd === "odd") {
 
-              let moneyWon = parseInt(userBet+(userBet* 1.5))
+              let moneyWon = parseInt(userBet) + parseInt((userBet* 1.5))
 
               console.log(moneyWon)
 

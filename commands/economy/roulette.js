@@ -163,6 +163,8 @@ module.exports.run = async (bot, message, args) => {
 
               let moneyWon = parseInt(userBet+(userBet* 1.5))
 
+              console.log(moneyWon)
+
               finalEmbed.setColor("#00FF00")
               finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
               finalEmbed.addField("User Bet", userBet)
@@ -194,6 +196,8 @@ module.exports.run = async (bot, message, args) => {
             } else if (randomEvenOdd % 2 === 1 && evenOdd === "odd") {
 
               let moneyWon = parseInt(userBet+(userBet* 1.5))
+
+              console.log(moneyWon)
 
               finalEmbed.setColor("#00FF00")
               finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)

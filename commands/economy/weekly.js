@@ -5,34 +5,52 @@ const cooldown = require("../../models/cooldowns.js")
 
 module.exports.run = async (bot, message, args) => {
 
+  //if (!bot.config.owners.includes(message.author.id)) return message.channel.send("This command is temporarily disabled for maintenance!")
+
+  let weeklyWorkEmbed = new MessageEmbed()
+    .setTitle("Congratulations!")
+    .setDescription(`You made $700! Don't spend it all in one place!`)
+    .setColor("RANDOM")
+
   const author = await message.author.id
 
-  let moneyEmbed = new MessageEmbed()
-    .setTitle("Money")
-    .setThumbnail(message.author.displayAvatarURL)
+  Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, data) => {
+    if (err) console.log(err);
 
-  cooldown.findOne({serverID: message.guild.id, userID: message.author.id, command: 'weekly'}, (err, data) => {
-    if (err) console.log(err)
+    cooldown.findOne({serverID: message.guild.id, userID: message.author.id, command: 'weekly'}, (err, res) => {
+      if (err) console.log(err);
 
-    if (!data) {
+      if (!res) {
+        //console.log('cooldown does not exist')
 
-      Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, res) => {
-        if (err) console.log(err);
-
-        if(!res) {
+        if(!data) {
+          //console.log('user does not have a cooldown and does not have money')
           let newMoneyAcc = new Money({
             userID: message.author.id,
-            username: author,
+            username: message.author.username,
             serverID: message.guild.id,
             money: 700
           })
-          let weeklyWorkEmbed = new MessageEmbed()
-            .setTitle("Congratulations!")
-            .setColor("RANDOM")
-            .setDescription("You earned $700, don't spend it all in one place!")
-
+          //console.log('new money account created, user did not have an account ')
+          newMoneyAcc.save()
           message.channel.send(weeklyWorkEmbed)
-          if (!data) {
+
+          let newCooldown = new cooldown({
+            serverID: message.guild.id,
+            userID: message.author.id,
+            command: 'weekly',
+            cooldown: Date.now() + 6.048e+8
+          })
+          newCooldown.save()
+
+        } else if (data){
+
+          data.money = data.money + 700;
+          data.save()
+          message.channel.send(weeklyWorkEmbed)
+
+          if(!res) {
+            //console.log('cooldown does not exist but user has account')
             let newCooldown = new cooldown({
               serverID: message.guild.id,
               userID: message.author.id,
@@ -40,48 +58,31 @@ module.exports.run = async (bot, message, args) => {
               cooldown: Date.now() + 6.048e+8
             })
             newCooldown.save()
-          } else if (data) {
-            data.cooldown = Date.now() + 6.048e+8
-            data.save()
-          }
-          message.channel.send("Congratulations, you have earned $700. Don't spend it all in one place!")
-
-        } else if (res){
-
-          let weeklyWorkEmbed = new MessageEmbed()
-            .setTitle("Congratulations!")
-            .setColor("RANDOM")
-            .setDescription("You earned $700, don't spend it all in one place!")
-
-          message.channel.send(weeklyWorkEmbed)
-          res.money = res.money + 700
-          res.save()
-          if (!data) {
-            let newCooldown = new cooldown({
-              serverID: message.guild.id,
-              userID: message.author.id,
-              command: 'weekly',
-              cooldown: Date.now() + 6.048e+8
-            })
-            newCooldown.save()
-          } else if (data) {
-
-            data.cooldown = Date.now() + 6.048e+8
-            data.save()
+          } else if (res) {
+            //console.log('cooldown exists and user has money, updating cooldown')
+            res.cooldown = Date.now() + 6.048e+8
           }
         }
-      })
-    } else if (data) {
+      } else if (res.cooldown > Date.now()) {
+        //console.log('cooldown more than date')
 
-        var remaining = humanizeDuration(data.cooldown - Date.now(), { conjunction: " and ", units: ["d", "h", "m", "s"], round: true});
-        let weeklyCooldownEmbed = new MessageEmbed()
+        var remaining = humanizeDuration(res.cooldown - Date.now(), { conjunction: " and ", units: ["d", "h", "m", "s"], round: true});
+
+        let workCooldownEmbed = new MessageEmbed()
           .setTitle("Uh oh!")
           .setColor("#fc0404")
-          .setDescription(`You can only use that command once a week!\nYou still have ${remaining} to wait!`)
+          .setDescription(`You can only use that command once per week!\nYou still have ${remaining} to wait!`)
 
-        message.channel.send(weeklyCooldownEmbed)
+        message.channel.send(workCooldownEmbed)
+      } else if (res.cooldown < Date.now()) {
+        //console.log('cooldown less than date')
+        data.money = data.money + 700;
+        data.save()
+        message.channel.send(weeklyWorkEmbed)
+        res.cooldown = Date.now() + 6.048e+8
+      }
 
-    }
+    })
   })
 }
 

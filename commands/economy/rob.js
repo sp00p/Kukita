@@ -43,6 +43,28 @@ module.exports.run = async (bot, message, args) => {
     if (!res) { // if mentioned user doesn't have an account
       return message.channel.send(noAccountEmbed)
 
+    } else if (args[0] === "passive") { // if .rob passive
+
+      if (res.money < 1000) { // if author's money is below 1000
+
+        return message.channel.send(moneyTooLowEmbed)
+
+      } else if (res.money >= 1000) { // if author's money is above 1000
+        if (res.isPassive === false ){ // if author is not passive set passive
+
+          res.isPassive = true
+          res.save()
+
+          return message.channel.send("You have successfully become passive!")
+
+        } else if (res.isPassive === true) { // if author is passive set not passive
+
+          res.isPassive = false
+          res.save()
+
+          return message.channel.send("You have successfully disabled passive mode!")
+        }
+      }
     } else if (res) { // is author has an account
 
       mainSchema.findOne({userID: message.mentions.users.first().id}, (err, data) => {
@@ -52,34 +74,12 @@ module.exports.run = async (bot, message, args) => {
 
         } else if (res.isPassive === true) { // if author is passive
 
-          return message.channel.send(mentionedPassiveModeOnEmbed)
+          return message.channel.send(passiveModeOnEmbed)
 
         } else if (data.isPassive === true) { // if mentioned user is passive
 
-          return message.channel.send(passiveModeOnEmbed)
+          return message.channel.send(mentionedPassiveModeOnEmbed)
 
-        } else if (args[0] === "passive") { // if .rob passive
-
-          if (res.money < 1000) { // if author's money is below 1000
-
-            return message.channel.send(moneyTooLowEmbed)
-
-          } else if (res.money > 1000) { // if author's money is above 1000
-            if (res.isPassive === false ){ // if author is not passive set passive
-
-              res.isPassive = true
-              res.save()
-
-              return message.channel.send("You have successfully become passive!")
-
-            } else if (res.isPassive === true) { // if author is passive set not passive
-
-              res.isPassive = false
-              res.save()
-
-              return message.channel.send("You have successfully disabled passive mode!")
-            }
-          }
         } else if (data.isPassive === false) {
 
           if (res.robCooldown > Date.now()) {

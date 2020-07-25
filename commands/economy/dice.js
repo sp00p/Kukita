@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const mainSchema = require("../../models/mainschema.js")
+const humanizeDuration = require('humanize-duration')
 
 module.exports.run = async (bot, message, args) => {
 
@@ -9,6 +10,12 @@ module.exports.run = async (bot, message, args) => {
   if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
 
   let userBet = args[0]
+  userBet = Math.round(userBet)
+
+  if (isNaN(userBet)) {
+    return message.channel.send("You need to bet a number!")
+  }
+
   let userNumber = Math.floor(Math.random() * 6) + 1
   let userNumber2 = Math.floor(Math.random() * 6) + 1
   let overUnder = args[1]
@@ -22,6 +29,11 @@ module.exports.run = async (bot, message, args) => {
   let userAmount = userNumber + userNumber2
   let botAmount = botNumber + botNumber2
 
+  let noAccountEmbed = new MessageEmbed()
+  .setTitle("Oh no!")
+  .setColor("#FF0000")
+  .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
+
   let moneyEmbed = new MessageEmbed()
   let diceEmbed = new MessageEmbed()
   let firstEmbed = new MessageEmbed()
@@ -31,131 +43,65 @@ module.exports.run = async (bot, message, args) => {
     if (err) console.log(err);
 
     if(!res) {
-      let noAccountEmbed = new MessageEmbed()
-      .setTitle("Oh no!")
-      .setColor("#FF0000")
-      .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
+
       return message.channel.send(noAccountEmbed)
+
     } else if (res){
-      if (res.money < userBet) return message.channel.send("You don't have that much money in your account!")
-      if(!overUnder) {
 
-        if (userAmount > botAmount) {
+      if (res.diceCooldown < Date.now()) {
+        if (res.money < userBet) return message.channel.send("You don't have that much money in your account!")
+        if(!overUnder) {
 
-          diceEmbed.setColor("#00FF00")
-          diceEmbed.setDescription("**Congratulations, you won!**")
-          diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
-          diceEmbed.addField("Bot Roll", `${botNumber} and a ${botNumber2} for a total of ${botAmount}`)
-          diceEmbed.addField("Result", `You won $${userBet * 2}!`)
+          if (userAmount > botAmount) {
 
-          message.channel.send(firstEmbed).then((msg) => {
-            setTimeout(function(){
-              msg.edit(diceEmbed);
-            }, 1500);
-          });
-
-          res.money = res.money + (userBet * 2)
-          res.save()
-        } else if (userAmount < botAmount) {
-
-          diceEmbed.setColor("#FF0000")
-          diceEmbed.setDescription("**Oh no! You lost!**")
-          diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
-          diceEmbed.addField("Bot Roll", `${botNumber} and a ${botNumber2} for a total of ${botAmount}`)
-          diceEmbed.addField("Result", `You lost $${userBet}!`)
-
-          message.channel.send(firstEmbed).then((msg) => {
-            setTimeout(function(){
-              msg.edit(diceEmbed);
-            }, 1500);
-          });
-
-          res.money = res.money - userBet
-          res.save()
-        } else if (userAmount === botAmount) {
-          diceEmbed.setColor("0x0099ff")
-          diceEmbed.setDescription("**Well this is awkward.**")
-          diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
-          diceEmbed.addField("Bot Roll", `${botNumber} and a ${botNumber2} for a total of ${botAmount}`)
-          diceEmbed.addField("Result", `You get your $${userBet} back!`)
-
-          message.channel.send(firstEmbed).then((msg) => {
-            setTimeout(function(){
-              msg.edit(diceEmbed);
-            }, 1500);
-          });
-        }
-
-      } else if (overUnder){
-        if (overUnder === "over") {
-
-          if (userAmount > randomNumber) {
             diceEmbed.setColor("#00FF00")
             diceEmbed.setDescription("**Congratulations, you won!**")
             diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
-            diceEmbed.addField("Limit", randomNumber)
-            diceEmbed.addField("Result", `You won $${userBet * 2}`)
-
-            message.channel.send(firstEmbed).then((msg) => {
-              setTimeout(function(){
-                msg.edit(diceEmbed);
-              }, 1500);
-            });
-
-            res.money = res.money + (userBet * 2)
-            res.save()
-
-          } else if (userAmount < randomNumber) {
-            diceEmbed.setColor("#FF0000")
-            diceEmbed.setDescription("**Oh no! You lost!**")
-            diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
-            diceEmbed.addField("Limit", randomNumber)
-            diceEmbed.addField("Result", `You lost $${userBet}!`)
-
-            message.channel.send(firstEmbed).then((msg) => {
-              setTimeout(function(){
-                msg.edit(diceEmbed);
-              }, 1500);
-            });
-
-            res.money = res.money - userBet
-            res.save()
-          } else if (userAmount === randomNumber) {
-            diceEmbed.setColor("0x0099ff")
-            diceEmbed.setDescription("**Well this is awkward.**")
-            diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
-            diceEmbed.addField("Limit", randomNumber)
-            diceEmbed.addField("Result", `You get your $${userBet} back!`)
-
-            message.channel.send(firstEmbed).then((msg) => {
-              setTimeout(function(){
-                msg.edit(diceEmbed);
-              }, 1500);
-            });
-          }
-        } else if (overUnder === "under") {
-
-          if (userAmount < randomNumber) {
-            diceEmbed.setColor("#00FF00")
-            diceEmbed.setDescription("**Congratulations, you won!**")
-            diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
-            diceEmbed.addField("Limit", randomNumber)
+            diceEmbed.addField("Bot Roll", `${botNumber} and a ${botNumber2} for a total of ${botAmount}`)
             diceEmbed.addField("Result", `You won $${userBet * 2}!`)
 
+            res.money = res.money + userBet*2
+            res.currentXP = res.currentXP + 50
+            res.diceCooldown = Date.now() + 180000
+
+            if (res.currentXP >= res.nextLevel) {
+              let overflow = res.currentXP - res.nextLevel
+              let currentNL = res.nextLevel
+              res.currentXP = overflow
+              res.nextLevel = Math.round(currentNL * 2)
+              res.level = res.level + 1
+              res.save()
+            } else if (res.currentXP < res.nextLevel){
+              res.save()
+            }
+
             message.channel.send(firstEmbed).then((msg) => {
               setTimeout(function(){
                 msg.edit(diceEmbed);
               }, 1500);
             });
+          } else if (userAmount < botAmount) {
 
-            res.money = res.money + (userBet * 2)
-            res.save()
-          } else if (userAmount > randomNumber) {
             diceEmbed.setColor("#FF0000")
             diceEmbed.setDescription("**Oh no! You lost!**")
             diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
-            diceEmbed.addField("Limit", randomNumber)
+            diceEmbed.addField("Bot Roll", `${botNumber} and a ${botNumber2} for a total of ${botAmount}`)
             diceEmbed.addField("Result", `You lost $${userBet}!`)
+
+            res.money = res.money - userBet
+            res.currentXP = res.currentXP + 25
+            res.diceCooldown = Date.now() + 180000
+
+            if (res.currentXP >= res.nextLevel) {
+              let overflow = res.currentXP - res.nextLevel
+              let currentNL = res.nextLevel
+              res.currentXP = overflow
+              res.nextLevel = Math.round(currentNL * 2)
+              res.level = res.level + 1
+              res.save()
+            } else if (res.currentXP < res.nextLevel){
+              res.save()
+            }
 
             message.channel.send(firstEmbed).then((msg) => {
               setTimeout(function(){
@@ -163,13 +109,11 @@ module.exports.run = async (bot, message, args) => {
               }, 1500);
             });
 
-            res.money = res.money - userBet
-            res.save()
-          } else if (userAmount === randomNumber) {
+          } else if (userAmount === botAmount) {
             diceEmbed.setColor("0x0099ff")
             diceEmbed.setDescription("**Well this is awkward.**")
-            diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of **$${userAmount}**`)
-            diceEmbed.addField("Limit", randomNumber)
+            diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
+            diceEmbed.addField("Bot Roll", `${botNumber} and a ${botNumber2} for a total of ${botAmount}`)
             diceEmbed.addField("Result", `You get your $${userBet} back!`)
 
             message.channel.send(firstEmbed).then((msg) => {
@@ -178,7 +122,163 @@ module.exports.run = async (bot, message, args) => {
               }, 1500);
             });
           }
+
+        } else if (overUnder){
+          if (overUnder === "over") {
+
+            if (userAmount > randomNumber) {
+              diceEmbed.setColor("#00FF00")
+              diceEmbed.setDescription("**Congratulations, you won!**")
+              diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
+              diceEmbed.addField("Limit", randomNumber)
+              diceEmbed.addField("Result", `You won $${userBet * 2}`)
+
+              res.money = res.money + userBet*2
+              res.currentXP = res.currentXP + 50
+              res.diceCooldown = Date.now() + 180000
+
+              if (res.currentXP >= res.nextLevel) {
+                let overflow = res.currentXP - res.nextLevel
+                let currentNL = res.nextLevel
+                res.currentXP = overflow
+                res.nextLevel = Math.round(currentNL * 2)
+                res.level = res.level + 1
+                res.save()
+              } else if (res.currentXP < res.nextLevel){
+                res.save()
+              }
+
+              message.channel.send(firstEmbed).then((msg) => {
+                setTimeout(function(){
+                  msg.edit(diceEmbed);
+                }, 1500);
+              });
+
+            } else if (userAmount < randomNumber) {
+              diceEmbed.setColor("#FF0000")
+              diceEmbed.setDescription("**Oh no! You lost!**")
+              diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
+              diceEmbed.addField("Limit", randomNumber)
+              diceEmbed.addField("Result", `You lost $${userBet}!`)
+
+              res.money = res.money - userBet
+              res.currentXP = res.currentXP + 25
+              res.diceCooldown = Date.now() + 180000
+
+              if (res.currentXP >= res.nextLevel) {
+                let overflow = res.currentXP - res.nextLevel
+                let currentNL = res.nextLevel
+                res.currentXP = overflow
+                res.nextLevel = Math.round(currentNL * 2)
+                res.level = res.level + 1
+                res.save()
+              } else if (res.currentXP < res.nextLevel){
+                res.save()
+              }
+
+              message.channel.send(firstEmbed).then((msg) => {
+                setTimeout(function(){
+                  msg.edit(diceEmbed);
+                }, 1500);
+              });
+            } else if (userAmount === randomNumber) {
+              diceEmbed.setColor("0x0099ff")
+              diceEmbed.setDescription("**Well this is awkward.**")
+              diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
+              diceEmbed.addField("Limit", randomNumber)
+              diceEmbed.addField("Result", `You get your $${userBet} back!`)
+
+              message.channel.send(firstEmbed).then((msg) => {
+                setTimeout(function(){
+                  msg.edit(diceEmbed);
+                }, 1500);
+              });
+            }
+          } else if (overUnder === "under") {
+
+            if (userAmount < randomNumber) {
+              diceEmbed.setColor("#00FF00")
+              diceEmbed.setDescription("**Congratulations, you won!**")
+              diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
+              diceEmbed.addField("Limit", randomNumber)
+              diceEmbed.addField("Result", `You won $${userBet * 2}!`)
+
+              res.money = res.money + userBet*2
+              res.currentXP = res.currentXP + 50
+              res.diceCooldown = Date.now() + 180000
+
+              if (res.currentXP >= res.nextLevel) {
+                let overflow = res.currentXP - res.nextLevel
+                let currentNL = res.nextLevel
+                res.currentXP = overflow
+                res.nextLevel = Math.round(currentNL * 2)
+                res.level = res.level + 1
+                res.save()
+              } else if (res.currentXP < res.nextLevel){
+                res.save()
+              }
+
+              message.channel.send(firstEmbed).then((msg) => {
+                setTimeout(function(){
+                  msg.edit(diceEmbed);
+                }, 1500);
+              });
+
+            } else if (userAmount > randomNumber) {
+              diceEmbed.setColor("#FF0000")
+              diceEmbed.setDescription("**Oh no! You lost!**")
+              diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of ${userAmount}`)
+              diceEmbed.addField("Limit", randomNumber)
+              diceEmbed.addField("Result", `You lost $${userBet}!`)
+
+              res.money = res.money - userBet
+              res.currentXP = res.currentXP + 25
+              res.diceCooldown = Date.now() + 180000
+
+              if (res.currentXP >= res.nextLevel) {
+                let overflow = res.currentXP - res.nextLevel
+                let currentNL = res.nextLevel
+                res.currentXP = overflow
+                res.nextLevel = Math.round(currentNL * 2)
+                res.level = res.level + 1
+                res.save()
+              } else if (res.currentXP < res.nextLevel){
+                res.save()
+              }
+
+              message.channel.send(firstEmbed).then((msg) => {
+                setTimeout(function(){
+                  msg.edit(diceEmbed);
+                }, 1500);
+              });
+
+
+            } else if (userAmount === randomNumber) {
+              diceEmbed.setColor("0x0099ff")
+              diceEmbed.setDescription("**Well this is awkward.**")
+              diceEmbed.addField("User Roll", `${userNumber} and a ${userNumber2} for a total of **$${userAmount}**`)
+              diceEmbed.addField("Limit", randomNumber)
+              diceEmbed.addField("Result", `You get your $${userBet} back!`)
+
+              message.channel.send(firstEmbed).then((msg) => {
+                setTimeout(function(){
+                  msg.edit(diceEmbed);
+                }, 1500);
+              });
+            }
+          }
         }
+      } else if (res.diceCooldown > Date.now()) {
+
+
+        var remaining = humanizeDuration(res.diceCooldown - Date.now(), { conjunction: " and ", units: ["m", "s"], round: true});
+
+        let diceCooldownEmbed = new MessageEmbed()
+          .setTitle("Uh oh!")
+          .setColor("#FF0000")
+          .setDescription(`You can only use that command once ever 3 minutes!\nYou still have ${remaining} to wait!`)
+
+        return message.channel.send(diceCooldownEmbed)
       }
     }
   })

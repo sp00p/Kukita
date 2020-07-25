@@ -31,10 +31,17 @@ module.exports.run = async (bot, message, args) => {
         weeklyCooldown: Date.now(),
         workCooldown: Date.now(),
         robCooldown: Date.now(),
+        cfCooldown: Date.now(),
+        diceCooldown: Date.now(),
+        rlCooldown: Date.now(),
+        slotsCooldown: Date.now(),
         money: 0,
-        xp: 0,
+        currentXP: 0,
+        nextLevel: 100,
+        isVoter: false,
         level: 1,
         isPassive: true,
+        rank: "None"
       })
       newAccount.save()
 

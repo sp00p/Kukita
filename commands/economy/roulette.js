@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
 
   let randomNumber = Math.floor(Math.random() * 100) + 1
   let randomEvenOdd = Math.floor(Math.random() * 36) + 1
-  let color;
+  var color;
 
   if (randomEvenOdd % 2 === 0) {
     color = "🔴"

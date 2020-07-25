@@ -3,19 +3,14 @@ const Money = require("../../models/money.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  if (!bot.config.betatesters.includes(message.author.id)) return
-  if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
+  if (!bot.config.owners.includes(message.author.id)) return message.channel.send("This command is temporarily disabled for maintenance!")
+
+  //if (!bot.config.betatesters.includes(message.author.id)) return
+  //if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
 
   let userBet = args[0]
 
   if(userBet < 100) return message.channel.send("You have to bet more than $100!")
-
-  if(args[1] !== "red" && args[1] !== "black" && args[1] !== "green") {
-    var evenOdd = args[1]
-    if(evenOdd !== "even" && evenOdd !== "odd") return message.channel.send("Please provide either (even) or (odd)");
-  } else {
-    var userColor = args[1]
-  }
 
 
   let randomNumber = Math.floor(Math.random() * 100) + 1
@@ -23,25 +18,34 @@ module.exports.run = async (bot, message, args) => {
 
   let colors = ["🔴", "⚫", "🔴", "⚫"]
 
-  if(!userBet) return message.channel.send("Please specify an amount you'd like to bet!")
-
   let moneyEmbed = new MessageEmbed()
   let firstEmbed = new MessageEmbed()
   firstEmbed.setTitle("Spinning...")
   let finalEmbed = new MessageEmbed()
   finalEmbed.setTitle("Result")
 
-  Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, res) => {
+  let noAccountEmbed = new MessageEmbed()
+  .setTitle("Oh no!")
+  .setColor("#FF0000")
+  .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
+
+  Money.findOne({ userID: message.author.id}, (err, res) => {
 
     if (err) console.log(err);
 
     if(!res) {
-      moneyEmbed.setTitle("Oh no!")
-      moneyEmbed.setColor("#fc0404");
-      moneyEmbed.addField("❌ Error", "You don't have any money in this server!");
-      return message.channel.send(moneyEmbed)
+      return message.channel.send(noAccountEmbed)
     } else if (res){
       if (res.money < userBet) return message.channel.send("You don't have that much money in your account!")
+
+      if(args[1] !== "red" && args[1] !== "black" && args[1] !== "green") {
+        var evenOdd = args[1]
+        if(evenOdd !== "even" && evenOdd !== "odd") return message.channel.send("Please provide either (even) or (odd)");
+      } else {
+        var userColor = args[1]
+      }
+
+      if(!userBet) return message.channel.send("Please specify an amount you'd like to bet!")
 
       if (!evenOdd) {
 

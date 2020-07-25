@@ -3,8 +3,10 @@ const Money = require("../../models/money.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  if (!bot.config.betatesters.includes(message.author.id)) return
-  if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
+  if (!bot.config.owners.includes(message.author.id)) return message.channel.send("This command is temporarily disabled for maintenance!")
+
+  //if (!bot.config.betatesters.includes(message.author.id)) return
+  //if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
   let userBet = args[0]
   let userNumber = Math.floor(Math.random() * 6) + 1
   let userNumber2 = Math.floor(Math.random() * 6) + 1
@@ -24,14 +26,15 @@ module.exports.run = async (bot, message, args) => {
   let firstEmbed = new MessageEmbed()
   firstEmbed.setTitle("🎲Rolling Dice...🎲")
   diceEmbed.setTitle("🎲Result🎲")
-  Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, res) => {
+  Money.findOne({ userID: message.author.id}, (err, res) => {
     if (err) console.log(err);
 
     if(!res) {
-      moneyEmbed.setTitle("Oh no!")
-      moneyEmbed.setColor("#fc0404");
-      moneyEmbed.addField("❌ Error", "You don't have any money in this server!");
-      return message.channel.send(moneyEmbed)
+      let noAccountEmbed = new MessageEmbed()
+      .setTitle("Oh no!")
+      .setColor("#FF0000")
+      .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
+      return message.channel.send(noAccountEmbed)
     } else if (res){
       if (res.money < userBet) return message.channel.send("You don't have that much money in your account!")
       if(!overUnder) {

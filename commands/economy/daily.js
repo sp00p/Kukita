@@ -5,7 +5,7 @@ const cooldown = require("../../models/cooldowns.js")
 
 module.exports.run = async (bot, message, args) => {
 
-  //if (!bot.config.owners.includes(message.author.id)) return message.channel.send("This command is temporarily disabled for maintenance!")
+  if (!bot.config.owners.includes(message.author.id)) return message.channel.send("This command is temporarily disabled for maintenance!")
 
   let weeklyWorkEmbed = new MessageEmbed()
     .setTitle("Congratulations!")
@@ -14,10 +14,10 @@ module.exports.run = async (bot, message, args) => {
 
   const author = await message.author.id
 
-  Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, data) => {
+  Money.findOne({ userID: message.author.id}, (err, data) => {
     if (err) console.log(err);
 
-    cooldown.findOne({serverID: message.guild.id, userID: message.author.id, command: 'daily'}, (err, res) => {
+    cooldown.findOne({userID: message.author.id, command: 'daily'}, (err, res) => {
       if (err) console.log(err);
 
       if (!res) {
@@ -25,23 +25,13 @@ module.exports.run = async (bot, message, args) => {
 
         if(!data) {
           //console.log('user does not have a cooldown and does not have money')
-          let newMoneyAcc = new Money({
-            userID: message.author.id,
-            username: message.author.username,
-            serverID: message.guild.id,
-            money: 100
-          })
+          let noAccountEmbed = new MessageEmbed()
+          .setTitle("Oh no!")
+          .setColor("#FF0000")
+          .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
           //console.log('new money account created, user did not have an account ')
-          newMoneyAcc.save()
-          message.channel.send(weeklyWorkEmbed)
 
-          let newCooldown = new cooldown({
-            serverID: message.guild.id,
-            userID: message.author.id,
-            command: 'daily',
-            cooldown: Date.now() + 8.64e+7
-          })
-          newCooldown.save()
+          message.channel.send(noAccountEmbed)
 
         } else if (data){
 
@@ -52,7 +42,6 @@ module.exports.run = async (bot, message, args) => {
           if(!res) {
             //console.log('cooldown does not exist but user has account')
             let newCooldown = new cooldown({
-              serverID: message.guild.id,
               userID: message.author.id,
               command: 'daily',
               cooldown: Date.now() + 8.64e+7

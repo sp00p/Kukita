@@ -3,15 +3,17 @@ const Money = require("../../models/money.js");
 
 module.exports.run = async (bot, message, args) => {
 
+  if (!bot.config.owners.includes(message.author.id)) return message.channel.send("This command is temporarily disabled for maintenance!")
+
   let moneyEmbed = new MessageEmbed()
     .setAuthor(message.author.username, message.author.displayAvatarURL())
 
-  Money.findOne({ userID: message.author.id, serverID: message.guild.id}, (err, res) => {
+  Money.findOne({ userID: message.author.id }, (err, res) => {
     if (err) console.log(err);
 
     if(!res) {
       moneyEmbed.setColor("#fc0404");
-      moneyEmbed.addField("❌ Error", "You don't have any money in this server!");
+      moneyEmbed.addField("❌ Error", `You don't have any money! Use ${bot.prefix}createaccount to start an account!`);
     } else {
       moneyEmbed.setColor("0x0099ff");
       moneyEmbed.setTitle("$"+res.money)

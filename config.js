@@ -1,7 +1,7 @@
 module.exports = {
   token: "NzE0NzU4NjMzNzAyOTQ4OTA1.XxYQQg.FnzQPJsRlNriAWXRCiaUf-95d1w",
   prefix: ".",
-  owners: ["257663701505671169"],
+  owners: ["257663701505671169", "464644666629947404"],
   betatesters: ["257663701505671169", "411250289782292490", "191724559676866563", "303600425054240768"],
   betatestingchannelid: ["736123900928458754"]
 };

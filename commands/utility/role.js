@@ -7,9 +7,8 @@ module.exports.run = async (bot, message, args) => {
   let selection = args[1]
   let roleInput = args.slice(2).join(" ")
   let member = message.guild.members.cache.get(userID)
-
-  if (!selection) return message.channel.send("Please specify whether you'd like to add or remove a role!")
-  if (!roleInput) return message.channel.send("You have to specify a role!")
+  
+  if (!roleInput) return
 
   var role = message.channel.guild.roles.cache.find(role => role.name === roleInput);
 

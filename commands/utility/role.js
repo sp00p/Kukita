@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "role",
-  description: "adds role to user",
+  description: "adds or removes a role to user",
   arguments: "<user> <add/remove> <rolename>",
   category: "Utility",
   aliases: ["role"]

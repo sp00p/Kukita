@@ -277,7 +277,7 @@ module.exports.run = async (bot, message, args) => {
         let cfCooldownEmbed = new MessageEmbed()
           .setTitle("Uh oh!")
           .setColor("#FF0000")
-          .setDescription(`You can only use that command once ever 3 minutes!\nYou still have ${remaining} to wait!`)
+          .setDescription(`You can only use that command once every 3 minutes!\nYou still have ${remaining} to wait!`)
 
         return message.channel.send(cfCooldownEmbed)
 

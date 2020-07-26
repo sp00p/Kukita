@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const mainSchema = require("../../models/mainschema.js")
+const humanizeDuration = require('humanize-duration')
 
 module.exports.run = async (bot, message, args) => {
 
@@ -48,98 +49,111 @@ module.exports.run = async (bot, message, args) => {
 
     } else if (data) {
 
-      userBet = Math.round(userBet)
+      if (data.slotsCooldown > Date.now()) {
 
-      if (userBet > data.money) return message.channel.send("You don't have that much money to bet!")
+        var remaining = humanizeDuration(data.slotsCooldown - Date.now(), { conjunction: " and ", units: ["s"], round: true});
 
-      for (count = 0; count < 9; count++) {
+        let slotsCooldownEmbed = new MessageEmbed()
+          .setTitle("Uh oh!")
+          .setColor("#FF0000")
+          .setDescription(`You can only use that command once every 30 seconds!\nYou still have ${remaining} to wait!`)
 
-        random = randomInArray(emotes)
-        slotNums.push(random)
-        slotString += slotNums[count] + ' '
+        return message.channel.send(slotsCooldownEmbed)
 
-        if (count === 2 || count === 5 || count === 8) {
-          if (count === 5) {slotString += "**<--**"}
-          slotString += '\n'
+      } else if (data.slotsCooldown <= Date.now()) {
+        userBet = Math.round(userBet)
+
+        if (userBet > data.money) return message.channel.send("You don't have that much money to bet!")
+
+        for (count = 0; count < 9; count++) {
+
+          random = randomInArray(emotes)
+          slotNums.push(random)
+          slotString += slotNums[count] + ' '
+
+          if (count === 2 || count === 5 || count === 8) {
+            if (count === 5) {slotString += "**<--**"}
+            slotString += '\n'
+          } else {
+            slotString += ': '
+          }
+
+        }
+        slotString += '--------------\n'
+        if (slotNums[3] === slotNums[4] && slotNums[3] === slotNums[5] && slotNums [4] === slotNums[5]) {
+
+          slotsEmbed.setColor("#00FF00")
+          winnings = `$${userBet * 3}`
+          result = "You got three in a row! You have tripled your bet!"
+
+          data.money = userBet * 3
+          data.slotsCooldown = Date.now() + 30000
+          data.currentXP = data.currentXP + 75
+          if (data.currentXP >= data.nextLevel) {
+            let overflow = res.currentXP - res.nextLevel
+            let currentNL = res.nextLevel
+            data.currentXP = overflow
+            data.nextLevel = Math.round(currentNL * 2)
+            data.level = data.level + 1
+            data.save()
+          } else if (data.currentXP < data.nextLevel){
+            data.save()
+          }
+
+        } else if (slotNums[3] === slotNums [4] || slotNums[3] === slotNums [5] || slotNums[4] === slotNums[5]) {
+
+          slotsEmbed.setColor("#00FF00")
+          winnings = `$${userBet * 2}`
+          result = "You got two matches! You have doubled your bet!"
+
+          data.money = userBet * 2
+          data.slotsCooldown = Date.now() + 30000
+          data.currentXP = data.currentXP + 50
+          if (data.currentXP >= data.nextLevel) {
+            let overflow = res.currentXP - res.nextLevel
+            let currentNL = res.nextLevel
+            data.currentXP = overflow
+            data.nextLevel = Math.round(currentNL * 2)
+            data.level = data.level + 1
+            data.save()
+          } else if (data.currentXP < data.nextLevel){
+            data.save()
+          }
         } else {
-          slotString += ': '
+
+          slotsEmbed.setColor("#FF0000")
+          winnings = `-$${userBet}`
+          result = "You didn't get any matches! You lose!"
+
+          data.money = data.money - userBet
+          data.slotsCooldown = Date.now() + 30000
+          data.currentXP = data.currentXP + 25
+          if (data.currentXP >= data.nextLevel) {
+            let overflow = res.currentXP - res.nextLevel
+            let currentNL = res.nextLevel
+            data.currentXP = overflow
+            data.nextLevel = Math.round(currentNL * 2)
+            data.level = data.level + 1
+            data.save()
+          } else if (data.currentXP < data.nextLevel){
+            data.save()
+          }
+          data.save()
+        }
+
+        slotsEmbed.setDescription(slotString)
+        slotsEmbed.addField("Result", result)
+        slotsEmbed.addField("Winnings", winnings)
+
+        message.channel.send(firstEmbed).then((msg) => {
+          setTimeout(function(){
+            msg.edit(slotsEmbed);
+          }, 1500);
+        });
+
         }
 
       }
-      slotString += '--------------\n'
-      if (slotNums[3] === slotNums[4] && slotNums[3] === slotNums[5] && slotNums [4] === slotNums[5]) {
-
-        slotsEmbed.setColor("#00FF00")
-        winnings = `$${userBet * 3}`
-        result = "You got three in a row! You have tripled your bet!"
-
-        data.money = userBet * 3
-        data.slotsCooldown = Date.now() + 15000
-        data.currentXP = data.currentXP + 75
-        if (data.currentXP >= data.nextLevel) {
-          let overflow = res.currentXP - res.nextLevel
-          let currentNL = res.nextLevel
-          data.currentXP = overflow
-          data.nextLevel = Math.round(currentNL * 2)
-          data.level = data.level + 1
-          data.save()
-        } else if (data.currentXP < data.nextLevel){
-          data.save()
-        }
-
-      } else if (slotNums[3] === slotNums [4] || slotNums[3] === slotNums [5] || slotNums[4] === slotNums[5]) {
-
-        slotsEmbed.setColor("#00FF00")
-        winnings = `$${userBet * 2}`
-        result = "You got two matches! You have doubled your bet!"
-
-        data.money = userBet * 2
-        data.slotsCooldown = Date.now() + 15000
-        data.currentXP = data.currentXP + 50
-        if (data.currentXP >= data.nextLevel) {
-          let overflow = res.currentXP - res.nextLevel
-          let currentNL = res.nextLevel
-          data.currentXP = overflow
-          data.nextLevel = Math.round(currentNL * 2)
-          data.level = data.level + 1
-          data.save()
-        } else if (data.currentXP < data.nextLevel){
-          data.save()
-        }
-      } else {
-
-        slotsEmbed.setColor("#FF0000")
-        winnings = `-$${userBet}`
-        result = "You didn't get any matches! You lose!"
-
-        data.money = data.money - userBet
-        data.slotsCooldown = Date.now() + 15000
-        data.currentXP = data.currentXP + 25
-        if (data.currentXP >= data.nextLevel) {
-          let overflow = res.currentXP - res.nextLevel
-          let currentNL = res.nextLevel
-          data.currentXP = overflow
-          data.nextLevel = Math.round(currentNL * 2)
-          data.level = data.level + 1
-          data.save()
-        } else if (data.currentXP < data.nextLevel){
-          data.save()
-        }
-        data.save()
-      }
-
-      slotsEmbed.setDescription(slotString)
-      slotsEmbed.addField("Result", result)
-      slotsEmbed.addField("Winnings", winnings)
-
-      message.channel.send(firstEmbed).then((msg) => {
-        setTimeout(function(){
-          msg.edit(slotsEmbed);
-        }, 1500);
-      });
-
-    }
-
 
   })
 

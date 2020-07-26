@@ -84,12 +84,12 @@ module.exports.run = async (bot, message, args) => {
 
           if (res.robCooldown > Date.now()) {
 
-            var remaining = humanizeDuration(res.robCooldown - Date.now(), { conjunction: " and ", units: ["d", "h", "m", "s"], round: true});
+            var remaining = humanizeDuration(res.robCooldown - Date.now(), { conjunction: " and ", units: ["m", "s"], round: true});
 
             let robCooldownEmbed = new MessageEmbed()
               .setTitle("Uh oh!")
               .setColor("#FF0000")
-              .setDescription(`You can only use that command once ever 3 minutes!\nYou still have ${remaining} to wait!`)
+              .setDescription(`You can only use that command once ever 30 minutes!\nYou still have ${remaining} to wait!`)
 
             return message.channel.send(robCooldownEmbed)
 
@@ -109,7 +109,7 @@ module.exports.run = async (bot, message, args) => {
 
               data.money = data.money - moneyStolen
               res.money = res.money + moneyStolen
-              res.robCooldown = Date.now() + 180000
+              res.robCooldown = Date.now() + 1.8e+6
               res.save()
               data.save()
 
@@ -126,7 +126,7 @@ module.exports.run = async (bot, message, args) => {
               .setDescription(`You were caught stealing and have been fined $${moneyFined}`)
 
               res.money = res.money - moneyFined
-              res.robCooldown = Date.now() + 180000
+              res.robCooldown = Date.now() + 1.8e+6
               res.save()
 
               return message.channel.send(failRobEmbed)

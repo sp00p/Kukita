@@ -4,10 +4,10 @@ module.exports.run = async (bot, message, args) => {
   if(!message.member.hasPermission("MANAGE_ROLES", "ADMINISTRATOR")) return;
 
   let userID = message.mentions.users.first().id
-  let selection = args[1]
+  let selection = args[0]
   let roleInput = args.slice(2).join(" ")
   let member = message.guild.members.cache.get(userID)
-  
+
   if (!roleInput) return
 
   var role = message.channel.guild.roles.cache.find(role => role.name === roleInput);

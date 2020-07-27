@@ -297,12 +297,12 @@ module.exports.run = async (bot, message, args) => {
         }
 
       } else if (data.cfCooldown > Date.now()) {
-        var remaining = humanizeDuration(data.cfCooldown - Date.now(), { conjunction: " and ", units: ["d", "h", "m", "s"], round: true});
+        var remaining = humanizeDuration(data.cfCooldown - Date.now(), { conjunction: " and ", units: ["s"], round: true});
 
         let cfCooldownEmbed = new MessageEmbed()
           .setTitle("Uh oh!")
           .setColor("#FF0000")
-          .setDescription(`You can only use that command once every 3 minutes!\nYou still have ${remaining} to wait!`)
+          .setDescription(`You can only use that command once every 15 seconds!\nYou still have ${remaining} to wait!`)
 
         return message.channel.send(cfCooldownEmbed)
 

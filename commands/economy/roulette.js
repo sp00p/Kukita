@@ -251,7 +251,7 @@ module.exports.run = async (bot, message, args) => {
                 finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
                 finalEmbed.addField("User Bet", userBet)
                 finalEmbed.addField("User Even/Odd", evenOdd)
-                finalEmbed.addField("Final Result", `You won $${moneyWon}`)
+                finalEmbed.addField("Final Result", `You won $${moneyWon / 2}`)
 
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
@@ -309,7 +309,7 @@ module.exports.run = async (bot, message, args) => {
                 finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
                 finalEmbed.addField("User Bet", userBet)
                 finalEmbed.addField("User Even/Odd", evenOdd)
-                finalEmbed.addField("Final Result", `You won $${moneyWon}`)
+                finalEmbed.addField("Final Result", `You won $${moneyWon / 2}`)
 
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){

@@ -62,7 +62,7 @@ module.exports.run = async (bot, message, args) => {
 
             res.money = res.money + userBet*2
             res.currentXP = res.currentXP + 100
-            res.diceCooldown = Date.now() + 30000
+            res.diceCooldown = Date.now() + 15000
 
             if (res.currentXP >= res.nextLevel) {
               let overflow = res.currentXP - res.nextLevel
@@ -92,7 +92,7 @@ module.exports.run = async (bot, message, args) => {
 
             res.money = res.money - userBet
             res.currentXP = res.currentXP + 50
-            res.diceCooldown = Date.now() + 30000
+            res.diceCooldown = Date.now() + 15000
 
             if (res.currentXP >= res.nextLevel) {
               let overflow = res.currentXP - res.nextLevel
@@ -139,7 +139,7 @@ module.exports.run = async (bot, message, args) => {
 
               res.money = res.money + userBet*2
               res.currentXP = res.currentXP + 100
-              res.diceCooldown = Date.now() + 30000
+              res.diceCooldown = Date.now() + 15000
 
               if (res.currentXP >= res.nextLevel) {
                 let overflow = res.currentXP - res.nextLevel
@@ -169,7 +169,7 @@ module.exports.run = async (bot, message, args) => {
 
               res.money = res.money - userBet
               res.currentXP = res.currentXP + 50
-              res.diceCooldown = Date.now() + 30000
+              res.diceCooldown = Date.now() + 15000
 
               if (res.currentXP >= res.nextLevel) {
                 let overflow = res.currentXP - res.nextLevel
@@ -213,7 +213,7 @@ module.exports.run = async (bot, message, args) => {
 
               res.money = res.money + userBet*2
               res.currentXP = res.currentXP + 100
-              res.diceCooldown = Date.now() + 30000
+              res.diceCooldown = Date.now() + 15000
 
               if (res.currentXP >= res.nextLevel) {
                 let overflow = res.currentXP - res.nextLevel
@@ -243,7 +243,7 @@ module.exports.run = async (bot, message, args) => {
 
               res.money = res.money - userBet
               res.currentXP = res.currentXP + 50
-              res.diceCooldown = Date.now() + 30000
+              res.diceCooldown = Date.now() + 15000
 
               if (res.currentXP >= res.nextLevel) {
                 let overflow = res.currentXP - res.nextLevel
@@ -288,7 +288,7 @@ module.exports.run = async (bot, message, args) => {
         let diceCooldownEmbed = new MessageEmbed()
           .setTitle("Uh oh!")
           .setColor("#FF0000")
-          .setDescription(`You can only use that command once every 30 seconds!\nYou still have ${remaining} to wait!`)
+          .setDescription(`You can only use that command once every 15 seconds!\nYou still have ${remaining} to wait!`)
 
         return message.channel.send(diceCooldownEmbed)
       }

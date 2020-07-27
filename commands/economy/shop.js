@@ -89,7 +89,7 @@ module.exports.run = async (bot, message, args) => {
               res.inventory.push(emojiArray[itemIndex] + " " + itemWanted)
               if (res.inventory.length > 10) {
                 return message.channel.send("You already own every item!")
-              } else if (res.inventory.includes(itemWanted)){
+              } else if (res.inventory.includes(emojiArray[itemIndex] + " " + itemWanted)){
                 return message.channel.send("You already own that item!")
               } else {
                 res.save()

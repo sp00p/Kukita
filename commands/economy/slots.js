@@ -56,7 +56,7 @@ module.exports.run = async (bot, message, args) => {
         let slotsCooldownEmbed = new MessageEmbed()
           .setTitle("Uh oh!")
           .setColor("#FF0000")
-          .setDescription(`You can only use that command once every 30 seconds!\nYou still have ${remaining} to wait!`)
+          .setDescription(`You can only use that command once every 15 seconds!\nYou still have ${remaining} to wait!`)
 
         return message.channel.send(slotsCooldownEmbed)
 
@@ -87,7 +87,7 @@ module.exports.run = async (bot, message, args) => {
           result = "You got three in a row! You have tripled your bet!"
 
           data.money = userBet * 3
-          data.slotsCooldown = Date.now() + 30000
+          data.slotsCooldown = Date.now() + 15000
           data.currentXP = data.currentXP + 125
           if (data.currentXP >= data.nextLevel) {
             let overflow = res.currentXP - res.nextLevel
@@ -109,7 +109,7 @@ module.exports.run = async (bot, message, args) => {
           result = "You got two matches! You have doubled your bet!"
 
           data.money = userBet * 2
-          data.slotsCooldown = Date.now() + 30000
+          data.slotsCooldown = Date.now() + 15000
           data.currentXP = data.currentXP + 100
           if (data.currentXP >= data.nextLevel) {
             let overflow = res.currentXP - res.nextLevel
@@ -130,7 +130,7 @@ module.exports.run = async (bot, message, args) => {
           result = "You didn't get any matches! You lose!"
 
           data.money = data.money - userBet
-          data.slotsCooldown = Date.now() + 30000
+          data.slotsCooldown = Date.now() + 15000
           data.currentXP = data.currentXP + 50
           if (data.currentXP >= data.nextLevel) {
             let overflow = res.currentXP - res.nextLevel

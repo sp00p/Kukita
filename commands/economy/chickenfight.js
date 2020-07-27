@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
   .setTitle("Oh no!")
   .setColor("#FF0000")
   .setDescription(`You don't have an account yet! Use ${bot.prefix}create to create one!`)
-  let number = 4
+  let number = 8
   let imageNum1 = Math.floor(Math.random() * (number - 1 + 1)) * 1;
   let imageNum2 = Math.floor(Math.random() * (number - 1 + 1)) * 1;
 
@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("You need to bet a number!")
   }
 
-  let names = ["Brad", "Robin", "Derek", "Troy"]
+  let names = ["Brad", "Robin", "Derek", "Troy", "Dave", "Alex", "Robert", "Paul"]
 
   let chickenOneEmbed = new MessageEmbed()
   .setTitle("🐔🥊 THE MATCHUP 🐔🥊")
@@ -45,6 +45,19 @@ module.exports.run = async (bot, message, args) => {
     case 3:
       chicken1 = 'https://cdn.discordapp.com/attachments/715404655168978944/736659624949710908/chicken3.png'
       break;
+    case 4:
+      chicken1 = 'https://cdn.discordapp.com/attachments/715404655168978944/736659585049559091/chicken0.png'
+      break;
+    case 5:
+      chicken1 = 'https://cdn.discordapp.com/attachments/715404655168978944/736659599779692594/chicken1.png'
+      break;
+    case 6:
+      chicken1 = 'https://cdn.discordapp.com/attachments/715404655168978944/736659611246919730/chicken2.png'
+      break;
+    case 7:
+      chicken1 = 'https://cdn.discordapp.com/attachments/715404655168978944/736659624949710908/chicken3.png'
+      break;
+
   }
 
   switch(imageNum2) {
@@ -58,6 +71,18 @@ module.exports.run = async (bot, message, args) => {
       chicken2 = 'https://cdn.discordapp.com/attachments/715404655168978944/736659611246919730/chicken2.png'
       break;
     case 3:
+      chicken2 = 'https://cdn.discordapp.com/attachments/715404655168978944/736659624949710908/chicken3.png'
+      break;
+    case 4:
+      chicken2 = 'https://cdn.discordapp.com/attachments/715404655168978944/736659585049559091/chicken0.png'
+      break;
+    case 5:
+      chicken2 = 'https://cdn.discordapp.com/attachments/715404655168978944/736659599779692594/chicken1.png'
+      break;
+    case 6:
+      chicken2 = 'https://cdn.discordapp.com/attachments/715404655168978944/736659611246919730/chicken2.png'
+      break;
+    case 7:
       chicken2 = 'https://cdn.discordapp.com/attachments/715404655168978944/736659624949710908/chicken3.png'
       break;
   }

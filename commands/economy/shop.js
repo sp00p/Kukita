@@ -68,7 +68,7 @@ module.exports.run = async (bot, message, args) => {
         } else {
           for (var i = 0; i < rankArray.length; i++) {
             shopEmbed.addField(`${(rankEmojis[i]) + " " + titleCase(rankArray[i])}`, `$${rankPrices[i]}`)
-            shopEmbed.setThumbnail("https://cdn.discordapp.com/attachments/715404655168978944/737069379941957733/latest.png")
+            shopEmbed.setImage("https://cdn.discordapp.com/attachments/715404655168978944/737069379941957733/latest.png")
           }
           message.channel.send(shopEmbed)
         }
@@ -102,7 +102,7 @@ module.exports.run = async (bot, message, args) => {
 
         for (var i = 0; i < shopItems.length; i++) {
           shopEmbed.addField(`${(emojiArray[i]) + " " + titleCase(shopItems[i])}`, `$${priceArray[i]}`)
-          shopEmbed.setThumbnail("https://cdn.discordapp.com/attachments/715404655168978944/737069379941957733/latest.png")
+          shopEmbed.setImage("https://cdn.discordapp.com/attachments/715404655168978944/737069379941957733/latest.png")
         }
 
         return message.channel.send(shopEmbed)

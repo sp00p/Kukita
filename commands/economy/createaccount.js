@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args) => {
         slotsCooldown: Date.now(),
         money: 100,
         currentXP: 100,
-        nextLevel: 500,
+        nextLevel: 1000,
         isVoter: false,
         level: 1,
         isPassive: true,

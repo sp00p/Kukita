@@ -255,7 +255,7 @@ module.exports.run = async (bot, message, args) => {
 
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
-                    res.money = res.money + (userBet * 2)
+                    res.money = res.money + moneyWon
                     res.rlCooldown = Date.now() + 15000
                     res.currentXP = res.currentXP + 100
                     if (res.currentXP >= res.nextLevel) {
@@ -305,8 +305,6 @@ module.exports.run = async (bot, message, args) => {
 
                 let moneyWon = parseInt(userBet * 1.5)
 
-                console.log(moneyWon)
-
                 finalEmbed.setColor("#00FF00")
                 finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
                 finalEmbed.addField("User Bet", userBet)
@@ -315,7 +313,7 @@ module.exports.run = async (bot, message, args) => {
 
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
-                    res.money = res.money + (userBet * 2)
+                    res.money = res.money + moneyWon
                     res.rlCooldown = Date.now() + 15000
                     res.currentXP = res.currentXP + 100
                     if (res.currentXP >= res.nextLevel) {

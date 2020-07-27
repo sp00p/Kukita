@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
     noAccountMentionedUserEmbed = new MessageEmbed()
     .setTitle("Oh no!")
     .setColor("#FF0000")
-    .setDescription(`That user doesn't have an account yet! They can use ${bot.prefix}createaccount to create one!`)
+    .setDescription(`That user doesn't have an account yet! They can use ${bot.prefix}create to create one!`)
 
     mainSchema.findOne({ userID: message.mentions.users.first().id}, (err, data) => {
       if (err) console.log(err);
@@ -41,7 +41,7 @@ module.exports.run = async (bot, message, args) => {
           if (!args[1]) {
             return message.reply("Please specify how much you'd like to give to this user!")
           } else if (authorData.money < args[1]) {
-            return message.reply("You don't have that much money to give!")
+            return message.reply("You don't have that many coins to give!")
           } else if (args[1] <= 0) {
             return message.reply("Please enter a number greater than 0!")
           } else if (!intRegex.test(args[1])) {
@@ -51,7 +51,7 @@ module.exports.run = async (bot, message, args) => {
             data.money = data.money + args[1];
             data.save()
             authorData.save()
-            message.channel.send(`Successfully paid ${message.mentions.users.first()} $${args[1]}!`)
+            message.channel.send(`Successfully paid ${message.mentions.users.first()} ${args[1]} coins!`)
           }
         }
       })

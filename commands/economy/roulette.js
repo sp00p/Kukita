@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
     } else if (res){
 
       if (res.rlCooldown < Date.now()) {
-        if (res.money < userBet) return message.channel.send("You don't have that much money in your account!")
+        if (res.money < userBet) return message.channel.send("You don't have that many coins in your account!")
 
         if(args[1] !== "red" && args[1] !== "black" && args[1] !== "green") {
           var evenOdd = args[1]
@@ -73,23 +73,24 @@ module.exports.run = async (bot, message, args) => {
               finalEmbed.addField("Spin Result", `🔴⚫->🔴<-⚫🔴`)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Color", userColor)
-              finalEmbed.addField("Final Result", `You won $${userBet * 2}!`)
+              finalEmbed.addField("Final Result", `You won ${userBet * 2} coins!`)
 
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
                   res.rlCooldown = Date.now() + 15000
-                  res.currentXP = res.currentXP + 100
+                  res.currentXP = res.currentXP + 500
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
                     let currentNL = res.nextLevel
                     res.currentXP = overflow
-                    res.nextLevel = Math.round(currentNL + 1000)
+                    res.nextLevel = currentNL + 1000
                     res.level = res.level + 1
-                    finalEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${res.level}`)
+                    res.money = res.money + 200
+                    finalEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${res.level}`)
                     res.save()
                   } else if (res.currentXP < res.nextLevel){
-                    finalEmbed.addField("XP Recieved", "You have recieved 100 XP")
+                    finalEmbed.addField("XP Recieved", "You have recieved 500 XP")
                     res.save()
                   }
                   msg.edit(finalEmbed);
@@ -101,23 +102,24 @@ module.exports.run = async (bot, message, args) => {
               finalEmbed.addField("Spin Result", `🔴⚫->🔴<-⚫🔴`)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Color", userColor)
-              finalEmbed.addField("Final Result", `You lost $${userBet}!`)
+              finalEmbed.addField("Final Result", `You lost ${userBet} coins!`)
 
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money - userBet
                   res.rlCooldown = Date.now() + 15000
-                  res.currentXP = res.currentXP + 50
+                  res.currentXP = res.currentXP + 250
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
                     let currentNL = res.nextLevel
                     res.currentXP = overflow
-                    res.nextLevel = Math.round(currentNL + 1000)
+                    res.nextLevel = currentNL + 1000
                     res.level = res.level + 1
-                    finalEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${res.level}`)
+                    res.money = res.money + 200
+                    finalEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${res.level}`)
                     res.save()
                   } else if (res.currentXP < res.nextLevel){
-                    finalEmbed.addField("XP Recieved", "You have recieved 50 XP")
+                    finalEmbed.addField("XP Recieved", "You have recieved 250 XP")
                     res.save()
                   }
                   msg.edit(finalEmbed);
@@ -131,23 +133,23 @@ module.exports.run = async (bot, message, args) => {
               finalEmbed.addField("Spin Result", `⚫🔴->⚫<-🔴⚫`)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Color", userColor)
-              finalEmbed.addField("Final Result", `You won $${userBet * 2}!`)
+              finalEmbed.addField("Final Result", `You won ${userBet * 2} coins!`)
 
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
                   res.rlCooldown = Date.now() + 15000
-                  res.currentXP = res.currentXP + 100
+                  res.currentXP = res.currentXP + 500
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
                     let currentNL = res.nextLevel
                     res.currentXP = overflow
-                    res.nextLevel = Math.round(currentNL + 1000)
+                    res.nextLevel = currentNL + 1000
                     res.level = res.level + 1
-                    finalEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${res.level}`)
+                    finalEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${res.level}`)
                     res.save()
                   } else if (res.currentXP < res.nextLevel){
-                    finalEmbed.addField("XP Recieved", "You have recieved 100 XP")
+                    finalEmbed.addField("XP Recieved", "You have recieved 500 XP")
                     res.save()
                   }
                   msg.edit(finalEmbed);
@@ -159,23 +161,24 @@ module.exports.run = async (bot, message, args) => {
               finalEmbed.addField("Spin Result", `⚫🔴->⚫<-🔴⚫`)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Color", userColor)
-              finalEmbed.addField("Final Result", `You lost $${userBet}!`)
+              finalEmbed.addField("Final Result", `You lost ${userBet} coins!`)
 
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money - userBet
                   res.rlCooldown = Date.now() + 15000
-                  res.currentXP = res.currentXP + 50
+                  res.currentXP = res.currentXP + 250
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
                     let currentNL = res.nextLevel
                     res.currentXP = overflow
-                    res.nextLevel = Math.round(currentNL + 1000)
+                    res.nextLevel = currentNL + 1000
                     res.level = res.level + 1
-                    finalEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${res.level}`)
+                    res.money = res.money + 200
+                    finalEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${res.level}`)
                     res.save()
                   } else if (res.currentXP < res.nextLevel){
-                    finalEmbed.addField("XP Recieved", "You have recieved 50 XP")
+                    finalEmbed.addField("XP Recieved", "You have recieved 250 XP")
                     res.save()
                   }
                   msg.edit(finalEmbed);
@@ -189,23 +192,24 @@ module.exports.run = async (bot, message, args) => {
               finalEmbed.addField("Spin Result", `⚫🔴->🟢<-⚫🔴`)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Color", userColor)
-              finalEmbed.addField("Final Result", `You won $${userBet * 14}!`)
+              finalEmbed.addField("Final Result", `You won ${userBet * 14} coins!`)
 
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
                   res.rlCooldown = Date.now() + 15000
-                  res.currentXP = res.currentXP + 100
+                  res.currentXP = res.currentXP + 500
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
                     let currentNL = res.nextLevel
                     res.currentXP = overflow
-                    res.nextLevel = Math.round(currentNL + 1000)
+                    res.nextLevel = currentNL + 1000
                     res.level = res.level + 1
-                    finalEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${res.level}`)
+                    res.money = res.money + 200
+                    finalEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${res.level}`)
                     res.save()
                   } else if (res.currentXP < res.nextLevel){
-                    finalEmbed.addField("XP Recieved", "You have recieved 100 XP")
+                    finalEmbed.addField("XP Recieved", "You have recieved 500 XP")
                     res.save()
                   }
                   msg.edit(finalEmbed);
@@ -217,23 +221,24 @@ module.exports.run = async (bot, message, args) => {
               finalEmbed.addField("Spin Result", `⚫🔴->🟢<-⚫🔴`)
               finalEmbed.addField("User Bet", userBet)
               finalEmbed.addField("User Color", userColor)
-              finalEmbed.addField("Final Result", `You lost $${userBet}!`)
+              finalEmbed.addField("Final Result", `You lost ${userBet} coins!`)
 
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money - userBet
                   res.rlCooldown = Date.now() + 15000
-                  res.currentXP = res.currentXP + 50
+                  res.currentXP = res.currentXP + 250
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
                     let currentNL = res.nextLevel
                     res.currentXP = overflow
-                    res.nextLevel = Math.round(currentNL + 1000)
+                    res.nextLevel = currentNL + 1000
                     res.level = res.level + 1
-                    finalEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${res.level}`)
+                    res.money = res.money + 200
+                    finalEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${res.level}`)
                     res.save()
                   } else if (res.currentXP < res.nextLevel){
-                    finalEmbed.addField("XP Recieved", "You have recieved 50 XP")
+                    finalEmbed.addField("XP Recieved", "You have recieved 250 XP")
                     res.save()
                   }
                   msg.edit(finalEmbed);
@@ -251,23 +256,24 @@ module.exports.run = async (bot, message, args) => {
                 finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
                 finalEmbed.addField("User Bet", userBet)
                 finalEmbed.addField("User Even/Odd", evenOdd)
-                finalEmbed.addField("Final Result", `You won $${moneyWon / 2}`)
+                finalEmbed.addField("Final Result", `You won ${moneyWon / 2} coins!`)
 
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
                     res.money = res.money + moneyWon
                     res.rlCooldown = Date.now() + 15000
-                    res.currentXP = res.currentXP + 100
+                    res.currentXP = res.currentXP + 500
                     if (res.currentXP >= res.nextLevel) {
                       let overflow = res.currentXP - res.nextLevel
                       let currentNL = res.nextLevel
                       res.currentXP = overflow
-                      res.nextLevel = Math.round(currentNL + 1000)
+                      res.nextLevel = currentNL + 1000
                       res.level = res.level + 1
-                      finalEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${res.level}`)
+                      res.money = res.money + 200
+                      finalEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${res.level}`)
                       res.save()
                     } else if (res.currentXP < res.nextLevel){
-                      finalEmbed.addField("XP Recieved", "You have recieved 100 XP")
+                      finalEmbed.addField("XP Recieved", "You have recieved 500 XP")
                       res.save()
                     }
                     msg.edit(finalEmbed);
@@ -279,23 +285,24 @@ module.exports.run = async (bot, message, args) => {
                 finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
                 finalEmbed.addField("User Bet", userBet)
                 finalEmbed.addField("User Even/Odd", evenOdd)
-                finalEmbed.addField("Final Result", `You lose $${userBet}`)
+                finalEmbed.addField("Final Result", `You lost ${userBet} coins!`)
 
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
                     res.money = res.money - userBet
                     res.rlCooldown = Date.now() + 15000
-                    res.currentXP = res.currentXP + 50
+                    res.currentXP = res.currentXP + 250
                     if (res.currentXP >= res.nextLevel) {
                       let overflow = res.currentXP - res.nextLevel
                       let currentNL = res.nextLevel
                       res.currentXP = overflow
-                      res.nextLevel = Math.round(currentNL + 1000)
+                      res.nextLevel = currentNL + 1000
                       res.level = res.level + 1
-                      finalEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${res.level}`)
+                      res.money = res.money + 200
+                      finalEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${res.level}`)
                       res.save()
                     } else if (res.currentXP < res.nextLevel){
-                      finalEmbed.addField("XP Recieved", "You have recieved 50 XP")
+                      finalEmbed.addField("XP Recieved", "You have recieved 250 XP")
                       res.save()
                     }
                     msg.edit(finalEmbed);
@@ -309,23 +316,24 @@ module.exports.run = async (bot, message, args) => {
                 finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
                 finalEmbed.addField("User Bet", userBet)
                 finalEmbed.addField("User Even/Odd", evenOdd)
-                finalEmbed.addField("Final Result", `You won $${moneyWon / 2}`)
+                finalEmbed.addField("Final Result", `You won ${moneyWon / 2} coins!`)
 
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
                     res.money = res.money + moneyWon
                     res.rlCooldown = Date.now() + 15000
-                    res.currentXP = res.currentXP + 100
+                    res.currentXP = res.currentXP + 500
                     if (res.currentXP >= res.nextLevel) {
                       let overflow = res.currentXP - res.nextLevel
                       let currentNL = res.nextLevel
                       res.currentXP = overflow
-                      res.nextLevel = Math.round(currentNL + 1000)
+                      res.nextLevel = currentNL + 1000
                       res.level = res.level + 1
-                      finalEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${res.level}`)
+                      res.money = res.money + 200
+                      finalEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins!You are now level ${res.level}`)
                       res.save()
                     } else if (res.currentXP < res.nextLevel){
-                      finalEmbed.addField("XP Recieved", "You have recieved 100 XP")
+                      finalEmbed.addField("XP Recieved", "You have recieved 500 XP")
                       res.save()
                     }
                     msg.edit(finalEmbed);
@@ -337,23 +345,24 @@ module.exports.run = async (bot, message, args) => {
                 finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
                 finalEmbed.addField("User Bet", userBet)
                 finalEmbed.addField("User Even/Odd", evenOdd)
-                finalEmbed.addField("Final Result", `You lose $${userBet}`)
+                finalEmbed.addField("Final Result", `You lose ${userBet} coins!`)
 
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
                     res.money = res.money - userBet
                     res.rlCooldown = Date.now() + 15000
-                    res.currentXP = res.currentXP + 50
+                    res.currentXP = res.currentXP + 250
                     if (res.currentXP >= res.nextLevel) {
                       let overflow = res.currentXP - res.nextLevel
                       let currentNL = res.nextLevel
                       res.currentXP = overflow
-                      res.nextLevel = Math.round(currentNL + 1000)
+                      res.nextLevel = currentNL + 1000
                       res.level = res.level + 1
-                      finalEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${res.level}`)
+                      res.money = res.money + 200
+                      finalEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${res.level}`)
                       res.save()
                     } else if (res.currentXP < res.nextLevel){
-                      finalEmbed.addField("XP Recieved", "You have recieved 50 XP")
+                      finalEmbed.addField("XP Recieved", "You have recieved 250 XP")
                       res.save()
                     }
                     msg.edit(finalEmbed);

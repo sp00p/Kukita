@@ -63,7 +63,7 @@ module.exports.run = async (bot, message, args) => {
       } else if (data.slotsCooldown <= Date.now()) {
         userBet = Math.round(userBet)
 
-        if (userBet > data.money) return message.channel.send("You don't have that much money to bet!")
+        if (userBet > data.money) return message.channel.send("You don't have that many coins to bet!")
 
         for (count = 0; count < 9; count++) {
 
@@ -83,65 +83,66 @@ module.exports.run = async (bot, message, args) => {
         if (slotNums[3] === slotNums[4] && slotNums[3] === slotNums[5] && slotNums [4] === slotNums[5]) {
 
           slotsEmbed.setColor("#00FF00")
-          winnings = `$${userBet * 3}`
+          winnings = `${userBet * 3} coins`
           result = "You got three in a row! You have tripled your bet!"
 
           data.money = userBet * 3
           data.slotsCooldown = Date.now() + 15000
-          data.currentXP = data.currentXP + 125
+          data.currentXP = data.currentXP + 500
           if (data.currentXP >= data.nextLevel) {
             let overflow = res.currentXP - res.nextLevel
             let currentNL = res.nextLevel
             data.currentXP = overflow
-            data.nextLevel = Math.round(currentNL + 1000)
+            data.nextLevel = currentNL + 1000
             data.level = data.level + 1
-            slotsEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${data.level}`)
+            slotsEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${data.level}`)
             data.save()
           } else if (data.currentXP < data.nextLevel){
-            slotsEmbed.addField("XP Recieved", "You have recieved 125 XP")
+            slotsEmbed.addField("XP Recieved", "You have recieved 500 XP")
             data.save()
           }
 
         } else if (slotNums[3] === slotNums [4] || slotNums[3] === slotNums [5] || slotNums[4] === slotNums[5]) {
 
           slotsEmbed.setColor("#00FF00")
-          winnings = `$${userBet * 2}`
+          winnings = `${userBet * 2} coins`
           result = "You got two matches! You have doubled your bet!"
 
           data.money = userBet * 2
           data.slotsCooldown = Date.now() + 15000
-          data.currentXP = data.currentXP + 100
+          data.currentXP = data.currentXP + 500
           if (data.currentXP >= data.nextLevel) {
             let overflow = res.currentXP - res.nextLevel
             let currentNL = res.nextLevel
             data.currentXP = overflow
-            data.nextLevel = Math.round(currentNL + 1000)
+            data.nextLevel = currentNL + 1000
             data.level = data.level + 1
-            slotsEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${data.level}`)
+            slotsEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${data.level}`)
             data.save()
           } else if (data.currentXP < data.nextLevel){
-            slotsEmbed.addField("XP Recieved", "You have recieved 100 XP")
+            slotsEmbed.addField("XP Recieved", "You have recieved 500 XP")
             data.save()
           }
         } else {
 
           slotsEmbed.setColor("#FF0000")
-          winnings = `-$${userBet}`
+          winnings = `-${userBet} coins`
           result = "You didn't get any matches! You lose!"
 
           data.money = data.money - userBet
           data.slotsCooldown = Date.now() + 15000
-          data.currentXP = data.currentXP + 50
+          data.currentXP = data.currentXP + 250
           if (data.currentXP >= data.nextLevel) {
             let overflow = res.currentXP - res.nextLevel
             let currentNL = res.nextLevel
             data.currentXP = overflow
-            data.nextLevel = Math.round(currentNL + 1000)
+            data.nextLevel = currentNL + 1000
             data.level = data.level + 1
-            slotsEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${data.level}`)
+            res.money = res.money + 200
+            slotsEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${data.level}`)
             data.save()
           } else if (data.currentXP < data.nextLevel){
-            slotsEmbed.addField("XP Recieved", "You have recieved 50 XP")
+            slotsEmbed.addField("XP Recieved", "You have recieved 250 XP")
             data.save()
           }
           data.save()

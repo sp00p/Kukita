@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
 
   let weeklyWorkEmbed = new MessageEmbed()
     .setTitle("Congratulations!")
-    .setDescription(`You made $700! Don't spend it all in one place!`)
+    .setDescription(`You got 700 coins! Don't spend it all in one place!`)
     .setColor("RANDOM")
 
   mainSchema.findOne({ userID: message.author.id}, (err, data) => {
@@ -22,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
       let noAccountEmbed = new MessageEmbed()
         .setTitle("Oh no!")
         .setColor("#FF0000")
-        .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
+        .setDescription(`You don't have an account yet! Use ${bot.prefix}create to create one!`)
           //console.log('new money account created, user did not have an account ')
 
         return message.channel.send(noAccountEmbed)
@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args) => {
         let weeklyCooldownEmbed = new MessageEmbed()
           .setTitle("Uh oh!")
           .setColor("#FF0000")
-          .setDescription(`You can only use that command once per week!!\nYou still have ${remaining} to wait!`)
+          .setDescription(`You can only use that command once per week!\nYou still have ${remaining} to wait!`)
 
         return message.channel.send(weeklyCooldownEmbed)
 
@@ -55,7 +55,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "weekly",
-  description: "gives you a weeks worth of money",
+  description: "gives you a weeks worth of coins",
   arguments: "",
   category: "Economy",
   aliases: ["weekly"]

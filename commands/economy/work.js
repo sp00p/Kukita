@@ -13,13 +13,13 @@ module.exports.run = async (bot, message, args) => {
 
   let workEmbed = new MessageEmbed()
     .setTitle("Shift over!")
-    .setDescription(`You worked for ${Math.floor(Math.random() * 6) + 1} hours and made $${moneyMade}`)
+    .setDescription(`You worked for ${Math.floor(Math.random() * 6) + 1} hours and made ${moneyMade} coins!`)
     .setColor("RANDOM")
 
   let noAccountEmbed = new MessageEmbed()
     .setTitle("Oh no!")
     .setColor("#FF0000")
-    .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
+    .setDescription(`You don't have an account yet! Use ${bot.prefix}create to create one!`)
 
   mainSchema.findOne({ userID: message.author.id}, (err, data) => {
     if (err) console.log(err);

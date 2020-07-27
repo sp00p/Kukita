@@ -25,12 +25,12 @@ module.exports.run = async (bot, message, args) => {
         lbEmbed.setColor("#fc0404");
         lbEmbed.addField("No data found", "No one has any money yet!")
       } else if (res.length < 10) {
-        lbEmbed.setColor("0x0099ff");
+        lbEmbed.setColor("#FFFFFF");
         for(i = 0; i < res.length; i++) {
           lbEmbed.addField(`${i + 1}. ${res[i].username}`, `💰: ${res[i].money}\n⭐Rank: ${res[i].rank}\n📊 Level: ${res[i].level}`);
         }
       } else {
-        lbEmbed.setColor("0x0099ff");
+        lbEmbed.setColor("#FFFFFF");
         for(i = 0; i < 10; i++) {
           lbEmbed.addField(`${i + 1}. ${res[i].username}`, `💰: ${res[i].money}\n📊 Level: ${res[i].level}`);
           }

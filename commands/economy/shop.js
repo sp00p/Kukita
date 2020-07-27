@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
 
   let shopEmbed = new MessageEmbed()
     .setTitle("Welcome to the shop!")
-    .setColor("RANDOM")
+    .setColor("#FFFFFF")
 
   let shopItems = ["pencil", "knife", "sword", "gun", "honda", "toyota", "house", "lamborghini", "mansion", "skyscraper"]
   let rankArray = ["gentleman", "esquire", "knight", "baronet", "baron", "viscount", "earl", "marquess", "duke", "prince", "king", "emperor"]
@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
 
     if(!res) {
       profileEmbed.setColor("#fc0404");
-      profileEmbed.addField("❌ Error", `You don't have any money! Use ${bot.prefix}create to start an account!`);
+      profileEmbed.addField("❌ Error", `You don't have any coins! Use ${bot.prefix}create to start an account!`);
 
       return message.channel.send(profileEmbed)
     } else {
@@ -52,7 +52,7 @@ module.exports.run = async (bot, message, args) => {
           } else if (rankArray.includes(rank)) {
             let rankIndex = rankArray.indexOf(rank)
             if (res.money < rankPrices[rankIndex]) {
-              return message.channel.send("You don't have that much money")
+              return message.channel.send("You don't have that many coins!")
             } else if (res.money >= rankPrices[rankIndex]) {
               var rankWanted = titleCase(rank)
               if (res.rank === rankWanted) {
@@ -67,7 +67,7 @@ module.exports.run = async (bot, message, args) => {
           }
         } else {
           for (var i = 0; i < rankArray.length; i++) {
-            shopEmbed.addField(`${(rankEmojis[i]) + " " + titleCase(rankArray[i])}`, `$${rankPrices[i]}`)
+            shopEmbed.addField(`${(rankEmojis[i]) + " " + titleCase(rankArray[i])}`, `Coins: ${rankPrices[i]}`)
             shopEmbed.setImage("https://cdn.discordapp.com/attachments/715404655168978944/737069379941957733/latest.png")
           }
           message.channel.send(shopEmbed)
@@ -82,7 +82,7 @@ module.exports.run = async (bot, message, args) => {
           } else if (shopItems.includes(item)){
             let itemIndex = shopItems.indexOf(item)
             if (res.money < priceArray[itemIndex]) {
-              return message.channel.send("You don't have that much money!")
+              return message.channel.send("You don't have that many coins!")
             } else if (res.money >= priceArray[itemIndex]) {
               var itemWanted = titleCase(item)
               res.money = res.money - priceArray[itemIndex]
@@ -101,7 +101,7 @@ module.exports.run = async (bot, message, args) => {
       } else {
 
         for (var i = 0; i < shopItems.length; i++) {
-          shopEmbed.addField(`${(emojiArray[i]) + " " + titleCase(shopItems[i])}`, `$${priceArray[i]}`)
+          shopEmbed.addField(`${(emojiArray[i]) + " " + titleCase(shopItems[i])}`, `Coins: ${priceArray[i]}`)
           shopEmbed.setImage("https://cdn.discordapp.com/attachments/715404655168978944/737069379941957733/latest.png")
         }
 

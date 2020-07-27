@@ -175,17 +175,18 @@ module.exports.run = async (bot, message, args) => {
                     setTimeout(function(){
                       data.money = data.money + userBet*2
                       data.cfCooldown = Date.now() + 15000
-                      data.currentXP = data.currentXP + 100
+                      data.currentXP = data.currentXP + 500
                       if (data.currentXP >= data.nextLevel) {
                         let overflow = data.currentXP - data.nextLevel
                         let currentNL = data.nextLevel
                         data.currentXP = overflow
-                        data.nextLevel = Math.round(currentNL + 1000)
+                        data.nextLevel = currentNL + 1000
                         data.level = data.level + 1
-                        chicken1WinEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${data.level}`)
+                        data.money = res.money + 200
+                        chicken1WinEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${data.level}`)
                         data.save()
                       } else {
-                        chicken1WinEmbed.addField("XP Recieved", "You have recieved 100 XP")
+                        chicken1WinEmbed.addField("XP Recieved", "You have recieved 500 XP")
                         data.save()
                       }
                       return sentEmbed.edit(chicken1WinEmbed);
@@ -202,17 +203,18 @@ module.exports.run = async (bot, message, args) => {
                     setTimeout(function(){
                       data.money = data.money - userBet
                       data.cfCooldown = Date.now() + 15000
-                      data.currentXP = data.currentXP + 50
+                      data.currentXP = data.currentXP + 250
                       if (data.currentXP >= data.nextLevel) {
                         let overflow = data.currentXP - data.nextLevel
                         let currentNL = data.nextLevel
                         data.currentXP = overflow
-                        data.nextLevel = Math.round(currentNL + 1000)
+                        data.nextLevel = currentNL + 1000
                         data.level = data.level + 1
-                        chicken2WinEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${data.level}`)
+                        data.money = data.money + 200
+                        chicken2WinEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${data.level}`)
                         data.save()
                       } else {
-                        chicken1WinEmbed.addField("XP Recieved", "You have recieved 50 XP")
+                        chicken1WinEmbed.addField("XP Recieved", "You have recieved 250 XP")
                         data.save()
                       }
                       return sentEmbed.edit(chicken2WinEmbed);
@@ -236,17 +238,18 @@ module.exports.run = async (bot, message, args) => {
                     setTimeout(function(){
                       data.money = data.money - userBet
                       data.cfCooldown = Date.now() + 15000
-                      data.currentXP = data.currentXP + 50
+                      data.currentXP = data.currentXP + 250
                       if (data.currentXP >= data.nextLevel) {
                         let overflow = data.currentXP - data.nextLevel
                         let currentNL = data.nextLevel
                         data.currentXP = overflow
-                        data.nextLevel = Math.round(currentNL + 1000)
+                        data.nextLevel = currentNL + 1000
                         data.level = data.level + 1
-                        chicken1WinEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${data.level}`)
+                        data.money = data.money + 200
+                        chicken1WinEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${data.level}`)
                         data.save()
                       } else {
-                        chicken1WinEmbed.addField("XP Recieved", "You have recieved 50 XP")
+                        chicken1WinEmbed.addField("XP Recieved", "You have recieved 250 XP")
                         data.save()
                       }
                       return sentEmbed.edit(chicken1WinEmbed);
@@ -263,17 +266,18 @@ module.exports.run = async (bot, message, args) => {
                     setTimeout(function(){
                       data.money = data.money - userBet
                       data.cfCooldown = Date.now() + 15000
-                      data.currentXP = data.currentXP + 100
+                      data.currentXP = data.currentXP + 500
                       if (data.currentXP >= data.nextLevel) {
                         let overflow = data.currentXP - data.nextLevel
                         let currentNL = data.nextLevel
                         data.currentXP = overflow
-                        data.nextLevel = Math.round(currentNL + 1000)
+                        data.nextLevel = currentNL + 1000
                         data.level = data.level + 1
-                        chicken2WinEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${data.level}`)
+                        res.money = res.money + 200
+                        chicken2WinEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${data.level}`)
                         data.save()
                       } else {
-                        chicken1WinEmbed.addField("XP Recieved", "You have recieved 100 XP")
+                        chicken1WinEmbed.addField("XP Recieved", "You have recieved 500 XP")
                         data.save()
                       }
                       return sentEmbed.edit(chicken2WinEmbed);

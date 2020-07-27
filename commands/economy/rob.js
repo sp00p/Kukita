@@ -14,12 +14,12 @@ module.exports.run = async (bot, message, args) => {
   let noAccountEmbed = new MessageEmbed()
   .setTitle("Oh no!")
   .setColor("#FF0000")
-  .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
+  .setDescription(`You don't have an account yet! Use ${bot.prefix}create to create one!`)
 
   let noAccountMentionedUserEmbed = new MessageEmbed()
   .setTitle("Oh no!")
   .setColor("#FF0000")
-  .setDescription(`That user doesn't have an account yet! They can use ${bot.prefix}createaccount to create one!`)
+  .setDescription(`That user doesn't have an account yet! They can use ${bot.prefix}create to create one!`)
 
   let passiveModeOnEmbed = new MessageEmbed()
   .setTitle("Oh no!")
@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
   let moneyTooLowEmbed = new MessageEmbed()
   .setTitle("Oh no!")
   .setColor("#FF0000")
-  .setDescription("You don't have enough money to disable passive mode! You must have at least $1000!")
+  .setDescription("You don't have enough money to disable passive mode! You must have at least 1000 coins!")
 
   let chance = Math.floor(Math.random() * 100) + 1
 
@@ -104,8 +104,8 @@ module.exports.run = async (bot, message, args) => {
 
               let successRobEmbed = new MessageEmbed()
               .setTitle("Success!")
-              .setColor("00FF00")
-              .setDescription(`${message.author} rocked ${message.mentions.users.first()}\'s ass and stole $${moneyStolen}!`)
+              .setColor("#00FF00")
+              .setDescription(`${message.author} rocked ${message.mentions.users.first()}\'s ass and stole ${moneyStolen} coins!`)
 
               data.money = data.money - moneyStolen
               res.money = res.money + moneyStolen
@@ -123,7 +123,7 @@ module.exports.run = async (bot, message, args) => {
               let failRobEmbed = new MessageEmbed()
               .setTitle("🚓Oh no!🚓")
               .setColor("#FF0000")
-              .setDescription(`You were caught stealing and have been fined $${moneyFined}`)
+              .setDescription(`You were caught stealing and have been fined ${moneyFined} coins!`)
 
               res.money = res.money - moneyFined
               res.robCooldown = Date.now() + 1.8e+6

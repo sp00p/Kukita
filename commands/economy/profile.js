@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
 
     if(!res) {
       profileEmbed.setColor("#fc0404");
-      profileEmbed.addField("❌ Error", `You don't have any money! Use ${bot.prefix}createaccount to start an account!`);
+      profileEmbed.addField("❌ Error", `You don't have a profile! Use ${bot.prefix}create to start an account!`);
 
       return message.channel.send(profileEmbed)
     } else {
@@ -28,9 +28,9 @@ module.exports.run = async (bot, message, args) => {
       const barStr = `${'▰'.repeat(progressOutOf10)}${'▱'.repeat(10 - progressOutOf10)}`;
 
 
-      profileEmbed.setDescription(`**Rank**: ${res.rank}\n**Is Voter**: ${res.isVoter}\n**Passive**: ${res.isPassive}\n**Money**: $${res.money}\n**Level**: ${res.level}\n**XP**: ${res.currentXP}/${res.nextLevel}\n${barStr}`)
-      profileEmbed.setColor("RANDOM")
-      
+      profileEmbed.setDescription(`**Rank**: ${res.rank}\n**Is Voter**: ${res.isVoter}\n**Passive**: ${res.isPassive}\n**Coins**: $${res.money}\n**Level**: ${res.level}\n**XP**: ${res.currentXP}/${res.nextLevel}\n${barStr}`)
+      profileEmbed.setColor("#FFFFFF")
+
       return message.channel.send(profileEmbed)
 
     }

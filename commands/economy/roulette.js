@@ -105,7 +105,7 @@ module.exports.run = async (bot, message, args) => {
 
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
-                  res.money = res.money + (userBet * 2)
+                  res.money = res.money - userBet
                   res.rlCooldown = Date.now() + 30000
                   res.currentXP = res.currentXP + 50
                   if (res.currentXP >= res.nextLevel) {
@@ -163,7 +163,7 @@ module.exports.run = async (bot, message, args) => {
 
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
-                  res.money = res.money + (userBet * 2)
+                  res.money = res.money - userBet
                   res.rlCooldown = Date.now() + 30000
                   res.currentXP = res.currentXP + 50
                   if (res.currentXP >= res.nextLevel) {
@@ -221,7 +221,7 @@ module.exports.run = async (bot, message, args) => {
 
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
-                  res.money = res.money + (userBet * 2)
+                  res.money = res.money - userBet
                   res.rlCooldown = Date.now() + 30000
                   res.currentXP = res.currentXP + 50
                   if (res.currentXP >= res.nextLevel) {
@@ -283,7 +283,7 @@ module.exports.run = async (bot, message, args) => {
 
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
-                    res.money = res.money + (userBet * 2)
+                    res.money = res.money - userBet
                     res.rlCooldown = Date.now() + 30000
                     res.currentXP = res.currentXP + 50
                     if (res.currentXP >= res.nextLevel) {
@@ -343,7 +343,7 @@ module.exports.run = async (bot, message, args) => {
 
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
-                    res.money = res.money + (userBet * 2)
+                    res.money = res.money - userBet
                     res.rlCooldown = Date.now() + 30000
                     res.currentXP = res.currentXP + 50
                     if (res.currentXP >= res.nextLevel) {

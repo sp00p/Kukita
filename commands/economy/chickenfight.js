@@ -182,8 +182,10 @@ module.exports.run = async (bot, message, args) => {
                         data.currentXP = overflow
                         data.nextLevel = Math.round(currentNL + 1000)
                         data.level = data.level + 1
+                        chicken1WinEmbed.addField(`Congratulations! You leveled up! You are now level ${data.level}`)
                         data.save()
                       } else {
+                        chicken1WinEmbed.addField("You have recieved 100 XP")
                         data.save()
                       }
                       return sentEmbed.edit(chicken1WinEmbed);
@@ -207,8 +209,10 @@ module.exports.run = async (bot, message, args) => {
                         data.currentXP = overflow
                         data.nextLevel = Math.round(currentNL + 1000)
                         data.level = data.level + 1
+                        chicken2WinEmbed.addField(`Congratulations! You leveled up! You are now level ${data.level}`)
                         data.save()
                       } else {
+                        chicken1WinEmbed.addField("You have recieved 50 XP")
                         data.save()
                       }
                       return sentEmbed.edit(chicken2WinEmbed);
@@ -239,8 +243,10 @@ module.exports.run = async (bot, message, args) => {
                         data.currentXP = overflow
                         data.nextLevel = Math.round(currentNL + 1000)
                         data.level = data.level + 1
+                        chicken1WinEmbed.addField(`Congratulations! You leveled up! You are now level ${data.level}`)
                         data.save()
                       } else {
+                        chicken1WinEmbed.addField("You have recieved 50 XP")
                         data.save()
                       }
                       return sentEmbed.edit(chicken1WinEmbed);
@@ -264,8 +270,10 @@ module.exports.run = async (bot, message, args) => {
                         data.currentXP = overflow
                         data.nextLevel = Math.round(currentNL + 1000)
                         data.level = data.level + 1
+                        chicken2WinEmbed.addField(`Congratulations! You leveled up! You are now level ${data.level}`)
                         data.save()
                       } else {
+                        chicken1WinEmbed.addField("You have recieved 100 XP")
                         data.save()
                       }
                       return sentEmbed.edit(chicken2WinEmbed);

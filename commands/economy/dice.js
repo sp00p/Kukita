@@ -70,8 +70,10 @@ module.exports.run = async (bot, message, args) => {
               res.currentXP = overflow
               res.nextLevel = Math.round(currentNL + 1000)
               res.level = res.level + 1
+              diceEmbed.addField(`Congratulations! You leveled up! You are now level ${res.level}`)
               res.save()
             } else if (res.currentXP < res.nextLevel){
+              diceEmbed.addField("You have recieved 100 XP")
               res.save()
             }
 
@@ -98,8 +100,10 @@ module.exports.run = async (bot, message, args) => {
               res.currentXP = overflow
               res.nextLevel = Math.round(currentNL + 1000)
               res.level = res.level + 1
+              diceEmbed.addField(`Congratulations! You leveled up! You are now level ${res.level}`)
               res.save()
             } else if (res.currentXP < res.nextLevel){
+              diceEmbed.addField("You have recieved 50 XP")
               res.save()
             }
 
@@ -143,8 +147,10 @@ module.exports.run = async (bot, message, args) => {
                 res.currentXP = overflow
                 res.nextLevel = Math.round(currentNL + 1000)
                 res.level = res.level + 1
+                diceEmbed.addField(`Congratulations! You leveled up! You are now level ${res.level}`)
                 res.save()
               } else if (res.currentXP < res.nextLevel){
+                diceEmbed.addField("You have recieved 100 XP")
                 res.save()
               }
 
@@ -171,8 +177,10 @@ module.exports.run = async (bot, message, args) => {
                 res.currentXP = overflow
                 res.nextLevel = Math.round(currentNL + 1000)
                 res.level = res.level + 1
+                diceEmbed.addField(`Congratulations! You leveled up! You are now level ${res.level}`)
                 res.save()
               } else if (res.currentXP < res.nextLevel){
+                diceEmbed.addField("You have recieved 50 XP")
                 res.save()
               }
 
@@ -213,8 +221,10 @@ module.exports.run = async (bot, message, args) => {
                 res.currentXP = overflow
                 res.nextLevel = Math.round(currentNL + 1000)
                 res.level = res.level + 1
+                diceEmbed.addField(`Congratulations! You leveled up! You are now level ${res.level}`)
                 res.save()
               } else if (res.currentXP < res.nextLevel){
+                diceEmbed.addField("You have recieved 100 XP")
                 res.save()
               }
 
@@ -241,8 +251,10 @@ module.exports.run = async (bot, message, args) => {
                 res.currentXP = overflow
                 res.nextLevel = Math.round(currentNL + 1000)
                 res.level = res.level + 1
+                diceEmbed.addField(`Congratulations! You leveled up! You are now level ${res.level}`)
                 res.save()
               } else if (res.currentXP < res.nextLevel){
+                diceEmbed.addField("You have recieved 50 XP")
                 res.save()
               }
 

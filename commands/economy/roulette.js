@@ -78,7 +78,7 @@ module.exports.run = async (bot, message, args) => {
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
-                  res.cfCooldown = Date.now() + 30000
+                  res.rlCooldown = Date.now() + 30000
                   res.currentXP = res.currentXP + 100
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
@@ -365,7 +365,7 @@ module.exports.run = async (bot, message, args) => {
           }
 
       } else if (res.rlCooldown > Date.now()) {
-        var remaining = humanizeDuration(res.cfCooldown - Date.now(), { conjunction: " and ", units: ["s"], round: true});
+        var remaining = humanizeDuration(res.rlCooldown - Date.now(), { conjunction: " and ", units: ["s"], round: true});
 
         let rlCooldownEmbed = new MessageEmbed()
           .setTitle("Uh oh!")

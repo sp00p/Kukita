@@ -245,7 +245,7 @@ module.exports.run = async (bot, message, args) => {
 
             if (randomEvenOdd % 2 === 0 && evenOdd === "even") {
 
-                let moneyWon = parseInt(userBet*1.5)
+                let moneyWon = parseInt(userBet*2)
 
                 finalEmbed.setColor("#00FF00")
                 finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)
@@ -303,7 +303,7 @@ module.exports.run = async (bot, message, args) => {
                 });
               } else if (randomEvenOdd % 2 === 1 && evenOdd === "odd") {
 
-                let moneyWon = parseInt(userBet * 1.5)
+                let moneyWon = parseInt(userBet * 2)
 
                 finalEmbed.setColor("#00FF00")
                 finalEmbed.addField("Spin Result", `${color}`+randomEvenOdd)

@@ -12,6 +12,7 @@ let Schema = new mongoose.Schema({
   rlCooldown: Number,
   slotsCooldown: Number,
   money: Number,
+  inventory: Array,
   currentXP: Number,
   nextLevel: Number,
   isVoter: Boolean,

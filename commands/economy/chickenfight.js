@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
   let noAccountEmbed = new MessageEmbed()
   .setTitle("Oh no!")
   .setColor("#FF0000")
-  .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
+  .setDescription(`You don't have an account yet! Use ${bot.prefix}create to create one!`)
   let number = 4
   let imageNum1 = Math.floor(Math.random() * (number - 1 + 1)) * 1;
   let imageNum2 = Math.floor(Math.random() * (number - 1 + 1)) * 1;
@@ -150,12 +150,12 @@ module.exports.run = async (bot, message, args) => {
                     setTimeout(function(){
                       data.money = data.money + userBet*2
                       data.cfCooldown = Date.now() + 15000
-                      data.currentXP = data.currentXP + 50
+                      data.currentXP = data.currentXP + 100
                       if (data.currentXP >= data.nextLevel) {
                         let overflow = data.currentXP - data.nextLevel
                         let currentNL = data.nextLevel
                         data.currentXP = overflow
-                        data.nextLevel = Math.round(currentNL * 2)
+                        data.nextLevel = Math.round(currentNL + 1000)
                         data.level = data.level + 1
                         data.save()
                       } else {
@@ -175,12 +175,12 @@ module.exports.run = async (bot, message, args) => {
                     setTimeout(function(){
                       data.money = data.money - userBet
                       data.cfCooldown = Date.now() + 15000
-                      data.currentXP = data.currentXP + 25
+                      data.currentXP = data.currentXP + 50
                       if (data.currentXP >= data.nextLevel) {
                         let overflow = data.currentXP - data.nextLevel
                         let currentNL = data.nextLevel
                         data.currentXP = overflow
-                        data.nextLevel = Math.round(currentNL * 2)
+                        data.nextLevel = Math.round(currentNL + 1000)
                         data.level = data.level + 1
                         data.save()
                       } else {
@@ -207,12 +207,12 @@ module.exports.run = async (bot, message, args) => {
                     setTimeout(function(){
                       data.money = data.money - userBet
                       data.cfCooldown = Date.now() + 15000
-                      data.currentXP = data.currentXP + 25
+                      data.currentXP = data.currentXP + 50
                       if (data.currentXP >= data.nextLevel) {
                         let overflow = data.currentXP - data.nextLevel
                         let currentNL = data.nextLevel
                         data.currentXP = overflow
-                        data.nextLevel = Math.round(currentNL * 2)
+                        data.nextLevel = Math.round(currentNL + 1000)
                         data.level = data.level + 1
                         data.save()
                       } else {
@@ -232,12 +232,12 @@ module.exports.run = async (bot, message, args) => {
                     setTimeout(function(){
                       data.money = data.money - userBet
                       data.cfCooldown = Date.now() + 15000
-                      data.currentXP = data.currentXP + 50
+                      data.currentXP = data.currentXP + 100
                       if (data.currentXP >= data.nextLevel) {
                         let overflow = data.currentXP - data.nextLevel
                         let currentNL = data.nextLevel
                         data.currentXP = overflow
-                        data.nextLevel = Math.round(currentNL * 2)
+                        data.nextLevel = Math.round(currentNL + 1000)
                         data.level = data.level + 1
                         data.save()
                       } else {

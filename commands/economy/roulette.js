@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args) => {
   let noAccountEmbed = new MessageEmbed()
   .setTitle("Oh no!")
   .setColor("#FF0000")
-  .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
+  .setDescription(`You don't have an account yet! Use ${bot.prefix}create to create one!`)
 
   mainSchema.findOne({ userID: message.author.id}, (err, res) => {
 
@@ -79,12 +79,12 @@ module.exports.run = async (bot, message, args) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
                   res.cfCooldown = Date.now() + 30000
-                  res.currentXP = res.currentXP + 50
+                  res.currentXP = res.currentXP + 100
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
                     let currentNL = res.nextLevel
                     res.currentXP = overflow
-                    res.nextLevel = Math.round(currentNL * 2)
+                    res.nextLevel = Math.round(currentNL + 1000)
                     res.level = res.level + 1
                     res.save()
                   } else if (res.currentXP < res.nextLevel){
@@ -105,12 +105,12 @@ module.exports.run = async (bot, message, args) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
                   res.rlCooldown = Date.now() + 30000
-                  res.currentXP = res.currentXP + 25
+                  res.currentXP = res.currentXP + 50
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
                     let currentNL = res.nextLevel
                     res.currentXP = overflow
-                    res.nextLevel = Math.round(currentNL * 2)
+                    res.nextLevel = Math.round(currentNL + 1000)
                     res.level = res.level + 1
                     res.save()
                   } else if (res.currentXP < res.nextLevel){
@@ -133,12 +133,12 @@ module.exports.run = async (bot, message, args) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
                   res.rlCooldown = Date.now() + 30000
-                  res.currentXP = res.currentXP + 50
+                  res.currentXP = res.currentXP + 100
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
                     let currentNL = res.nextLevel
                     res.currentXP = overflow
-                    res.nextLevel = Math.round(currentNL * 2)
+                    res.nextLevel = Math.round(currentNL + 1000)
                     res.level = res.level + 1
                     res.save()
                   } else if (res.currentXP < res.nextLevel){
@@ -159,12 +159,12 @@ module.exports.run = async (bot, message, args) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
                   res.rlCooldown = Date.now() + 30000
-                  res.currentXP = res.currentXP + 25
+                  res.currentXP = res.currentXP + 50
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
                     let currentNL = res.nextLevel
                     res.currentXP = overflow
-                    res.nextLevel = Math.round(currentNL * 2)
+                    res.nextLevel = Math.round(currentNL + 1000)
                     res.level = res.level + 1
                     res.save()
                   } else if (res.currentXP < res.nextLevel){
@@ -187,12 +187,12 @@ module.exports.run = async (bot, message, args) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
                   res.rlCooldown = Date.now() + 30000
-                  res.currentXP = res.currentXP + 50
+                  res.currentXP = res.currentXP + 100
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
                     let currentNL = res.nextLevel
                     res.currentXP = overflow
-                    res.nextLevel = Math.round(currentNL * 2)
+                    res.nextLevel = Math.round(currentNL + 1000)
                     res.level = res.level + 1
                     res.save()
                   } else if (res.currentXP < res.nextLevel){
@@ -213,12 +213,12 @@ module.exports.run = async (bot, message, args) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
                   res.rlCooldown = Date.now() + 30000
-                  res.currentXP = res.currentXP + 25
+                  res.currentXP = res.currentXP + 50
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
                     let currentNL = res.nextLevel
                     res.currentXP = overflow
-                    res.nextLevel = Math.round(currentNL * 2)
+                    res.nextLevel = Math.round(currentNL + 1000)
                     res.level = res.level + 1
                     res.save()
                   } else if (res.currentXP < res.nextLevel){
@@ -245,12 +245,12 @@ module.exports.run = async (bot, message, args) => {
                   setTimeout(function(){
                     res.money = res.money + (userBet * 2)
                     res.rlCooldown = Date.now() + 30000
-                    res.currentXP = res.currentXP + 50
+                    res.currentXP = res.currentXP + 100
                     if (res.currentXP >= res.nextLevel) {
                       let overflow = res.currentXP - res.nextLevel
                       let currentNL = res.nextLevel
                       res.currentXP = overflow
-                      res.nextLevel = Math.round(currentNL * 2)
+                      res.nextLevel = Math.round(currentNL + 1000)
                       res.level = res.level + 1
                       res.save()
                     } else if (res.currentXP < res.nextLevel){
@@ -271,12 +271,12 @@ module.exports.run = async (bot, message, args) => {
                   setTimeout(function(){
                     res.money = res.money + (userBet * 2)
                     res.rlCooldown = Date.now() + 30000
-                    res.currentXP = res.currentXP + 25
+                    res.currentXP = res.currentXP + 50
                     if (res.currentXP >= res.nextLevel) {
                       let overflow = res.currentXP - res.nextLevel
                       let currentNL = res.nextLevel
                       res.currentXP = overflow
-                      res.nextLevel = Math.round(currentNL * 2)
+                      res.nextLevel = Math.round(currentNL + 1000)
                       res.level = res.level + 1
                       res.save()
                     } else if (res.currentXP < res.nextLevel){
@@ -301,12 +301,12 @@ module.exports.run = async (bot, message, args) => {
                   setTimeout(function(){
                     res.money = res.money + (userBet * 2)
                     res.rlCooldown = Date.now() + 30000
-                    res.currentXP = res.currentXP + 50
+                    res.currentXP = res.currentXP + 100
                     if (res.currentXP >= res.nextLevel) {
                       let overflow = res.currentXP - res.nextLevel
                       let currentNL = res.nextLevel
                       res.currentXP = overflow
-                      res.nextLevel = Math.round(currentNL * 2)
+                      res.nextLevel = Math.round(currentNL + 1000)
                       res.level = res.level + 1
                       res.save()
                     } else if (res.currentXP < res.nextLevel){
@@ -327,12 +327,12 @@ module.exports.run = async (bot, message, args) => {
                   setTimeout(function(){
                     res.money = res.money + (userBet * 2)
                     res.rlCooldown = Date.now() + 30000
-                    res.currentXP = res.currentXP + 25
+                    res.currentXP = res.currentXP + 50
                     if (res.currentXP >= res.nextLevel) {
                       let overflow = res.currentXP - res.nextLevel
                       let currentNL = res.nextLevel
                       res.currentXP = overflow
-                      res.nextLevel = Math.round(currentNL * 2)
+                      res.nextLevel = Math.round(currentNL + 1000)
                       res.level = res.level + 1
                       res.save()
                     } else if (res.currentXP < res.nextLevel){

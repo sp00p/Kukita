@@ -35,13 +35,13 @@ module.exports.run = async (bot, message, args) => {
         diceCooldown: Date.now(),
         rlCooldown: Date.now(),
         slotsCooldown: Date.now(),
-        money: 0,
-        currentXP: 0,
-        nextLevel: 100,
+        money: 100,
+        currentXP: 100,
+        nextLevel: 1000,
         isVoter: false,
         level: 1,
         isPassive: true,
-        rank: "None"
+        rank: "Commoner"
       })
       newAccount.save()
 
@@ -49,7 +49,7 @@ module.exports.run = async (bot, message, args) => {
       .setTitle("Success!")
       .setColor("#00FF00")
       .setThumbnail(message.author.displayAvatarURL())
-      .setDescription("Account successfully created!")
+      .setDescription("Account successfully created!\nYou recieved 100 XP and $100 for signing up!")
 
       return message.channel.send(createdAccountEmbed)
     }

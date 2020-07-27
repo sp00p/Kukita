@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
   if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
 
   let profileEmbed = new MessageEmbed()
-    .setAuthor(`${message.author.username}'s Profile'`, message.author.displayAvatarURL())
+    .setAuthor(`${message.author.username}'s Profile`, message.author.displayAvatarURL())
 
   mainSchema.findOne({ userID: message.author.id }, (err, res) => {
     if (err) console.log(err);
@@ -21,8 +21,16 @@ module.exports.run = async (bot, message, args) => {
       return message.channel.send(profileEmbed)
     } else {
 
-      profileEmbed.setDescription(`**Rank**: ${res.rank}\n**Is Voter**: ${res.isVoter}\n**Passive**: ${res.isPassive}\n**Money**: $${res.money}\n**Level**: ${res.level}\n**XP**: ${res.currentXP}/${res.nextLevel}`)
+      let currentLevel = Math.floor(res.currentXP / 1000);
+      const progress = (res.currentXP % 1000) / 1000;
+      const progressOutOf10 = Math.round(progress * 10);
+      const x = "□";
+      const barStr = `${'▰'.repeat(progressOutOf10)}${'▱'.repeat(10 - progressOutOf10)}`;
 
+
+      profileEmbed.setDescription(`**Rank**: ${res.rank}\n**Is Voter**: ${res.isVoter}\n**Passive**: ${res.isPassive}\n**Money**: $${res.money}\n**Level**: ${res.level}\n**XP**: ${res.currentXP}/${res.nextLevel}\n${barStr}`)
+      profileEmbed.setColor("RANDOM")
+      
       return message.channel.send(profileEmbed)
 
     }

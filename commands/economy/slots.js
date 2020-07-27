@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
   let noAccountEmbed = new MessageEmbed()
   .setTitle("Oh no!")
   .setColor("#FF0000")
-  .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
+  .setDescription(`You don't have an account yet! Use ${bot.prefix}create to create one!`)
 
   var randomInArray = function (anArray){
 	//TODO : Check if anArray is really an array.
@@ -88,12 +88,12 @@ module.exports.run = async (bot, message, args) => {
 
           data.money = userBet * 3
           data.slotsCooldown = Date.now() + 30000
-          data.currentXP = data.currentXP + 75
+          data.currentXP = data.currentXP + 125
           if (data.currentXP >= data.nextLevel) {
             let overflow = res.currentXP - res.nextLevel
             let currentNL = res.nextLevel
             data.currentXP = overflow
-            data.nextLevel = Math.round(currentNL * 2)
+            data.nextLevel = Math.round(currentNL + 1000)
             data.level = data.level + 1
             data.save()
           } else if (data.currentXP < data.nextLevel){
@@ -108,12 +108,12 @@ module.exports.run = async (bot, message, args) => {
 
           data.money = userBet * 2
           data.slotsCooldown = Date.now() + 30000
-          data.currentXP = data.currentXP + 50
+          data.currentXP = data.currentXP + 100
           if (data.currentXP >= data.nextLevel) {
             let overflow = res.currentXP - res.nextLevel
             let currentNL = res.nextLevel
             data.currentXP = overflow
-            data.nextLevel = Math.round(currentNL * 2)
+            data.nextLevel = Math.round(currentNL + 1000)
             data.level = data.level + 1
             data.save()
           } else if (data.currentXP < data.nextLevel){
@@ -127,12 +127,12 @@ module.exports.run = async (bot, message, args) => {
 
           data.money = data.money - userBet
           data.slotsCooldown = Date.now() + 30000
-          data.currentXP = data.currentXP + 25
+          data.currentXP = data.currentXP + 50
           if (data.currentXP >= data.nextLevel) {
             let overflow = res.currentXP - res.nextLevel
             let currentNL = res.nextLevel
             data.currentXP = overflow
-            data.nextLevel = Math.round(currentNL * 2)
+            data.nextLevel = Math.round(currentNL + 1000)
             data.level = data.level + 1
             data.save()
           } else if (data.currentXP < data.nextLevel){

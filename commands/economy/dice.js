@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
   let noAccountEmbed = new MessageEmbed()
   .setTitle("Oh no!")
   .setColor("#FF0000")
-  .setDescription(`You don't have an account yet! Use ${bot.prefix}createaccount to create one!`)
+  .setDescription(`You don't have an account yet! Use ${bot.prefix}create to create one!`)
 
   let moneyEmbed = new MessageEmbed()
   let diceEmbed = new MessageEmbed()
@@ -61,14 +61,14 @@ module.exports.run = async (bot, message, args) => {
             diceEmbed.addField("Result", `You won $${userBet * 2}!`)
 
             res.money = res.money + userBet*2
-            res.currentXP = res.currentXP + 50
+            res.currentXP = res.currentXP + 100
             res.diceCooldown = Date.now() + 30000
 
             if (res.currentXP >= res.nextLevel) {
               let overflow = res.currentXP - res.nextLevel
               let currentNL = res.nextLevel
               res.currentXP = overflow
-              res.nextLevel = Math.round(currentNL * 2)
+              res.nextLevel = Math.round(currentNL + 1000)
               res.level = res.level + 1
               res.save()
             } else if (res.currentXP < res.nextLevel){
@@ -89,14 +89,14 @@ module.exports.run = async (bot, message, args) => {
             diceEmbed.addField("Result", `You lost $${userBet}!`)
 
             res.money = res.money - userBet
-            res.currentXP = res.currentXP + 25
+            res.currentXP = res.currentXP + 50
             res.diceCooldown = Date.now() + 30000
 
             if (res.currentXP >= res.nextLevel) {
               let overflow = res.currentXP - res.nextLevel
               let currentNL = res.nextLevel
               res.currentXP = overflow
-              res.nextLevel = Math.round(currentNL * 2)
+              res.nextLevel = Math.round(currentNL + 1000)
               res.level = res.level + 1
               res.save()
             } else if (res.currentXP < res.nextLevel){
@@ -134,14 +134,14 @@ module.exports.run = async (bot, message, args) => {
               diceEmbed.addField("Result", `You won $${userBet * 2}`)
 
               res.money = res.money + userBet*2
-              res.currentXP = res.currentXP + 50
+              res.currentXP = res.currentXP + 100
               res.diceCooldown = Date.now() + 30000
 
               if (res.currentXP >= res.nextLevel) {
                 let overflow = res.currentXP - res.nextLevel
                 let currentNL = res.nextLevel
                 res.currentXP = overflow
-                res.nextLevel = Math.round(currentNL * 2)
+                res.nextLevel = Math.round(currentNL + 1000)
                 res.level = res.level + 1
                 res.save()
               } else if (res.currentXP < res.nextLevel){
@@ -162,14 +162,14 @@ module.exports.run = async (bot, message, args) => {
               diceEmbed.addField("Result", `You lost $${userBet}!`)
 
               res.money = res.money - userBet
-              res.currentXP = res.currentXP + 25
+              res.currentXP = res.currentXP + 50
               res.diceCooldown = Date.now() + 30000
 
               if (res.currentXP >= res.nextLevel) {
                 let overflow = res.currentXP - res.nextLevel
                 let currentNL = res.nextLevel
                 res.currentXP = overflow
-                res.nextLevel = Math.round(currentNL * 2)
+                res.nextLevel = Math.round(currentNL + 1000)
                 res.level = res.level + 1
                 res.save()
               } else if (res.currentXP < res.nextLevel){
@@ -204,14 +204,14 @@ module.exports.run = async (bot, message, args) => {
               diceEmbed.addField("Result", `You won $${userBet * 2}!`)
 
               res.money = res.money + userBet*2
-              res.currentXP = res.currentXP + 50
+              res.currentXP = res.currentXP + 100
               res.diceCooldown = Date.now() + 30000
 
               if (res.currentXP >= res.nextLevel) {
                 let overflow = res.currentXP - res.nextLevel
                 let currentNL = res.nextLevel
                 res.currentXP = overflow
-                res.nextLevel = Math.round(currentNL * 2)
+                res.nextLevel = Math.round(currentNL + 1000)
                 res.level = res.level + 1
                 res.save()
               } else if (res.currentXP < res.nextLevel){
@@ -232,14 +232,14 @@ module.exports.run = async (bot, message, args) => {
               diceEmbed.addField("Result", `You lost $${userBet}!`)
 
               res.money = res.money - userBet
-              res.currentXP = res.currentXP + 25
+              res.currentXP = res.currentXP + 50
               res.diceCooldown = Date.now() + 30000
 
               if (res.currentXP >= res.nextLevel) {
                 let overflow = res.currentXP - res.nextLevel
                 let currentNL = res.nextLevel
                 res.currentXP = overflow
-                res.nextLevel = Math.round(currentNL * 2)
+                res.nextLevel = Math.round(currentNL + 1000)
                 res.level = res.level + 1
                 res.save()
               } else if (res.currentXP < res.nextLevel){

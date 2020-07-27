@@ -95,10 +95,10 @@ module.exports.run = async (bot, message, args) => {
             data.currentXP = overflow
             data.nextLevel = Math.round(currentNL + 1000)
             data.level = data.level + 1
-            slotsEmbed.addField(`Congratulations! You leveled up! You are now level ${data.level}`)
+            slotsEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${data.level}`)
             data.save()
           } else if (data.currentXP < data.nextLevel){
-            slotsEmbed.addField("You have recieved 125 XP")
+            slotsEmbed.addField("XP Recieved", "You have recieved 125 XP")
             data.save()
           }
 
@@ -117,10 +117,10 @@ module.exports.run = async (bot, message, args) => {
             data.currentXP = overflow
             data.nextLevel = Math.round(currentNL + 1000)
             data.level = data.level + 1
-            slotsEmbed.addField(`Congratulations! You leveled up! You are now level ${data.level}`)
+            slotsEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${data.level}`)
             data.save()
           } else if (data.currentXP < data.nextLevel){
-            slotsEmbed.addField("You have recieved 100 XP")
+            slotsEmbed.addField("XP Recieved", "You have recieved 100 XP")
             data.save()
           }
         } else {
@@ -138,10 +138,10 @@ module.exports.run = async (bot, message, args) => {
             data.currentXP = overflow
             data.nextLevel = Math.round(currentNL + 1000)
             data.level = data.level + 1
-            slotsEmbed.addField(`Congratulations! You leveled up! You are now level ${data.level}`)
+            slotsEmbed.addField("Level up!", `Congratulations! You leveled up! You are now level ${data.level}`)
             data.save()
           } else if (data.currentXP < data.nextLevel){
-            slotsEmbed.addField("You have recieved 50 XP")
+            slotsEmbed.addField("XP Recieved", "You have recieved 50 XP")
             data.save()
           }
           data.save()

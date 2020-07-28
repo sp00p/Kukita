@@ -85,13 +85,13 @@ module.exports.run = async (bot, message, args) => {
               return message.channel.send("You don't have that many coins!")
             } else if (res.money >= priceArray[itemIndex]) {
               var itemWanted = titleCase(item)
-              res.money = res.money - priceArray[itemIndex]
-              res.inventory.push(emojiArray[itemIndex] + " " + itemWanted)
               if (res.inventory.length > 10) {
                 return message.channel.send("You already own every item!")
               } else if (res.inventory.includes(emojiArray[itemIndex] + " " + itemWanted)){
                 return message.channel.send("You already own that item!")
               } else {
+                res.money = res.money - priceArray[itemIndex]
+                res.inventory.push(emojiArray[itemIndex] + " " + itemWanted)
                 res.save()
                 return message.channel.send(`You have successfully purchased ${emojiArray[itemIndex]+ " " + itemWanted } for $${priceArray[itemIndex]}`)
               }

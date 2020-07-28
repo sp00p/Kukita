@@ -31,8 +31,8 @@ module.exports.run = async (bot, message, args) => {
         if (data.workCooldown < Date.now()) {
 
           data.money = data.money + moneyMade
-          data.save()
           data.workCooldown = Date.now() + 1.44e+7
+          data.save()
           return message.channel.send(workEmbed)
 
         } else if (data.workCooldown > Date.now()) {
@@ -47,8 +47,6 @@ module.exports.run = async (bot, message, args) => {
       }
     })
 }
-
-
 
 module.exports.help = {
   name: "work",

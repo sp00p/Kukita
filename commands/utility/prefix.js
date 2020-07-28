@@ -3,7 +3,7 @@ const Prefix = require("../../models/prefix.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  if (!message.author === message.guild.owner) return;
+  if (!message.author === message.guild.owner || !bot.config.owners.includes(message.author.id)) return;
 
   if(!args[0]) return message.channel.send("Please specify a prefix!")
 

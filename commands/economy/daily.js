@@ -30,7 +30,7 @@ module.exports.run = async (bot, message, args) => {
     } else if (data.dailyCooldown - Date.now() >= 8.64e+7){
 
           data.money = data.money + 100;
-          data.dailyCooldown = Date.now() + 8.64e+7
+          data.dailyCooldown = Date.now() 
           data.save()
           return message.channel.send(dailyWorkEmbed)
 

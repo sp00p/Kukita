@@ -42,6 +42,8 @@ module.exports.run = async (bot, message, args) => {
             .setTitle("Uh oh!")
             .setColor("#fc0404")
             .setDescription(`You can only use that command once every week!\nYou still have to wait ${remaining}!`)
+
+          return message.channel.send(workCooldownEmbed)
         }
 
       }

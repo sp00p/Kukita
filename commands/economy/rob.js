@@ -38,7 +38,6 @@ module.exports.run = async (bot, message, args) => {
 
   let chance = Math.floor(Math.random() * 100) + 1
 
-  if (!message.mentions.users.first()) return
 
   mainSchema.findOne({userID: message.author.id}, (err, res) => {
 
@@ -68,7 +67,7 @@ module.exports.run = async (bot, message, args) => {
         }
       }
     } else if (res) { // is author has an account
-
+      if (!message.mentions.users.first()) return 
       mainSchema.findOne({userID: message.mentions.users.first().id}, (err, data) => {
 
         if (!data) { // if mentioned user doesn't have an account
@@ -84,7 +83,7 @@ module.exports.run = async (bot, message, args) => {
 
         } else if (data.isPassive === false) {
 
-          if (res.robCooldown > Date.now()) {
+          if (data.robCooldown > Date.now()) {
 
             var remaining = humanizeDuration(res.robCooldown - Date.now(), { conjunction: " and ", units: ["m", "s"], round: true});
 

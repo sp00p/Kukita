@@ -93,7 +93,7 @@ module.exports.run = async (bot, message, args) => {
                 res.money = res.money - priceArray[itemIndex]
                 res.inventory.push(emojiArray[itemIndex] + " " + itemWanted)
                 res.save()
-                return message.channel.send(`You have successfully purchased ${emojiArray[itemIndex]+ " " + itemWanted } for $${priceArray[itemIndex]}`)
+                return message.channel.send(`You have successfully purchased ${emojiArray[itemIndex]+ " " + itemWanted } for ${priceArray[itemIndex]} coins`)
               }
             }
           }

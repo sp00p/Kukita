@@ -36,7 +36,7 @@ module.exports.run = async (bot, message, args) => {
           return message.channel.send(workEmbed)
 
         } else if (data.workCooldown > Date.now()) {
-          var remaining = humanizeDuration(res.workCooldown - Date.now(), { conjunction: " and ", units: ["h", "m", "s"], round: true});
+          var remaining = humanizeDuration(data.workCooldown - Date.now(), { conjunction: " and ", units: ["h", "m", "s"], round: true});
 
           let workCooldownEmbed = new MessageEmbed()
             .setTitle("Uh oh!")

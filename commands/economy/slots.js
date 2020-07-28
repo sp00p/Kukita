@@ -87,7 +87,7 @@ module.exports.run = async (bot, message, args) => {
           result = "You got three in a row! You have tripled your bet!"
 
           data.money = userBet * 3
-          data.slotsCooldown = Date.now() + 15000
+          data.slotsCooldown = Date.now() + 30000
           data.currentXP = data.currentXP + 500
           if (data.currentXP >= data.nextLevel) {
             let overflow = res.currentXP - res.nextLevel
@@ -109,7 +109,7 @@ module.exports.run = async (bot, message, args) => {
           result = "You got two matches! You have doubled your bet!"
 
           data.money = userBet * 2
-          data.slotsCooldown = Date.now() + 15000
+          data.slotsCooldown = Date.now() + 30000
           data.currentXP = data.currentXP + 500
           if (data.currentXP >= data.nextLevel) {
             let overflow = res.currentXP - res.nextLevel
@@ -130,7 +130,7 @@ module.exports.run = async (bot, message, args) => {
           result = "You didn't get any matches! You lose!"
 
           data.money = data.money - userBet
-          data.slotsCooldown = Date.now() + 15000
+          data.slotsCooldown = Date.now() + 30000
           data.currentXP = data.currentXP + 250
           if (data.currentXP >= data.nextLevel) {
             let overflow = res.currentXP - res.nextLevel

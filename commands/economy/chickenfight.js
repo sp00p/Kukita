@@ -174,7 +174,7 @@ module.exports.run = async (bot, message, args) => {
 
                     setTimeout(function(){
                       data.money = data.money + userBet*2
-                      data.cfCooldown = Date.now() + 15000
+                      data.cfCooldown = Date.now() + 30000
                       data.currentXP = data.currentXP + 500
                       if (data.currentXP >= data.nextLevel) {
                         let overflow = data.currentXP - data.nextLevel
@@ -202,7 +202,7 @@ module.exports.run = async (bot, message, args) => {
 
                     setTimeout(function(){
                       data.money = data.money - userBet
-                      data.cfCooldown = Date.now() + 15000
+                      data.cfCooldown = Date.now() + 30000
                       data.currentXP = data.currentXP + 250
                       if (data.currentXP >= data.nextLevel) {
                         let overflow = data.currentXP - data.nextLevel
@@ -237,7 +237,7 @@ module.exports.run = async (bot, message, args) => {
 
                     setTimeout(function(){
                       data.money = data.money - userBet
-                      data.cfCooldown = Date.now() + 15000
+                      data.cfCooldown = Date.now() + 30000
                       data.currentXP = data.currentXP + 250
                       if (data.currentXP >= data.nextLevel) {
                         let overflow = data.currentXP - data.nextLevel
@@ -265,7 +265,7 @@ module.exports.run = async (bot, message, args) => {
 
                     setTimeout(function(){
                       data.money = data.money - userBet
-                      data.cfCooldown = Date.now() + 15000
+                      data.cfCooldown = Date.now() + 30000
                       data.currentXP = data.currentXP + 500
                       if (data.currentXP >= data.nextLevel) {
                         let overflow = data.currentXP - data.nextLevel

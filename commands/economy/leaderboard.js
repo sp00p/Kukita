@@ -6,10 +6,8 @@ module.exports.run = async (bot, message, args) => {
 
   //if (!bot.config.owners.includes(message.author.id)) return message.channel.send("This command is temporarily disabled for maintenance!")
 
-  if (!bot.config.betatesters.includes(message.author.id))
-  if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
-
-
+  //if (!bot.config.betatesters.includes(message.author.id))
+  //if (!bot.config.betatestingchannelid.includes(message.channel.id)) return
 
   mainSchema.find({
   }).sort({

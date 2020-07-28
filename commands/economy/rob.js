@@ -38,6 +38,8 @@ module.exports.run = async (bot, message, args) => {
 
   let chance = Math.floor(Math.random() * 100) + 1
 
+  if (!message.mentions.users.first()) return
+
   mainSchema.findOne({userID: message.author.id}, (err, res) => {
 
     if (!res) { // if mentioned user doesn't have an account

@@ -170,7 +170,7 @@ module.exports.run = async (bot, message, args) => {
                     sentEmbed.edit(firstEmbed)
 
                     chicken1WinEmbed.setColor("#00FF00")
-                    chicken1WinEmbed.addField("Result", `Your chicken won! You recieved $${userBet * 2}`)
+                    chicken1WinEmbed.addField("Result", `Your chicken won! You recieved ${userBet * 2} coins!`)
 
                     setTimeout(function(){
                       data.money = data.money + userBet*2
@@ -197,7 +197,7 @@ module.exports.run = async (bot, message, args) => {
                     sentEmbed.edit(firstEmbed)
 
                     chicken2WinEmbed.setColor("#FF0000")
-                    chicken2WinEmbed.addField("Result", `Your chicken lost! You lose $${userBet}`)
+                    chicken2WinEmbed.addField("Result", `Your chicken lost! You lose ${userBet} coins!`)
 
 
                     setTimeout(function(){
@@ -232,7 +232,7 @@ module.exports.run = async (bot, message, args) => {
                     sentEmbed.edit(firstEmbed)
 
                     chicken1WinEmbed.setColor("#FF0000")
-                    chicken1WinEmbed.addField("Result", `Your chicken lost! You lose $${userBet}`)
+                    chicken1WinEmbed.addField("Result", `Your chicken lost! You lose ${userBet} coins!`)
 
 
                     setTimeout(function(){
@@ -261,7 +261,7 @@ module.exports.run = async (bot, message, args) => {
                     sentEmbed.edit(firstEmbed)
 
                     chicken2WinEmbed.setColor("#00FF00")
-                    chicken2WinEmbed.addField("Result", `Your chicken won! You recieved $${userBet * 2}`)
+                    chicken2WinEmbed.addField("Result", `Your chicken won! You recieved ${userBet * 2} coins!`)
 
                     setTimeout(function(){
                       data.money = data.money - userBet

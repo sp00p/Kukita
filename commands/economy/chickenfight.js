@@ -264,7 +264,7 @@ module.exports.run = async (bot, message, args) => {
                     chicken2WinEmbed.addField("Result", `Your chicken won! You recieved ${userBet * 2} coins!`)
 
                     setTimeout(function(){
-                      data.money = data.money - userBet
+                      data.money = data.money + userBet*2
                       data.cfCooldown = Date.now() + 30000
                       data.currentXP = data.currentXP + 500
                       if (data.currentXP >= data.nextLevel) {
@@ -273,7 +273,7 @@ module.exports.run = async (bot, message, args) => {
                         data.currentXP = overflow
                         data.nextLevel = currentNL + 1000
                         data.level = data.level + 1
-                        res.money = res.money + 200
+                        data.money = data.money + 200
                         chicken2WinEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${data.level}`)
                         data.save()
                       } else {

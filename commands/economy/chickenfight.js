@@ -214,7 +214,7 @@ module.exports.run = async (bot, message, args) => {
                         chicken2WinEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${data.level}`)
                         data.save()
                       } else {
-                        chicken1WinEmbed.addField("XP Recieved", "You have recieved 250 XP")
+                        chicken2WinEmbed.addField("XP Recieved", "You have recieved 250 XP")
                         data.save()
                       }
                       return sentEmbed.edit(chicken2WinEmbed);
@@ -277,7 +277,7 @@ module.exports.run = async (bot, message, args) => {
                         chicken2WinEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${data.level}`)
                         data.save()
                       } else {
-                        chicken1WinEmbed.addField("XP Recieved", "You have recieved 500 XP")
+                        chicken2WinEmbed.addField("XP Recieved", "You have recieved 500 XP")
                         data.save()
                       }
                       return sentEmbed.edit(chicken2WinEmbed);

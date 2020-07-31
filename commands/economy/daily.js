@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
 
         return message.channel.send(noAccountEmbed)
 
-    } else if (Data.now() - data.dailyCooldown >= 8.64e+7){
+    } else if (Date.now() - data.dailyCooldown >= 8.64e+7){
 
           data.money = data.money + 100;
           data.dailyCooldown = Date.now() + 8.64e+7

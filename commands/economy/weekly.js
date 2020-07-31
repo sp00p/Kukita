@@ -27,17 +27,17 @@ module.exports.run = async (bot, message, args) => {
 
         return message.channel.send(noAccountEmbed)
 
-    } else if (data.weeklyCooldown <= Date.now()){
+    } else if (Date.now() - data.weeklyCooldown >= 6.048e+8){
 
           data.money = data.money + 700;
           data.weeklyCooldown = Date.now() + 6.048e+8
           data.save()
           return message.channel.send(weeklyWorkEmbed)
 
-    } else if (data.weeklyCooldown > Date.now()) {
+    } else if (Date.now() - data.weeklyCooldown <  6.048e+8) {
         //console.log('cooldown more than date')
 
-        var remaining = humanizeDuration(data.weeklyCooldown - Date.now(), { conjunction: " and ", units: ["d", "h", "m", "s"], round: true});
+        var remaining = humanizeDuration(Date.now() - data.weeklyCooldown, { conjunction: " and ", units: ["d", "h", "m", "s"], round: true});
 
         let weeklyCooldownEmbed = new MessageEmbed()
           .setTitle("Uh oh!")

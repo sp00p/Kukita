@@ -11,7 +11,7 @@ module.exports.run = (bot, message, args) => {
     .setDescription("✅ Success")
     .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
 
-  blacklist.findOneAndDelete({ userID: user}, (err, res) => {
+  blacklistuser.findOneAndDelete({ userID: user}, (err, res) => {
     if (err) console.log(err);
 
     if(!res) {

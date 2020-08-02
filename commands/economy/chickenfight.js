@@ -126,8 +126,6 @@ module.exports.run = async (bot, message, args) => {
   .setDescription(`The user decided to call off the fight!`)
 
   let drawEmbed = new MessageEmbed()
-  .setTitle(`Well this is awkward.`)
-  .setDescription(`After ${Math.floor(Math.random() * 10) + 1} grueling rounds, both chickens were unable to continue!\n You recieve your money back!`)
 
   let firstEmbed = new MessageEmbed()
   .setTitle("Fighting...🥊")
@@ -222,8 +220,9 @@ module.exports.run = async (bot, message, args) => {
 
                   } else if (chance === 50) {
 
-                    return message.channel.send(drawEmbed)
-
+                    drawEmbed.setTitle(`Well this is awkward.`)
+                    drawEmbed.setDescription(`After ${Math.floor(Math.random() * 10) + 1} grueling rounds, both chickens were unable to continue!\n You recieve your money back!`)
+                    return sentEmbed.edit(drawEmbed)
                   }
 
                 } else if (reaction.emoji.name === '2️⃣') {
@@ -314,7 +313,7 @@ module.exports.run = async (bot, message, args) => {
         let cfCooldownEmbed = new MessageEmbed()
           .setTitle("Uh oh!")
           .setColor("#FF0000")
-          .setDescription(`You can only use that command once every 15 seconds!\nYou still have ${remaining} to wait!`)
+          .setDescription(`You can only use that command once every 30 seconds!\nYou still have ${remaining} to wait!`)
 
         return message.channel.send(cfCooldownEmbed)
 

@@ -182,7 +182,7 @@ module.exports.run = async (bot, message, args) => {
                         data.currentXP = overflow
                         data.nextLevel = currentNL + 1000
                         data.level = data.level + 1
-                        data.money = res.money + 200
+                        data.money = data.money + 200
                         chicken1WinEmbed.addField("Level up!", `Congratulations! You leveled up and got 200 coins! You are now level ${data.level}`)
                         data.save()
                       } else {

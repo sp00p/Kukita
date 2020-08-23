@@ -60,6 +60,15 @@ bot.on("ready", () => {
 
 });
 
+bot.on("guildCreate", (guild) => {
+  const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
+
+  const message = "**Kukita is here**\n Thanks for inviting my bot!\n To see a full list of commands use the `.help` command. If you want to see the full documentation click on this link: https://docs.seancornell.io \n\nIf there's a problem or a bug, don't hesitate to join the support server!\n**Support server invite:** https://discord.gg/UD23c9B"
+
+  channel.send(message);
+
+});
+
 bot.on("messageDelete", async (message) => {
 
   if (message.author.bot) return;
@@ -121,14 +130,6 @@ bot.on("message", async message => {
   });
 });
 
-bot.on("guildCreated", guild => {
-  let joinChannel = guild.channels.cache.get(guild.channel.cache.values()[0])
-
-  let message = "**Kukita is here**\n Thanks for inviting my bot! To see a full list of commands use the `.help` command. If you want to see the full documentation click on this link: https://docs.seancornell.io. If there's a problem or a bug, don't hesitate to join the support server!\nSupport server invite: https://discord.gg/UD23c9B"
-
-  joinChannel.send(message);
-
-})
 (async () => {
   await db;
   return bot.login(bot.config.token).catch(console.error());

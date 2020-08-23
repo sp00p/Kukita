@@ -121,6 +121,14 @@ bot.on("message", async message => {
   });
 });
 
+bot.on("guildCreated", guild => {
+  let joinChannel = guild.channels.cache.get(guild.channel.cache.values()[0])
+
+  let message = "**Kukita is here**\n Thanks for inviting my bot! To see a full list of commands use the `.help` command. If you want to see the full documentation click on this link: https://docs.seancornell.io. If there's a problem or a bug, don't hesitate to join the support server!\nSupport server invite: https://discord.gg/UD23c9B"
+
+  joinChannel.send(message);
+
+})
 (async () => {
   await db;
   return bot.login(bot.config.token).catch(console.error());

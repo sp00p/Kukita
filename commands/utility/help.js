@@ -16,7 +16,7 @@ module.exports.run = (bot, message, args) => {
     } else if (bot.aliases.has(command)) {
       cmd = bot.commands.get(bot.aliases.get(command));
     }
-    if(!cmd) return message.channel.send(helpEmbed.setTitle("Invalid Command").setDescription(`Do \`${bot.config.prefix}help <category> for the list of commands`))
+    if(!cmd) return message.channel.send(helpEmbed.setTitle("Invalid Command").setDescription(`Do \`${bot.config.prefix}help <command> for information on that command`))
     command = cmd.help;
     helpEmbed.setTitle(`**Command Information**`);
     helpEmbed.setDescription([

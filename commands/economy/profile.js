@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
       const barStr = `${'▰'.repeat(progressOutOf10)}${'▱'.repeat(10 - progressOutOf10)}`;
 
 
-      profileEmbed.setDescription(`**Rank**: ${res.rank}\n**Is Voter**: ${res.isVoter}\n**Passive**: ${res.isPassive}\n**Coins**: ${res.money}\n**Level**: ${res.level}\n**XP**: ${res.currentXP}/${res.nextLevel}\n${barStr}`)
+      profileEmbed.setDescription(`**Rank**: ${res.rank}\n**Passive**: ${res.isPassive}\n**Coins**: ${res.money}\n**Level**: ${res.level}\n**XP**: ${res.currentXP}/${res.nextLevel}\n${barStr}`)
       profileEmbed.setColor("#FFFFFF")
 
       return message.channel.send(profileEmbed)

@@ -62,7 +62,7 @@ module.exports.run = async (bot, message, args) => {
 
             res.money = res.money + userBet*2
             res.currentXP = res.currentXP + 500
-            res.diceCooldown = Date.now() + 30000
+            res.diceCooldown = Date.now() + 15000
 
             if (res.currentXP >= res.nextLevel) {
               let overflow = res.currentXP - res.nextLevel
@@ -93,7 +93,7 @@ module.exports.run = async (bot, message, args) => {
 
             res.money = res.money - userBet
             res.currentXP = res.currentXP + 250
-            res.diceCooldown = Date.now() + 30000
+            res.diceCooldown = Date.now() + 15000
 
             if (res.currentXP >= res.nextLevel) {
               let overflow = res.currentXP - res.nextLevel
@@ -141,7 +141,7 @@ module.exports.run = async (bot, message, args) => {
 
               res.money = res.money + userBet*2
               res.currentXP = res.currentXP + 500
-              res.diceCooldown = Date.now() + 30000
+              res.diceCooldown = Date.now() + 15000
 
               if (res.currentXP >= res.nextLevel) {
                 let overflow = res.currentXP - res.nextLevel
@@ -172,7 +172,7 @@ module.exports.run = async (bot, message, args) => {
 
               res.money = res.money - userBet
               res.currentXP = res.currentXP + 250
-              res.diceCooldown = Date.now() + 30000
+              res.diceCooldown = Date.now() + 15000
 
               if (res.currentXP >= res.nextLevel) {
                 let overflow = res.currentXP - res.nextLevel
@@ -217,7 +217,7 @@ module.exports.run = async (bot, message, args) => {
 
               res.money = res.money + userBet*2
               res.currentXP = res.currentXP + 500
-              res.diceCooldown = Date.now() + 30000
+              res.diceCooldown = Date.now() + 15000
 
               if (res.currentXP >= res.nextLevel) {
                 let overflow = res.currentXP - res.nextLevel
@@ -248,7 +248,7 @@ module.exports.run = async (bot, message, args) => {
 
               res.money = res.money - userBet
               res.currentXP = res.currentXP + 250
-              res.diceCooldown = Date.now() + 30000
+              res.diceCooldown = Date.now() + 15000
 
               if (res.currentXP >= res.nextLevel) {
                 let overflow = res.currentXP - res.nextLevel

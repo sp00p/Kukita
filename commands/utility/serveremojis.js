@@ -22,7 +22,7 @@ module.exports.run =  async (bot, message, args) => {
   })
   let emojiEmbed = new MessageEmbed()
     .setTitle(`**Emojis in ${message.guild.name}**`)
-    .setDescription(`**Animated [${Animated}]**:\n${EmojisAnimated}\n\n**Standard [${EmojiCount}]**:\n${Emojis}\n\n**All Emojis [${OverallEmojis}]**`)
+    .setDescription(`**Animated [${Animated}]**:\n${EmojisAnimated}\n\n**Standard [${EmojiCount}]**:\n${Emojis}`)
     message.channel.send(emojiEmbed)
 }
 

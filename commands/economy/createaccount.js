@@ -38,7 +38,6 @@ module.exports.run = async (bot, message, args) => {
         money: 500,
         currentXP: 500,
         nextLevel: 1000,
-        isVoter: false,
         level: 1,
         isPassive: true,
         rank: "Commoner"

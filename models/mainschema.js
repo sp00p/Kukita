@@ -15,7 +15,6 @@ let Schema = new mongoose.Schema({
   inventory: Array,
   currentXP: Number,
   nextLevel: Number,
-  isVoter: Boolean,
   level: Number,
   isPassive: Boolean,
   rank: String,

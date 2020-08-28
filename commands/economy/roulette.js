@@ -78,7 +78,7 @@ module.exports.run = async (bot, message, args) => {
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
-                  res.rlCooldown = Date.now() + 30000
+                  res.rlCooldown = Date.now() + 15000
                   res.currentXP = res.currentXP + 500
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
@@ -107,7 +107,7 @@ module.exports.run = async (bot, message, args) => {
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money - userBet
-                  res.rlCooldown = Date.now() + 30000
+                  res.rlCooldown = Date.now() + 15000
                   res.currentXP = res.currentXP + 250
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
@@ -138,7 +138,7 @@ module.exports.run = async (bot, message, args) => {
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
-                  res.rlCooldown = Date.now() + 30000
+                  res.rlCooldown = Date.now() + 15000
                   res.currentXP = res.currentXP + 500
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
@@ -166,7 +166,7 @@ module.exports.run = async (bot, message, args) => {
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money - userBet
-                  res.rlCooldown = Date.now() + 30000
+                  res.rlCooldown = Date.now() + 15000
                   res.currentXP = res.currentXP + 250
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
@@ -197,7 +197,7 @@ module.exports.run = async (bot, message, args) => {
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money + (userBet * 2)
-                  res.rlCooldown = Date.now() + 30000
+                  res.rlCooldown = Date.now() + 15000
                   res.currentXP = res.currentXP + 500
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
@@ -226,7 +226,7 @@ module.exports.run = async (bot, message, args) => {
               message.channel.send(firstEmbed).then((msg) => {
                 setTimeout(function(){
                   res.money = res.money - userBet
-                  res.rlCooldown = Date.now() + 30000
+                  res.rlCooldown = Date.now() + 15000
                   res.currentXP = res.currentXP + 250
                   if (res.currentXP >= res.nextLevel) {
                     let overflow = res.currentXP - res.nextLevel
@@ -261,7 +261,7 @@ module.exports.run = async (bot, message, args) => {
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
                     res.money = res.money + moneyWon
-                    res.rlCooldown = Date.now() + 30000
+                    res.rlCooldown = Date.now() + 15000
                     res.currentXP = res.currentXP + 500
                     if (res.currentXP >= res.nextLevel) {
                       let overflow = res.currentXP - res.nextLevel
@@ -290,7 +290,7 @@ module.exports.run = async (bot, message, args) => {
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
                     res.money = res.money - userBet
-                    res.rlCooldown = Date.now() + 30000
+                    res.rlCooldown = Date.now() + 15000
                     res.currentXP = res.currentXP + 250
                     if (res.currentXP >= res.nextLevel) {
                       let overflow = res.currentXP - res.nextLevel
@@ -321,7 +321,7 @@ module.exports.run = async (bot, message, args) => {
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
                     res.money = res.money + moneyWon
-                    res.rlCooldown = Date.now() + 30000
+                    res.rlCooldown = Date.now() + 15000
                     res.currentXP = res.currentXP + 500
                     if (res.currentXP >= res.nextLevel) {
                       let overflow = res.currentXP - res.nextLevel
@@ -350,7 +350,7 @@ module.exports.run = async (bot, message, args) => {
                 message.channel.send(firstEmbed).then((msg) => {
                   setTimeout(function(){
                     res.money = res.money - userBet
-                    res.rlCooldown = Date.now() + 30000
+                    res.rlCooldown = Date.now() + 15000
                     res.currentXP = res.currentXP + 250
                     if (res.currentXP >= res.nextLevel) {
                       let overflow = res.currentXP - res.nextLevel

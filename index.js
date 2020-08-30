@@ -130,6 +130,36 @@ bot.on("message", async message => {
   });
 });
 
+bot.on('messageReactionAdd', async (reaction, user) => {
+  if (reaction.message.partial) await reaction.message.fetch();
+  if (reaction.partial) await reaction.fetch();
+
+  if (user.bot) return;
+  if (!reaction.message.guild) return;
+
+  if (reaction.message.channel.id === "749733000991998031") {
+    if (reaction.emoji.name === "👍") {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("749734750717214872")
+    }
+  }
+
+});
+
+bot.on('messageReactionRemove', async (reaction, user) => {
+  if (reaction.message.partial) await reaction.message.fetch();
+  if (reaction.partial) await reaction.fetch();
+
+  if (user.bot) return;
+  if (!reaction.message.guild) return;
+
+  if (reaction.message.channel.id === "749733000991998031") {
+    if (reaction.emoji.name === "👍") {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("749734750717214872")
+    }
+  }
+
+});
+
 (async () => {
   await db;
   return bot.login(bot.config.token).catch(console.error());

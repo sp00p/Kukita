@@ -1,4 +1,4 @@
-15000const { MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const mainSchema = require("../../models/mainschema.js")
 const humanizeDuration = require('humanize-duration')
 

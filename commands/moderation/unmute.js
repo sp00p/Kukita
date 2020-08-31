@@ -11,11 +11,8 @@ module.exports.run = (bot, message,args) => {
       if(!data) {
         message.channel.send("That member is not muted!");
       } else if (data) {
-        mute.findOneAndDelete({User: member.id}, (err, res) => {
-          res.save().catch(console.log(err));
-          member.roles.set([])
-          message.channel.send(`${member} has been unmuted!`)
-        })
+        member.roles.set([])
+        message.channel.send(`${member} has been unmuted!`)
       }
     })
 

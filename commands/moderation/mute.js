@@ -7,7 +7,7 @@ module.exports.run = (bot, message,args) => {
     let moderator = message.author;
     let guildname = message.guild;
 
-    if (args[1] === "") {
+    if (!args[1]) {
       var reason = "Not Specified"
     } else {
       var reason = args[1]
@@ -24,7 +24,7 @@ module.exports.run = (bot, message,args) => {
     )
     .setFooter("Kukita Bot", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png");
 
-    mute.findOne({ Guild: message.guild.id, User: member.id}, (err, data) => {
+    mute.findOne({ User: member.id}, (err, data) => {
       if(err) console.log(err)
       if(!data) {
         let newMute = new mute({
@@ -42,9 +42,10 @@ module.exports.run = (bot, message,args) => {
 
         message.channel.send(`Successfully muted ${member}`);
         member.send(mutedEmbed)
+      } else if (data) {
+        return message.channel.send("That member is already muted! Did you mean to use `unmute`?")
       }
     })
-    member.send(mutedEmbed)
 
 }
 

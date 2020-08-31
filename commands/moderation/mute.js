@@ -48,4 +48,5 @@ module.exports.run = (bot, message,args) => {
     })
     member.send(mutedEmbed)
 
+  }
 }

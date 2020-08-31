@@ -8,11 +8,9 @@ module.exports.run = (bot, message,args) => {
     let guildname = message.guild;
 
     if (args[1] === "") {
-    if (args[2] === "") {
       var reason = "Not Specified"
     } else {
       var reason = args[1]
-      var reason = args[2]
     }
 
     const mutedEmbed = new MessageEmbed()
@@ -33,10 +31,10 @@ module.exports.run = (bot, message,args) => {
           User: member.id
         })
         newMute.save()
-    var mutedRole = message.guild.roles.cache.find(role => role.name === "Muted")
-    member.roles.add(mutedRole);
 
         var mutedRole = message.guild.roles.cache.find(role => role.name === "Muted")
+
+        if (!mutedRole) return message.channel.send("Do you have a role by the name of `Muted` set up?")
 
         member.roles.set([])
           .then(memberRoles => member.roles.add([mutedRole]))
@@ -48,8 +46,8 @@ module.exports.run = (bot, message,args) => {
     })
     member.send(mutedEmbed)
 
-  }
 }
+
 
 module.exports.help = {
   name: "mute",

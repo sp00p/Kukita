@@ -101,6 +101,11 @@ bot.on("message", async message => {
 
     let command;
 
+    if (message.mentions.has(bot.user)) {
+     message.channel.send("You must have forgotten my prefix. My prefix in this server is " + "`" + prefix + "`");
+   }
+
+
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
 

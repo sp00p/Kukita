@@ -50,3 +50,11 @@ module.exports.run = (bot, message,args) => {
 
   }
 }
+
+module.exports.help = {
+  name: "mute",
+  description: "mutes a specified user",
+  arguments: "<user> [reason]",
+  category: "Moderation",
+  aliases: ["mute"]
+};

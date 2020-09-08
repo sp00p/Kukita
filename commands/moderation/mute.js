@@ -10,7 +10,7 @@ module.exports.run = (bot, message,args) => {
     if (!args[1]) {
       var reason = "Not Specified"
     } else {
-      var reason = args[1]
+      var reason = args.slice(1).join(" ")
     }
 
     const mutedEmbed = new MessageEmbed()

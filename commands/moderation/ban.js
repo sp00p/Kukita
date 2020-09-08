@@ -8,7 +8,7 @@ module.exports.run = (bot, message,args) => {
     } else {
       var reason = args.slice(1).join(" ")
     }
-    
+
     let member = message.guild.member(message.mentions.users.first());
     let moderator = message.author;
     let guildname = message.guild;
@@ -17,7 +17,6 @@ module.exports.run = (bot, message,args) => {
 
     const banEmbed = new Discord.MessageEmbed()
       .setColor("0x0099ff")
-      .setAuthor("Kukita#6512", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
       .addFields(
         {name: "**Moderator**", value: message.author, inline: true},
         {name: "**Action**", value: 'Ban', inline: true},

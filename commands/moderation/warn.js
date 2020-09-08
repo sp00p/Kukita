@@ -18,7 +18,6 @@ module.exports.run = (bot, message,args) => {
 
     const warnEmbed = new MessageEmbed()
       .setColor("0x0099ff")
-      .setAuthor("Kukita#6512", "https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png")
       .addFields(
         {name: "**Moderator**", value: message.author, inline: true},
         {name: "**Action**", value: 'Warn', inline: true},

@@ -19,7 +19,7 @@ Kukita is a bot developed by Sean#0004 to handle moderation of servers as well a
 
 ## Release History
 
-*   0.0.1
+*   0.0.3
 *   Work in progress
 
 ## Meta

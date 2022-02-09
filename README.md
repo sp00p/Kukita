@@ -1,3 +1,5 @@
+I've finally decided to make this open source. I would not recommend you copy/paste these commands due to discordv13 changing many endpoints and functions. However, feel free to use this repository to learn some more about discord bot development!
+
 # Kukita
 
 ![Kukita](https://cdn.discordapp.com/attachments/731996957051977859/733879306283122758/kukita.png)

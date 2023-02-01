@@ -31,7 +31,7 @@
     "humanize-duration": "^3.23.1",
     "imageapi.js": "^1.0.6",
     "log-symbols": "^4.0.0",
-    "mongoose": "^5.9.25",
+    "mongoose": "^5.13.15",
     "ms": "^2.1.2",
     "sequelize": "^6.3.3"
   }
